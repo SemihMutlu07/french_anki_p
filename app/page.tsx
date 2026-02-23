@@ -1,21 +1,17 @@
 import Link from "next/link";
-import unit1 from "@/curriculum/101/unit1.json";
-import unit2 from "@/curriculum/101/unit2.json";
-import unit3 from "@/curriculum/101/unit3.json";
-import unit4 from "@/curriculum/101/unit4.json";
-import unit5 from "@/curriculum/101/unit5.json";
-import unit6 from "@/curriculum/101/unit6.json";
+import { getUnitCount } from "@/lib/curriculum";
 
-const units = [
-  { id: "unit1", label: "Ünite 1", count: unit1.length },
-  { id: "unit2", label: "Ünite 2", count: unit2.length },
-  { id: "unit3", label: "Ünite 3", count: unit3.length },
-  { id: "unit4", label: "Ünite 4", count: unit4.length },
-  { id: "unit5", label: "Ünite 5", count: unit5.length },
-  { id: "unit6", label: "Ünite 6", count: unit6.length },
-];
+const UNIT_IDS = Array.from({ length: 10 }, (_, i) => `unit${i + 1}`);
 
-export default function Home() {
+export default async function Home() {
+  const units = await Promise.all(
+    UNIT_IDS.map(async (id, i) => ({
+      id,
+      label: `Ünite ${i + 1}`,
+      count: await getUnitCount(id),
+    }))
+  );
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5]">
       <div className="max-w-xl mx-auto px-6 py-16">
