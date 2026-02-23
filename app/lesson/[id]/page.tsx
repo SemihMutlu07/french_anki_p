@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import LessonCard, { type VocabItem } from "@/components/LessonCard";
@@ -123,45 +123,153 @@ export default function LessonPage() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [handleKnow, handleDontKnow]);
 
+  // Swipe support
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const dy = e.changedTouches[0].clientY - touchStartY.current;
+      touchStartX.current = null;
+      touchStartY.current = null;
+      // Must be more horizontal than vertical, and exceed minimum distance
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+      if (dx > 0) handleKnow();
+      else handleDontKnow();
+    },
+    [handleKnow, handleDontKnow]
+  );
+
   const progressPct = totalCards > 0 ? (masteredCount / totalCards) * 100 : 0;
+  const cardIndex = masteredCount + (queue.length > 0 ? 1 : 0);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] flex flex-col">
-      <header className="flex items-center gap-4 px-6 py-4 border-b border-zinc-800">
-        <Link
-          href="/"
-          className="text-zinc-600 hover:text-zinc-300 text-sm leading-none"
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#0a0a0a",
+        color: "#e5e5e5",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Top bar */}
+      <header
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "0 24px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            paddingTop: 16,
+            paddingBottom: 12,
+          }}
         >
-          ←
-        </Link>
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-zinc-300 font-medium">{courseName}</span>
-          <span className="text-zinc-700">·</span>
-          <span className="text-zinc-500">Ünite {unitNumber}</span>
-        </div>
-        <div className="flex-1 flex items-center gap-3 justify-end">
-          <span className="text-zinc-600 text-xs tabular-nums">
-            {masteredCount}/{totalCards}
+          <Link
+            href="/"
+            style={{
+              color: "#666666",
+              textDecoration: "none",
+              fontSize: 20,
+              lineHeight: 1,
+              marginRight: 12,
+            }}
+          >
+            ←
+          </Link>
+          <span
+            style={{ color: "#e5e5e5", fontWeight: 500, fontSize: 14 }}
+          >
+            {courseName} · Ünite {unitNumber}
           </span>
-          <div className="w-28 h-px bg-zinc-800 rounded-full overflow-hidden relative">
-            <div
-              className="absolute inset-y-0 left-0 bg-zinc-400 rounded-full"
-              style={{ width: `${progressPct}%` }}
-            />
+          <div
+            style={{
+              marginLeft: "auto",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}
+          >
+            <span
+              style={{
+                color: "#666666",
+                fontSize: 13,
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              {cardIndex} / {totalCards}
+            </span>
           </div>
+        </div>
+        {/* Full-width thin progress bar */}
+        <div
+          style={{
+            height: 1,
+            background: "#1f1f1f",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: `${progressPct}%`,
+              background: "#555555",
+            }}
+          />
         </div>
       </header>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-12">
+      {/* Main content */}
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "24px 24px 32px",
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {!loaded ? null : done ? (
-          <div className="text-center space-y-3">
-            <p className="text-2xl font-semibold">Ünite tamamlandı</p>
-            <p className="text-zinc-500 text-sm">
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontSize: 24, fontWeight: 600, margin: 0 }}>
+              Ünite tamamlandı
+            </p>
+            <p
+              style={{
+                color: "#555555",
+                fontSize: 13,
+                marginTop: 12,
+              }}
+            >
               {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
             </p>
             <Link
               href="/"
-              className="inline-block mt-6 px-5 py-2 border border-zinc-700 hover:border-zinc-500 rounded text-sm text-zinc-300 transition-colors"
+              style={{
+                display: "inline-block",
+                marginTop: 32,
+                padding: "10px 20px",
+                border: "1px solid #333",
+                borderRadius: 10,
+                fontSize: 14,
+                color: "#cccccc",
+                textDecoration: "none",
+              }}
             >
               Ana sayfa
             </Link>
@@ -169,25 +277,88 @@ export default function LessonPage() {
         ) : (
           <>
             <LessonCard item={queue[0]} />
-            <div className="flex gap-3 mt-8 w-full max-w-xl">
+
+            {/* Buttons */}
+            <div
+              style={{
+                display: "flex",
+                gap: 12,
+                marginTop: 24,
+                width: "100%",
+                maxWidth: 560,
+              }}
+            >
+              {/* Bilmiyorum */}
               <button
                 onClick={handleDontKnow}
-                className="flex-1 flex flex-col items-center py-4 border border-zinc-800 hover:border-zinc-600 rounded-lg text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
+                style={{
+                  flex: 1,
+                  height: 56,
+                  border: "1px solid #333333",
+                  background: "transparent",
+                  borderRadius: 12,
+                  color: "#888888",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  position: "relative",
+                }}
               >
-                <span className="text-sm font-medium">Bilmiyorum</span>
-                <span className="text-zinc-700 text-xs mt-1">tuş 1</span>
+                Bilmiyorum
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: 6,
+                    right: 10,
+                    fontSize: 11,
+                    color: "#444444",
+                  }}
+                >
+                  1
+                </span>
               </button>
+
+              {/* Biliyorum */}
               <button
                 onClick={handleKnow}
-                className="flex-1 flex flex-col items-center py-4 border border-zinc-800 hover:border-zinc-600 rounded-lg text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
+                style={{
+                  flex: 1,
+                  height: 56,
+                  border: "none",
+                  background: "#2a2a2a",
+                  borderRadius: 12,
+                  color: "#ffffff",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                  position: "relative",
+                }}
               >
-                <span className="text-sm font-medium">Biliyorum</span>
-                <span className="text-zinc-700 text-xs mt-1">tuş 2</span>
+                Biliyorum
+                <span
+                  style={{
+                    position: "absolute",
+                    bottom: 6,
+                    right: 10,
+                    fontSize: 11,
+                    color: "#555555",
+                  }}
+                >
+                  2
+                </span>
               </button>
             </div>
-            <p className="mt-5 text-zinc-700 text-xs tabular-nums">
-              bu oturumda: {sessionKnown} biliyorum &middot; {sessionUnknown}{" "}
-              bilmiyorum
+
+            {/* Session stats */}
+            <p
+              style={{
+                marginTop: 16,
+                fontSize: 13,
+                color: "#444444",
+                textAlign: "center",
+              }}
+            >
+              {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
             </p>
           </>
         )}

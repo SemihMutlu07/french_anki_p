@@ -11,24 +11,78 @@ export interface VocabItem {
 
 export default function LessonCard({ item }: { item: VocabItem }) {
   return (
-    <div className="w-full max-w-xl bg-zinc-900 border border-zinc-800 rounded-xl p-10">
-      <p className="text-6xl font-bold text-center tracking-tight mb-3">
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 560,
+        background: "#1a1a1a",
+        borderRadius: 16,
+        padding: 48,
+      }}
+    >
+      <p
+        style={{
+          fontSize: 64,
+          fontWeight: 700,
+          color: "#ffffff",
+          textAlign: "center",
+          margin: 0,
+          lineHeight: 1.1,
+        }}
+      >
         {item.french}
       </p>
-      <p className="text-zinc-500 text-center text-sm font-mono mb-8">
+      <p
+        style={{
+          fontSize: 16,
+          color: "#666666",
+          textAlign: "center",
+          marginTop: 8,
+          marginBottom: 0,
+          fontFamily: "monospace",
+        }}
+      >
         {item.ipa}
       </p>
-      <p className="text-2xl text-zinc-200 text-center mb-8">
+      <div
+        style={{
+          borderTop: "1px solid #333333",
+          margin: "24px 0",
+        }}
+      />
+      <p
+        style={{
+          fontSize: 24,
+          color: "#cccccc",
+          textAlign: "center",
+          margin: 0,
+        }}
+      >
         {item.turkish}
       </p>
-      <div className="border-t border-zinc-800 pt-6 space-y-2">
-        <p className="text-zinc-400 text-sm italic text-center">
-          {item.example_sentence}
-        </p>
-        <p className="text-zinc-600 text-xs text-center">
-          {item.example_translation}
-        </p>
-      </div>
+      <p
+        style={{
+          fontSize: 15,
+          fontStyle: "italic",
+          color: "#888888",
+          textAlign: "center",
+          marginTop: 24,
+          marginBottom: 0,
+        }}
+      >
+        {item.example_sentence}
+      </p>
+      <p
+        style={{
+          fontSize: 14,
+          color: "#555555",
+          textAlign: "center",
+          marginTop: 4,
+          marginBottom: 0,
+        }}
+      >
+        {item.example_translation}
+      </p>
     </div>
   );
 }
