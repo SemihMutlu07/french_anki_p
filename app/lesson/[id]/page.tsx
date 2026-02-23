@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getUnitItems } from "@/lib/curriculum";
+import { createServerSupabase } from "@/lib/supabase-server";
 import LessonClient from "@/components/LessonClient";
 
 interface Props {
@@ -7,6 +8,11 @@ interface Props {
 }
 
 export default async function LessonPage({ params }: Props) {
+  const supabase = createServerSupabase();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const items = await getUnitItems(params.id);
 
   if (!items || items.length === 0) {
@@ -38,5 +44,7 @@ export default async function LessonPage({ params }: Props) {
     );
   }
 
-  return <LessonClient unitId={params.id} items={items} />;
+  return (
+    <LessonClient unitId={params.id} items={items} userId={user?.id ?? ""} />
+  );
 }

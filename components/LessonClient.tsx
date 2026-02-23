@@ -7,8 +7,11 @@ import {
   useMemo,
   useRef,
 } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LessonCard from "@/components/LessonCard";
+import { saveProgress } from "@/lib/progress";
+import { createBrowserSupabase } from "@/lib/supabase";
 import type { CardItem } from "@/lib/types";
 
 interface CardProgress {
@@ -28,9 +31,10 @@ function storageKey(unitId: string) {
 interface Props {
   unitId: string;
   items: CardItem[];
+  userId: string;
 }
 
-export default function LessonClient({ unitId, items }: Props) {
+export default function LessonClient({ unitId, items, userId }: Props) {
   const totalCards = items.length;
   const unitNumber = items[0]?.unit ?? 1;
   const courseName = items[0]?.course ?? "101";
@@ -42,6 +46,7 @@ export default function LessonClient({ unitId, items }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showAlways, setShowAlways] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const stored = localStorage.getItem(storageKey(unitId));
@@ -97,12 +102,13 @@ export default function LessonClient({ unitId, items }: Props) {
     updateProgress(newProgress);
     setSessionKnown((s) => s + 1);
     setIsFlipped(false);
+    void saveProgress(card, true, userId);
     if (newKnowCount >= MASTERY_THRESHOLD) {
       setQueue(queue.slice(1));
     } else {
       setQueue([...queue.slice(1), card]);
     }
-  }, [loaded, queue, progress, updateProgress]);
+  }, [loaded, queue, progress, updateProgress, userId]);
 
   const handleDontKnow = useCallback(() => {
     if (!loaded || queue.length === 0) return;
@@ -115,10 +121,11 @@ export default function LessonClient({ unitId, items }: Props) {
     updateProgress(newProgress);
     setSessionUnknown((s) => s + 1);
     setIsFlipped(false);
+    void saveProgress(card, false, userId);
     const rest = queue.slice(1);
     const insertAt = Math.min(REINSERTION_OFFSET, rest.length);
     setQueue([...rest.slice(0, insertAt), card, ...rest.slice(insertAt)]);
-  }, [loaded, queue, progress, updateProgress]);
+  }, [loaded, queue, progress, updateProgress, userId]);
 
   const handleFlip = useCallback(() => {
     setIsFlipped((f) => !f);
@@ -205,7 +212,7 @@ export default function LessonClient({ unitId, items }: Props) {
               marginLeft: "auto",
               display: "flex",
               alignItems: "center",
-              gap: 10,
+              gap: 16,
             }}
           >
             <span
@@ -217,6 +224,25 @@ export default function LessonClient({ unitId, items }: Props) {
             >
               {cardIndex} / {totalCards}
             </span>
+            <button
+              onClick={async () => {
+                const supabase = createBrowserSupabase();
+                await supabase.auth.signOut();
+                router.push("/login");
+              }}
+              aria-label="Çıkış yap"
+              style={{
+                background: "none",
+                border: "none",
+                color: "#3a3a3a",
+                fontSize: 12,
+                cursor: "pointer",
+                padding: 0,
+                lineHeight: 1,
+              }}
+            >
+              Çıkış
+            </button>
           </div>
         </div>
         {/* Full-width progress bar */}
