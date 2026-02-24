@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FR Tutor
 
-## Getting Started
+Fransızca kelime öğrenmek için kart tabanlı tekrar uygulaması. Next.js 14 App Router, Supabase auth ve spaced repetition algoritması ile çalışır.
 
-First, run the development server:
+## Özellikler
+
+- 10 ünite, 150+ kelime kartı
+- Kartı çevirme mekaniği (Space / tıkla)
+- Klavye kısayolları: Space = çevir, 1 = bilmiyorum, 2 = biliyorum
+- Mobil swipe desteği
+- Spaced repetition kuyruğu (mastery threshold: 2)
+- Supabase magic link ile kimlik doğrulama
+- İlerleme Supabase'e ve localStorage'a kaydedilir
+
+## Kurulum
+
+```bash
+npm install
+```
+
+`.env.local` dosyası oluştur:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+Supabase dashboard → SQL Editor'da çalıştır:
+
+```sql
+create table if not exists progress (
+  id             uuid default gen_random_uuid() primary key,
+  user_id        uuid not null references auth.users(id) on delete cascade,
+  card_id        text not null,
+  course         text not null,
+  unit           int  not null,
+  known          boolean not null,
+  review_count   int  not null default 1,
+  next_review_at timestamptz not null,
+  last_seen_at   timestamptz not null,
+  unique (user_id, card_id)
+);
+
+alter table progress enable row level security;
+
+create policy "Users can manage own progress"
+  on progress for all
+  using  (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+```
+
+Supabase dashboard → Authentication → URL Configuration → Redirect URLs'e ekle:
+
+```
+http://localhost:3000/auth/callback
+```
+
+## Geliştirme
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) adresini aç.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Proje Yapısı
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  page.tsx              # Ana sayfa — ünite listesi
+  login/page.tsx        # Magic link giriş sayfası
+  auth/callback/        # Supabase auth callback
+  lesson/[id]/page.tsx  # Server component — ünite yükler
+components/
+  LessonClient.tsx      # Client — oturum mantığı, klavye, swipe
+  LessonCard.tsx        # Kart görünümü (çevrilmez/çevrilmiş)
+lib/
+  types.ts              # CardItem arayüzü
+  curriculum.ts         # Server-side JSON yükleyici
+  supabase.ts           # Browser client
+  supabase-server.ts    # Server client
+  progress.ts           # Supabase progress okuma/yazma
+middleware.ts           # /lesson/* rotalarını korur
+curriculum/101/         # Kelime JSON dosyaları (unit1–unit10)
+```
 
-## Learn More
+## Derleme
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run lint
+```
