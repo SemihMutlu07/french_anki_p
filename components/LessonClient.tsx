@@ -354,18 +354,27 @@ export default function LessonClient({ unitId, items, userId }: Props) {
             <Link
               href="/"
               style={{
-                display: "inline-block",
+                display: "block",
                 marginTop: 32,
-                padding: "10px 20px",
+                width: 240,
+                marginLeft: "auto",
+                marginRight: "auto",
+                padding: "16px 0",
+                background: "#27272A",
                 border: "1px solid #3F3F46",
-                borderRadius: 10,
-                fontSize: 14,
-                color: "#E4E4E7",
+                borderRadius: 12,
+                fontSize: 15,
+                fontWeight: 500,
+                color: "#F4F4F5",
                 textDecoration: "none",
+                textAlign: "center",
               }}
             >
               Ana sayfa
             </Link>
+            <p style={{ fontSize: 12, color: "#3F3F46", marginTop: 12 }}>
+              Space ile de dönebilirsin
+            </p>
           </div>
         ) : (
           <>
