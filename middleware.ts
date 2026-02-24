@@ -48,6 +48,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Only protect lesson routes. Login, home, and auth callback are public.
-  matcher: ["/lesson/:path*"],
+  // Protect everything except /login, /auth/*, Next.js internals, and static assets.
+  matcher: ["/((?!login|auth|_next/static|_next/image|favicon.ico).*)"],
 };
