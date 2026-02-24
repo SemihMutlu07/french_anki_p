@@ -10,7 +10,9 @@ import {
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LessonCard from "@/components/LessonCard";
-import { saveProgress } from "@/lib/progress";
+import { saveProgress, getProgress } from "@/lib/progress";
+import { updateState, sortQueueByR } from "@/lib/fsrs";
+import type { FSRSState } from "@/lib/fsrs";
 import { createBrowserSupabase } from "@/lib/supabase";
 import type { CardItem } from "@/lib/types";
 
@@ -47,26 +49,47 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showAlways, setShowAlways] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [fsrsStates, setFsrsStates] = useState<Record<string, FSRSState>>({});
   const router = useRouter();
 
   useEffect(() => {
-    const stored = localStorage.getItem(storageKey(unitId));
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored) as ProgressStore;
-        setProgress(parsed);
-        setQueue(
-          items.filter(
+    async function load() {
+      // Restore session mastery from localStorage
+      let initialItems = [...items];
+      const stored = localStorage.getItem(storageKey(unitId));
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored) as ProgressStore;
+          setProgress(parsed);
+          initialItems = items.filter(
             (item) => (parsed[item.id]?.knowCount ?? 0) < MASTERY_THRESHOLD
-          )
-        );
-      } catch {
-        setQueue([...items]);
+          );
+        } catch {
+          // keep defaults
+        }
       }
+
+      // Fetch FSRS states from Supabase and sort queue by retrievability
+      const records = await getProgress(courseName, unitNumber, userId);
+      const stateMap: Record<string, FSRSState> = {};
+      for (const rec of records) {
+        if (rec.s != null) {
+          stateMap[rec.card_id] = {
+            s: rec.s,
+            d: rec.d ?? 5.0,
+            r: rec.r ?? 1.0,
+            last_review_at: rec.last_seen_at,
+          };
+        }
+      }
+      setFsrsStates(stateMap);
+      setQueue(sortQueueByR(initialItems, stateMap));
+
+      if (localStorage.getItem("fr-tutor-sound") === "0") setSoundEnabled(false);
+      setLoaded(true);
     }
-    if (localStorage.getItem("fr-tutor-sound") === "0") setSoundEnabled(false);
-    setLoaded(true);
-  }, [unitId, items]);
+    void load();
+  }, [unitId, items, userId, courseName, unitNumber]);
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -124,13 +147,15 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     updateProgress(newProgress);
     setSessionKnown((s) => s + 1);
     setIsFlipped(false);
-    void saveProgress(card, true, userId);
+    const newFsrs = updateState(fsrsStates[card.id] ?? null, true);
+    setFsrsStates((prev) => ({ ...prev, [card.id]: newFsrs }));
+    void saveProgress(card, true, userId, newFsrs);
     if (newKnowCount >= MASTERY_THRESHOLD) {
       setQueue(queue.slice(1));
     } else {
       setQueue([...queue.slice(1), card]);
     }
-  }, [loaded, queue, progress, updateProgress, userId]);
+  }, [loaded, queue, progress, updateProgress, userId, fsrsStates]);
 
   const handleDontKnow = useCallback(() => {
     if (!loaded || queue.length === 0) return;
@@ -143,11 +168,17 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     updateProgress(newProgress);
     setSessionUnknown((s) => s + 1);
     setIsFlipped(false);
-    void saveProgress(card, false, userId);
+    const newFsrs = updateState(fsrsStates[card.id] ?? null, false);
+    setFsrsStates((prev) => ({ ...prev, [card.id]: newFsrs }));
+    void saveProgress(card, false, userId, newFsrs);
     const rest = queue.slice(1);
-    const insertAt = Math.min(REINSERTION_OFFSET, rest.length);
+    // Never reinsert at front if only 1 card remains (avoid immediate repeat)
+    const insertAt = Math.max(
+      Math.min(REINSERTION_OFFSET, rest.length),
+      rest.length > 0 ? 1 : 0
+    );
     setQueue([...rest.slice(0, insertAt), card, ...rest.slice(insertAt)]);
-  }, [loaded, queue, progress, updateProgress, userId]);
+  }, [loaded, queue, progress, updateProgress, userId, fsrsStates]);
 
   const handleFlip = useCallback(() => {
     if (!isFlipped && soundEnabled && queue.length > 0) {

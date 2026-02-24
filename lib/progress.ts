@@ -1,5 +1,6 @@
 import { createBrowserSupabase } from "./supabase";
 import type { CardItem } from "./types";
+import type { FSRSState } from "./fsrs";
 
 export interface ProgressRecord {
   id: string;
@@ -11,31 +12,22 @@ export interface ProgressRecord {
   review_count: number;
   next_review_at: string;
   last_seen_at: string;
+  s: number | null;
+  d: number | null;
+  r: number | null;
 }
 
-/** Returns the next review date based on whether the card was known and how many times reviewed. */
-export function getNextReviewDate(known: boolean, reviewCount: number): Date {
-  const now = new Date();
-  if (!known) {
-    // Unknown: review again in 10 minutes
-    return new Date(now.getTime() + 10 * 60 * 1000);
-  }
-  // Known: +1 day, +3 days, +7 days
-  const days = reviewCount === 1 ? 1 : reviewCount === 2 ? 3 : 7;
-  return new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-}
-
-/** Upsert a card's progress for the given user. */
+/** Upsert a card's progress with the new FSRS state. */
 export async function saveProgress(
   card: CardItem,
   known: boolean,
-  userId: string
+  userId: string,
+  newFsrsState: FSRSState
 ): Promise<void> {
   if (!userId) return;
 
   const supabase = createBrowserSupabase();
 
-  // Fetch existing record to get current review_count for this user + card.
   const { data: existing } = await supabase
     .from("progress")
     .select("review_count")
@@ -44,7 +36,10 @@ export async function saveProgress(
     .maybeSingle();
 
   const reviewCount = existing ? existing.review_count + 1 : 1;
-  const nextReview = getNextReviewDate(known, reviewCount);
+
+  const nextReview = known
+    ? new Date(Date.now() + newFsrsState.s * 24 * 60 * 60 * 1000)
+    : new Date(Date.now() + 10 * 60 * 1000);
 
   await supabase.from("progress").upsert(
     {
@@ -56,6 +51,9 @@ export async function saveProgress(
       review_count: reviewCount,
       next_review_at: nextReview.toISOString(),
       last_seen_at: new Date().toISOString(),
+      s: newFsrsState.s,
+      d: newFsrsState.d,
+      r: newFsrsState.r,
     },
     { onConflict: "user_id,card_id" }
   );
@@ -81,5 +79,5 @@ export async function getProgress(
     console.error("getProgress error:", error);
     return [];
   }
-  return data ?? [];
+  return (data ?? []) as ProgressRecord[];
 }
