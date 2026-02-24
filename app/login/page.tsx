@@ -160,6 +160,19 @@ export default function LoginPage() {
           </button>
         </form>
 
+        {loading && (
+          <p
+            style={{
+              fontSize: 12,
+              color: "#71717A",
+              textAlign: "center",
+              marginTop: 12,
+            }}
+          >
+            Bu işlem birkaç saniye sürebilir…
+          </p>
+        )}
+
         {sent && (
           <p
             style={{

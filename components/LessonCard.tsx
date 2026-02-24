@@ -4,9 +4,17 @@ interface Props {
   item: CardItem;
   isFlipped: boolean;
   onFlip: () => void;
+  soundEnabled: boolean;
+  onToggleSound: () => void;
 }
 
-export default function LessonCard({ item, isFlipped, onFlip }: Props) {
+export default function LessonCard({
+  item,
+  isFlipped,
+  onFlip,
+  soundEnabled,
+  onToggleSound,
+}: Props) {
   return (
     <div
       role="button"
@@ -29,10 +37,36 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
         cursor: "pointer",
         outline: "none",
         userSelect: "none",
+        position: "relative",
       }}
       onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #3F3F46")}
       onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
     >
+      {/* Sound toggle */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleSound();
+        }}
+        aria-label={soundEnabled ? "Sesi kapat" : "Sesi aç"}
+        title={soundEnabled ? "Sesi kapat" : "Sesi aç"}
+        style={{
+          position: "absolute",
+          top: 12,
+          right: 12,
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: soundEnabled ? "#71717A" : "#3F3F46",
+          fontSize: 18,
+          padding: 6,
+          lineHeight: 1,
+          borderRadius: 6,
+        }}
+      >
+        {soundEnabled ? "🔊" : "🔇"}
+      </button>
+
       {/* Front — always visible */}
       <p
         style={{

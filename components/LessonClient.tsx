@@ -46,6 +46,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showAlways, setShowAlways] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -63,8 +64,29 @@ export default function LessonClient({ unitId, items, userId }: Props) {
         setQueue([...items]);
       }
     }
+    if (localStorage.getItem("fr-tutor-sound") === "0") setSoundEnabled(false);
     setLoaded(true);
   }, [unitId, items]);
+
+  const speak = useCallback((text: string) => {
+    if (typeof window === "undefined" || !window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "fr-FR";
+    utterance.rate = 0.85;
+    const voices = window.speechSynthesis.getVoices();
+    const frVoice = voices.find((v) => v.lang.startsWith("fr"));
+    if (frVoice) utterance.voice = frVoice;
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  const toggleSound = useCallback(() => {
+    setSoundEnabled((v) => {
+      const next = !v;
+      localStorage.setItem("fr-tutor-sound", next ? "1" : "0");
+      return next;
+    });
+  }, []);
 
   const updateProgress = useCallback(
     (newProgress: ProgressStore) => {
@@ -128,8 +150,11 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   }, [loaded, queue, progress, updateProgress, userId]);
 
   const handleFlip = useCallback(() => {
+    if (!isFlipped && soundEnabled && queue.length > 0) {
+      speak(queue[0].french);
+    }
     setIsFlipped((f) => !f);
-  }, []);
+  }, [isFlipped, soundEnabled, speak, queue]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -344,6 +369,8 @@ export default function LessonClient({ unitId, items, userId }: Props) {
               item={queue[0]}
               isFlipped={cardVisible}
               onFlip={handleFlip}
+              soundEnabled={soundEnabled}
+              onToggleSound={toggleSound}
             />
 
             {/* Buttons */}
