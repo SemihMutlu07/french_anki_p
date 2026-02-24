@@ -13,10 +13,10 @@ export default async function Home() {
   );
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5]">
+    <main className="min-h-screen bg-[#09090B] text-[#F4F4F5]">
       <div className="max-w-xl mx-auto px-6 py-16">
         <div className="mb-12">
-          <p className="text-zinc-600 text-xs uppercase tracking-widest mb-2">
+          <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "#9CA3AF" }}>
             Fransızca
           </p>
           <h1 className="text-3xl font-bold">101</h1>
@@ -26,17 +26,18 @@ export default async function Home() {
             <li key={unit.id}>
               <Link
                 href={`/lesson/${unit.id}`}
-                className="flex items-center justify-between px-4 py-4 border border-zinc-800 hover:border-zinc-600 rounded-lg transition-colors group"
+                className="flex items-center justify-between px-4 py-4 rounded-lg transition-colors group"
+                style={{ border: "1px solid #3F3F46" }}
               >
                 <div>
-                  <p className="text-sm font-medium text-zinc-200">
+                  <p className="text-sm font-medium" style={{ color: "#F4F4F5" }}>
                     {unit.label}
                   </p>
-                  <p className="text-xs text-zinc-600 mt-0.5">
+                  <p className="text-xs mt-0.5" style={{ color: "#9CA3AF" }}>
                     {unit.count} kart
                   </p>
                 </div>
-                <span className="text-zinc-700 group-hover:text-zinc-400 text-sm transition-colors">
+                <span className="text-sm transition-colors" style={{ color: "#52525B" }}>
                   →
                 </span>
               </Link>

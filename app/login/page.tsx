@@ -34,8 +34,8 @@ export default function LoginPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#0a0a0a",
-        color: "#e5e5e5",
+        background: "#09090B",
+        color: "#F4F4F5",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -55,7 +55,7 @@ export default function LoginPage() {
           >
             Email&apos;ini kontrol et
           </p>
-          <p style={{ fontSize: 14, color: "#666666", margin: 0 }}>
+          <p style={{ fontSize: 14, color: "#71717A", margin: 0 }}>
             {email} adresine giriş linki gönderdik.
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function LoginPage() {
           <p
             style={{
               fontSize: 13,
-              color: "#666666",
+              color: "#71717A",
               textAlign: "center",
               margin: "0 0 32px",
             }}
@@ -93,19 +93,19 @@ export default function LoginPage() {
                 display: "block",
                 width: "100%",
                 padding: "14px 16px",
-                background: "#111111",
-                border: "1px solid #2a2a2a",
+                background: "#18181B",
+                border: "1px solid #3F3F46",
                 borderRadius: 10,
-                color: "#e5e5e5",
+                color: "#F4F4F5",
                 fontSize: 15,
                 outline: "none",
                 boxSizing: "border-box",
               }}
               onFocus={(e) =>
-                (e.currentTarget.style.borderColor = "#444444")
+                (e.currentTarget.style.borderColor = "#71717A")
               }
               onBlur={(e) =>
-                (e.currentTarget.style.borderColor = "#2a2a2a")
+                (e.currentTarget.style.borderColor = "#3F3F46")
               }
             />
 
@@ -130,10 +130,10 @@ export default function LoginPage() {
                 width: "100%",
                 marginTop: 12,
                 height: 48,
-                background: loading ? "#1e1e1e" : "#2a2a2a",
+                background: loading ? "#18181B" : "#27272A",
                 border: "none",
                 borderRadius: 10,
-                color: loading ? "#555555" : "#ffffff",
+                color: loading ? "#71717A" : "#F4F4F5",
                 fontSize: 15,
                 fontWeight: 500,
                 cursor: loading ? "default" : "pointer",

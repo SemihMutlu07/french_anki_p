@@ -175,8 +175,8 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     <main
       style={{
         minHeight: "100vh",
-        background: "#0a0a0a",
-        color: "#e5e5e5",
+        background: "#09090B",
+        color: "#E4E4E7",
         display: "flex",
         flexDirection: "column",
       }}
@@ -195,7 +195,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
             href="/"
             aria-label="Ana sayfaya dön"
             style={{
-              color: "#666666",
+              color: "#71717A",
               textDecoration: "none",
               fontSize: 20,
               lineHeight: 1,
@@ -204,7 +204,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           >
             ←
           </Link>
-          <span style={{ color: "#e5e5e5", fontWeight: 500, fontSize: 14 }}>
+          <span style={{ color: "#F4F4F5", fontWeight: 500, fontSize: 14 }}>
             {courseName} · Ünite {unitNumber}
           </span>
           <div
@@ -217,7 +217,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           >
             <span
               style={{
-                color: "#666666",
+                color: "#71717A",
                 fontSize: 13,
                 fontVariantNumeric: "tabular-nums",
               }}
@@ -234,7 +234,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
               style={{
                 background: "none",
                 border: "none",
-                color: "#3a3a3a",
+                color: "#52525B",
                 fontSize: 12,
                 cursor: "pointer",
                 padding: 0,
@@ -246,13 +246,13 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           </div>
         </div>
         {/* Full-width progress bar */}
-        <div style={{ height: 1, background: "#1f1f1f", position: "relative" }}>
+        <div style={{ height: 1, background: "#27272A", position: "relative" }}>
           <div
             style={{
               position: "absolute",
               inset: 0,
               width: `${progressPct}%`,
-              background: "#555555",
+              background: "#71717A",
             }}
           />
         </div>
@@ -279,7 +279,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
               style={{
                 width: "100%",
                 maxWidth: 560,
-                background: "#1a1a1a",
+                background: "#18181B",
                 borderRadius: 16,
                 height: 300,
               }}
@@ -298,7 +298,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 style={{
                   flex: 1,
                   height: 56,
-                  background: "#161616",
+                  background: "#18181B",
                   borderRadius: 12,
                 }}
               />
@@ -307,7 +307,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 style={{
                   flex: 1,
                   height: 56,
-                  background: "#161616",
+                  background: "#18181B",
                   borderRadius: 12,
                 }}
               />
@@ -319,7 +319,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
             <p style={{ fontSize: 24, fontWeight: 600, margin: 0 }}>
               Ünite tamamlandı
             </p>
-            <p style={{ color: "#555555", fontSize: 13, marginTop: 12 }}>
+            <p style={{ color: "#71717A", fontSize: 13, marginTop: 12 }}>
               {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
             </p>
             <Link
@@ -328,10 +328,10 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 display: "inline-block",
                 marginTop: 32,
                 padding: "10px 20px",
-                border: "1px solid #333",
+                border: "1px solid #3F3F46",
                 borderRadius: 10,
                 fontSize: 14,
-                color: "#cccccc",
+                color: "#E4E4E7",
                 textDecoration: "none",
               }}
             >
@@ -356,23 +356,24 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 maxWidth: 560,
               }}
             >
+              {/* Bilmiyorum — subtle reddish border + text */}
               <button
                 onClick={handleDontKnow}
                 aria-label="Bilmiyorum — kartı tekrar kuyruğa ekle"
                 style={{
                   flex: 1,
                   height: 56,
-                  border: "1px solid #333333",
+                  border: "1px solid #3D2A2A",
                   background: "transparent",
                   borderRadius: 12,
-                  color: "#888888",
+                  color: "#A1A1AA",
                   fontSize: 15,
                   fontWeight: 500,
                   cursor: "pointer",
                   position: "relative",
                   outline: "none",
                 }}
-                onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #555")}
+                onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #6b3030")}
                 onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
               >
                 Bilmiyorum
@@ -382,30 +383,31 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                     bottom: 6,
                     right: 10,
                     fontSize: 11,
-                    color: "#444444",
+                    color: "#52525B",
                   }}
                 >
                   1
                 </span>
               </button>
 
+              {/* Biliyorum — subtle dark-green background */}
               <button
                 onClick={handleKnow}
                 aria-label="Biliyorum — kartı öğrenildi olarak işaretle"
                 style={{
                   flex: 1,
                   height: 56,
-                  border: "none",
-                  background: "#2a2a2a",
+                  border: "1px solid #1E3A28",
+                  background: "#162419",
                   borderRadius: 12,
-                  color: "#ffffff",
+                  color: "#E4E4E7",
                   fontSize: 15,
                   fontWeight: 500,
                   cursor: "pointer",
                   position: "relative",
                   outline: "none",
                 }}
-                onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #888")}
+                onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #2d6e45")}
                 onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
               >
                 Biliyorum
@@ -415,7 +417,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                     bottom: 6,
                     right: 10,
                     fontSize: 11,
-                    color: "#555555",
+                    color: "#4d7a5e",
                   }}
                 >
                   2
@@ -428,7 +430,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
               style={{
                 marginTop: 16,
                 fontSize: 13,
-                color: "#444444",
+                color: "#52525B",
                 textAlign: "center",
               }}
             >
@@ -443,7 +445,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 marginTop: 20,
                 background: "none",
                 border: "none",
-                color: showAlways ? "#888888" : "#333333",
+                color: showAlways ? "#A1A1AA" : "#52525B",
                 fontSize: 12,
                 cursor: "pointer",
                 padding: 0,

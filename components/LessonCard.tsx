@@ -18,20 +18,19 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
       }
       onClick={onFlip}
       onKeyDown={(e) => {
-        // Space is handled globally; Enter also flips for keyboard accessibility
         if (e.key === "Enter") onFlip();
       }}
       style={{
         width: "100%",
         maxWidth: 560,
-        background: "#1a1a1a",
+        background: "#18181B",
         borderRadius: 16,
         padding: 48,
         cursor: "pointer",
         outline: "none",
         userSelect: "none",
       }}
-      onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #444")}
+      onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #3F3F46")}
       onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
     >
       {/* Front — always visible */}
@@ -39,7 +38,7 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
         style={{
           fontSize: 64,
           fontWeight: 700,
-          color: "#ffffff",
+          color: "#F4F4F5",
           textAlign: "center",
           margin: 0,
           lineHeight: 1.1,
@@ -50,7 +49,7 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
       <p
         style={{
           fontSize: 16,
-          color: "#666666",
+          color: "#A1A1AA",
           textAlign: "center",
           marginTop: 8,
           marginBottom: 0,
@@ -63,11 +62,11 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
       {/* Back — hidden until flipped */}
       {isFlipped ? (
         <>
-          <div style={{ borderTop: "1px solid #333333", margin: "24px 0" }} />
+          <div style={{ borderTop: "1px solid #3F3F46", margin: "24px 0" }} />
           <p
             style={{
               fontSize: 24,
-              color: "#cccccc",
+              color: "#E4E4E7",
               textAlign: "center",
               margin: 0,
             }}
@@ -78,7 +77,7 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
             style={{
               fontSize: 15,
               fontStyle: "italic",
-              color: "#888888",
+              color: "#A1A1AA",
               textAlign: "center",
               marginTop: 24,
               marginBottom: 0,
@@ -89,7 +88,7 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
           <p
             style={{
               fontSize: 14,
-              color: "#555555",
+              color: "#71717A",
               textAlign: "center",
               marginTop: 4,
               marginBottom: 0,
@@ -99,11 +98,10 @@ export default function LessonCard({ item, isFlipped, onFlip }: Props) {
           </p>
         </>
       ) : (
-        /* Flip hint when card is showing front only */
         <p
           style={{
             fontSize: 12,
-            color: "#333333",
+            color: "#A1A1AA",
             textAlign: "center",
             marginTop: 32,
             marginBottom: 0,
