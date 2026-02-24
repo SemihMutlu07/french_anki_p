@@ -7,3 +7,11 @@ body {
   background: #09090B;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 767px) {
+  .desktop-only { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .mobile-only { display: none !important; }
+}
