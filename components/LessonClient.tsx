@@ -160,7 +160,11 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === " " || e.code === "Space") {
         e.preventDefault();
-        handleFlip();
+        if (done) {
+          router.push("/");
+        } else {
+          handleFlip();
+        }
       } else if (e.key === "1") {
         handleDontKnow();
       } else if (e.key === "2") {
@@ -169,7 +173,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [handleFlip, handleKnow, handleDontKnow]);
+  }, [handleFlip, handleKnow, handleDontKnow, done, router]);
 
   // Swipe support
   const touchStartX = useRef<number | null>(null);
