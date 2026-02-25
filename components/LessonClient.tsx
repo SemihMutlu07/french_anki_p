@@ -93,14 +93,37 @@ export default function LessonClient({ unitId, items, userId }: Props) {
 
   const speak = useCallback((text: string) => {
     if (typeof window === "undefined" || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "fr-FR";
-    utterance.rate = 0.85;
-    const voices = window.speechSynthesis.getVoices();
-    const frVoice = voices.find((v) => v.lang.startsWith("fr"));
-    if (frVoice) utterance.voice = frVoice;
-    window.speechSynthesis.speak(utterance);
+    const synth = window.speechSynthesis;
+    let didSpeak = false;
+
+    const play = () => {
+      if (didSpeak) return;
+      didSpeak = true;
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "fr-FR";
+      utterance.rate = 0.85;
+      const voices = synth.getVoices();
+      const frVoice = voices.find((v) => v.lang.startsWith("fr"));
+      if (frVoice) utterance.voice = frVoice;
+      synth.speak(utterance);
+    };
+
+    const voices = synth.getVoices();
+    if (voices.length > 0) {
+      play();
+      return;
+    }
+
+    const onVoicesChanged = () => {
+      synth.removeEventListener("voiceschanged", onVoicesChanged);
+      play();
+    };
+    synth.addEventListener("voiceschanged", onVoicesChanged);
+    setTimeout(() => {
+      synth.removeEventListener("voiceschanged", onVoicesChanged);
+      play();
+    }, 250);
   }, []);
 
   const toggleSound = useCallback(() => {
@@ -189,7 +212,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === " " || e.code === "Space") {
+      if (e.key === " " || e.code === "Space" || e.key === "Spacebar") {
         e.preventDefault();
         if (done) {
           router.push("/");

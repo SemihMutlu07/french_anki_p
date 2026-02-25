@@ -11,6 +11,7 @@ interface Unit {
   label: string;
   count: number;
   available: boolean;
+  completed: boolean;
 }
 
 interface Props {
@@ -83,8 +84,11 @@ export default function HomeClient({ groups }: Props) {
                             {unit.count} kart
                           </p>
                         </div>
-                        <span className="text-sm" style={{ color: "#52525B" }}>
-                          →
+                        <span
+                          className={unit.completed ? "text-xs" : "text-sm"}
+                          style={{ color: unit.completed ? "#A1A1AA" : "#52525B" }}
+                        >
+                          {unit.completed ? "Tamamlandı" : "→"}
                         </span>
                       </Link>
                     ) : (
