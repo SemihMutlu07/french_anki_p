@@ -22,34 +22,44 @@ interface RawVocabItem {
   [key: string]: unknown;
 }
 
-const VALID_UNIT_RANGE = { min: 1, max: 10 };
+const VALID_UNIT_RANGE = { min: 1, max: 12 };
 
-function unitFilePath(n: number): string {
-  return path.join(process.cwd(), "curriculum", "101", `unit${n}.json`);
+function unitFilePath(course: string, n: number): string {
+  return path.join(process.cwd(), "curriculum", course, `unit${n}.json`);
 }
 
-function parseUnitId(unitId: string): number | null {
-  const match = /^unit(\d+)$/.exec(unitId);
-  if (!match) return null;
-  const n = parseInt(match[1], 10);
+function parseUnitRef(unitId: string): { course: string; unit: number } | null {
+  const courseMatch = /^(\d+)-unit(\d+)$/.exec(unitId);
+  if (courseMatch) {
+    const n = parseInt(courseMatch[2], 10);
+    if (n < VALID_UNIT_RANGE.min || n > VALID_UNIT_RANGE.max) return null;
+    return { course: courseMatch[1], unit: n };
+  }
+
+  const legacyMatch = /^unit(\d+)$/.exec(unitId);
+  if (!legacyMatch) return null;
+  const n = parseInt(legacyMatch[1], 10);
   if (n < VALID_UNIT_RANGE.min || n > VALID_UNIT_RANGE.max) return null;
-  return n;
+  return { course: "101", unit: n };
 }
 
 /**
  * Load and strip a single unit. Returns null for unknown/invalid unit IDs.
- * IDs are taken from JSON; if absent, a deterministic `unitN:index` is generated.
+ * IDs are taken from JSON; if absent, a deterministic `course-unitN:index` is generated.
  */
 export async function getUnitItems(unitId: string): Promise<CardItem[] | null> {
-  const n = parseUnitId(unitId);
-  if (n === null) return null;
+  const parsed = parseUnitRef(unitId);
+  if (parsed === null) return null;
 
   try {
-    const raw = await fs.readFile(unitFilePath(n), "utf-8");
+    const raw = await fs.readFile(unitFilePath(parsed.course, parsed.unit), "utf-8");
     const items: RawVocabItem[] = JSON.parse(raw);
     return items.map(
       (item, idx): CardItem => ({
-        id: typeof item.id === "string" ? item.id : `unit${n}:${idx}`,
+        id:
+          typeof item.id === "string"
+            ? item.id
+            : `${parsed.course}-unit${parsed.unit}:${idx}`,
         french: item.french,
         turkish: item.turkish,
         ipa: item.ipa ?? "",
@@ -68,4 +78,21 @@ export async function getUnitItems(unitId: string): Promise<CardItem[] | null> {
 export async function getUnitCount(unitId: string): Promise<number> {
   const items = await getUnitItems(unitId);
   return items?.length ?? 0;
+}
+
+/** Returns number of cards in a specific course/unit (0 if file is missing). */
+export async function getCourseUnitCount(
+  course: string,
+  unit: number
+): Promise<number> {
+  if (!/^\d+$/.test(course)) return 0;
+  if (unit < VALID_UNIT_RANGE.min || unit > VALID_UNIT_RANGE.max) return 0;
+
+  try {
+    const raw = await fs.readFile(unitFilePath(course, unit), "utf-8");
+    const items: RawVocabItem[] = JSON.parse(raw);
+    return items.length;
+  } catch {
+    return 0;
+  }
 }

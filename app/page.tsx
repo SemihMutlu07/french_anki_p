@@ -1,16 +1,24 @@
-import { getUnitCount } from "@/lib/curriculum";
+import { COURSE_GROUPS } from "@/curriculum/courseGroups";
+import { getCourseUnitCount } from "@/lib/curriculum";
 import HomeClient from "@/components/HomeClient";
 
-const UNIT_IDS = Array.from({ length: 10 }, (_, i) => `unit${i + 1}`);
-
 export default async function Home() {
-  const units = await Promise.all(
-    UNIT_IDS.map(async (id, i) => ({
-      id,
-      label: `Ünite ${i + 1}`,
-      count: await getUnitCount(id),
+  const groups = await Promise.all(
+    COURSE_GROUPS.map(async (group) => ({
+      course: group.course,
+      units: await Promise.all(
+        group.units.map(async (unit) => {
+          const count = await getCourseUnitCount(group.course, unit);
+          return {
+            id: `${group.course}-unit${unit}`,
+            label: `Ünite ${unit}`,
+            count,
+            available: count > 0,
+          };
+        })
+      ),
     }))
   );
 
-  return <HomeClient units={units} />;
+  return <HomeClient groups={groups} />;
 }

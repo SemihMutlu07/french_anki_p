@@ -10,13 +10,14 @@ interface Unit {
   id: string;
   label: string;
   count: number;
+  available: boolean;
 }
 
 interface Props {
-  units: Unit[];
+  groups: { course: string; units: Unit[] }[];
 }
 
-export default function HomeClient({ units }: Props) {
+export default function HomeClient({ groups }: Props) {
   const [welcomed, setWelcomed] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -38,41 +39,73 @@ export default function HomeClient({ units }: Props) {
   return (
     <main className="min-h-screen bg-[#09090B] text-[#F4F4F5]">
       <div className="max-w-xl mx-auto px-6 py-16">
-        <div className="mb-12">
+        <div className="mb-8">
           <p
             className="text-xs uppercase tracking-widest mb-2"
             style={{ color: "#9CA3AF" }}
           >
             Fransızca
           </p>
-          <h1 className="text-3xl font-bold">101</h1>
         </div>
-        <ul className="space-y-2">
-          {units.map((unit) => (
-            <li key={unit.id}>
-              <Link
-                href={`/lesson/${unit.id}`}
-                className="flex items-center justify-between px-4 py-4 rounded-lg transition-colors group"
-                style={{ border: "1px solid #3F3F46" }}
-              >
-                <div>
-                  <p className="text-sm font-medium" style={{ color: "#F4F4F5" }}>
-                    {unit.label}
-                  </p>
-                  <p className="text-xs mt-0.5" style={{ color: "#9CA3AF" }}>
-                    {unit.count} kart
-                  </p>
-                </div>
-                <span
-                  className="text-sm transition-colors"
-                  style={{ color: "#52525B" }}
+        <div className="space-y-6">
+          {groups.map((group) => (
+            <section key={group.course} className="rounded-xl border border-[#27272A]">
+              <div className="px-4 py-3 border-b border-[#27272A]">
+                <p
+                  className="text-sm font-medium"
+                  style={{
+                    color: "#D4D4D8",
+                    fontFamily: "var(--font-geist-mono), ui-monospace, monospace",
+                  }}
                 >
-                  →
-                </span>
-              </Link>
-            </li>
+                  {"{ "}
+                  {group.course}
+                  {" }"}
+                </p>
+              </div>
+              <ul className="p-2 space-y-2">
+                {group.units.map((unit) => (
+                  <li key={unit.id}>
+                    {unit.available ? (
+                      <Link
+                        href={`/lesson/${unit.id}`}
+                        className="flex items-center justify-between px-4 py-4 rounded-lg"
+                        style={{ border: "1px solid #3F3F46" }}
+                      >
+                        <div>
+                          <p
+                            className="text-sm font-medium"
+                            style={{ color: "#F4F4F5" }}
+                          >
+                            {unit.label}
+                          </p>
+                          <p className="text-xs mt-0.5" style={{ color: "#9CA3AF" }}>
+                            {unit.count} kart
+                          </p>
+                        </div>
+                        <span className="text-sm" style={{ color: "#52525B" }}>
+                          →
+                        </span>
+                      </Link>
+                    ) : (
+                      <div
+                        className="flex items-center justify-between px-4 py-4 rounded-lg opacity-55"
+                        style={{ border: "1px solid #3F3F46" }}
+                      >
+                        <p className="text-sm font-medium" style={{ color: "#F4F4F5" }}>
+                          {unit.label}
+                        </p>
+                        <span className="text-xs" style={{ color: "#A1A1AA" }}>
+                          Yakında
+                        </span>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
           ))}
-        </ul>
+        </div>
       </div>
     </main>
   );
