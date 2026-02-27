@@ -20,10 +20,17 @@ interface Props {
 
 export default function HomeClient({ groups }: Props) {
   const [welcomed, setWelcomed] = useState<boolean | null>(null);
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     setWelcomed(!!localStorage.getItem(WELCOMED_KEY));
-  }, []);
+    setOpenGroups(
+      groups.reduce<Record<string, boolean>>((acc, group) => {
+        acc[group.course] = true;
+        return acc;
+      }, {})
+    );
+  }, [groups]);
 
   function handleStart() {
     localStorage.setItem(WELCOMED_KEY, "1");
@@ -38,8 +45,8 @@ export default function HomeClient({ groups }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-[#09090B] text-[#F4F4F5]">
-      <div className="max-w-xl mx-auto px-6 py-16">
+    <main className="min-h-dvh bg-[#09090B] text-[#F4F4F5]">
+      <div className="mx-auto max-w-2xl px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-10 sm:px-6 sm:pt-14 md:px-8 md:py-16">
         <div className="mb-8">
           <p
             className="text-xs uppercase tracking-widest mb-2"
@@ -47,11 +54,26 @@ export default function HomeClient({ groups }: Props) {
           >
             Fransızca
           </p>
+          <Link
+            href="/test"
+            className="inline-flex items-center rounded-lg border px-3 py-2 text-xs font-medium"
+            style={{ borderColor: "#3F3F46", color: "#E4E4E7" }}
+          >
+            Placement testi
+          </Link>
         </div>
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {groups.map((group) => (
-            <section key={group.course} className="rounded-xl border border-[#27272A]">
-              <div className="px-4 py-3 border-b border-[#27272A]">
+            <details
+              key={group.course}
+              open={openGroups[group.course] ?? true}
+              onToggle={(e) => {
+                const nextOpen = (e.currentTarget as HTMLDetailsElement).open;
+                setOpenGroups((prev) => ({ ...prev, [group.course]: nextOpen }));
+              }}
+              className="rounded-xl border border-[#27272A] bg-[#0D0D10]"
+            >
+              <summary className="cursor-pointer list-none px-4 py-3 border-b border-[#27272A]">
                 <p
                   className="text-sm font-medium"
                   style={{
@@ -63,7 +85,7 @@ export default function HomeClient({ groups }: Props) {
                   {group.course}
                   {" }"}
                 </p>
-              </div>
+              </summary>
               <ul className="p-2 space-y-2">
                 {group.units.map((unit) => (
                   <li key={unit.id}>
@@ -107,7 +129,7 @@ export default function HomeClient({ groups }: Props) {
                   </li>
                 ))}
               </ul>
-            </section>
+            </details>
           ))}
         </div>
       </div>

@@ -20,32 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={`${geistSans.variable} antialiased`}>
-        <div
-          className="mobile-only"
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-            padding: "32px 24px",
-            background: "#09090B",
-          }}
-        >
-          <p style={{ fontSize: 40, marginBottom: 24 }}>🖥️</p>
-          <p style={{ fontSize: 17, fontWeight: 600, color: "#F4F4F5", margin: "0 0 10px" }}>
-            Şu an masaüstü için optimize edildi
-          </p>
-          <p style={{ fontSize: 14, color: "#71717A", margin: 0 }}>
-            Mobil versiyon yakında geliyor.
-          </p>
-        </div>
-        <div className="desktop-only">
-          {children}
-        </div>
-      </body>
+      <body className={`${geistSans.variable} antialiased`}>{children}</body>
     </html>
   );
 }

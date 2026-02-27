@@ -8,14 +8,14 @@ export default function WelcomeScreen({ onStart }: Props) {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: "#09090B",
         color: "#F4F4F5",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "40px 24px",
+        padding: "40px 24px calc(env(safe-area-inset-bottom) + 40px)",
         textAlign: "center",
       }}
     >
@@ -59,7 +59,7 @@ export default function WelcomeScreen({ onStart }: Props) {
       <button
         onClick={onStart}
         style={{
-          height: 52,
+          minHeight: 56,
           padding: "0 40px",
           background: "#F4F4F5",
           border: "none",

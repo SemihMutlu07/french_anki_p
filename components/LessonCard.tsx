@@ -6,6 +6,14 @@ interface Props {
   onFlip: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
+  onPlayAudio: () => void;
+  audioError: string | null;
+  debugAudio: boolean;
+  audioDebug: {
+    srcLoaded: boolean;
+    canPlayType: string;
+    lastError: string | null;
+  };
 }
 
 export default function LessonCard({
@@ -14,6 +22,10 @@ export default function LessonCard({
   onFlip,
   soundEnabled,
   onToggleSound,
+  onPlayAudio,
+  audioError,
+  debugAudio,
+  audioDebug,
 }: Props) {
   return (
     <div
@@ -26,69 +38,44 @@ export default function LessonCard({
       }
       onClick={onFlip}
       onKeyDown={(e) => {
-        if (e.key === "Enter") onFlip();
+        if (e.key === "Enter" || e.key === " ") onFlip();
       }}
-      style={{
-        width: "100%",
-        maxWidth: 560,
-        background: "#18181B",
-        borderRadius: 16,
-        padding: 48,
-        cursor: "pointer",
-        outline: "none",
-        userSelect: "none",
-        position: "relative",
-      }}
-      onFocus={(e) => (e.currentTarget.style.boxShadow = "0 0 0 2px #3F3F46")}
-      onBlur={(e) => (e.currentTarget.style.boxShadow = "none")}
+      className="relative w-full max-w-[40rem] select-none rounded-2xl bg-[#18181B] px-5 py-7 sm:px-8 sm:py-10 md:px-12 md:py-12 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#3F3F46]"
     >
-      {/* Sound toggle */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onToggleSound();
-        }}
-        aria-label={soundEnabled ? "Sesi kapat" : "Sesi aç"}
-        title={soundEnabled ? "Sesi kapat" : "Sesi aç"}
-        style={{
-          position: "absolute",
-          top: 12,
-          right: 12,
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: soundEnabled ? "#71717A" : "#3F3F46",
-          fontSize: 18,
-          padding: 6,
-          lineHeight: 1,
-          borderRadius: 6,
-        }}
-      >
-        {soundEnabled ? "🔊" : "🔇"}
-      </button>
+      <div className="absolute right-3 top-3 flex gap-2">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onPlayAudio();
+          }}
+          aria-label="Ses oynat"
+          title="Ses oynat"
+          className="rounded-md border border-[#3F3F46] px-2.5 py-1 text-xs font-medium text-[#D4D4D8]"
+        >
+          Oynat
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleSound();
+          }}
+          aria-label={soundEnabled ? "Otomatik sesi kapat" : "Otomatik sesi aç"}
+          title={soundEnabled ? "Otomatik sesi kapat" : "Otomatik sesi aç"}
+          className="rounded-md p-1.5 text-lg leading-none"
+          style={{ color: soundEnabled ? "#71717A" : "#3F3F46" }}
+        >
+          {soundEnabled ? "🔊" : "🔇"}
+        </button>
+      </div>
 
       {/* Front — always visible */}
       <p
-        style={{
-          fontSize: 64,
-          fontWeight: 700,
-          color: "#F4F4F5",
-          textAlign: "center",
-          margin: 0,
-          lineHeight: 1.1,
-        }}
+        className="m-0 text-center text-4xl font-bold leading-tight text-[#F4F4F5] sm:text-5xl md:text-6xl"
       >
         {item.french}
       </p>
       <p
-        style={{
-          fontSize: 16,
-          color: "#A1A1AA",
-          textAlign: "center",
-          marginTop: 8,
-          marginBottom: 0,
-          fontFamily: "monospace",
-        }}
+        className="mb-0 mt-2 text-center font-mono text-sm text-[#A1A1AA] sm:text-base"
       >
         {item.ipa}
       </p>
@@ -96,54 +83,44 @@ export default function LessonCard({
       {/* Back — hidden until flipped */}
       {isFlipped ? (
         <>
-          <div style={{ borderTop: "1px solid #3F3F46", margin: "24px 0" }} />
+          <div className="my-6 border-t border-[#3F3F46]" />
           <p
-            style={{
-              fontSize: 24,
-              color: "#E4E4E7",
-              textAlign: "center",
-              margin: 0,
-            }}
+            className="m-0 text-center text-xl text-[#E4E4E7] sm:text-2xl"
           >
             {item.turkish}
           </p>
           <p
-            style={{
-              fontSize: 15,
-              fontStyle: "italic",
-              color: "#A1A1AA",
-              textAlign: "center",
-              marginTop: 24,
-              marginBottom: 0,
-            }}
+            className="mb-0 mt-6 text-center text-sm italic text-[#A1A1AA] sm:text-[15px]"
           >
             {item.example_sentence}
           </p>
           <p
-            style={{
-              fontSize: 14,
-              color: "#71717A",
-              textAlign: "center",
-              marginTop: 4,
-              marginBottom: 0,
-            }}
+            className="mb-0 mt-1 text-center text-sm text-[#71717A]"
           >
             {item.example_translation}
           </p>
         </>
       ) : (
         <p
-          style={{
-            fontSize: 12,
-            color: "#A1A1AA",
-            textAlign: "center",
-            marginTop: 32,
-            marginBottom: 0,
-          }}
+          className="mb-0 mt-8 text-center text-xs text-[#A1A1AA]"
         >
           tıkla veya Space
         </p>
       )}
+
+      {audioError ? (
+        <p className="mb-0 mt-3 text-center text-xs text-[#fca5a5]">{audioError}</p>
+      ) : null}
+
+      {debugAudio ? (
+        <div className="mt-3 rounded-lg border border-[#3F3F46] p-2 text-[11px] text-[#A1A1AA]">
+          <p className="m-0">src loaded: {audioDebug.srcLoaded ? "yes" : "no"}</p>
+          <p className="m-0">canPlayType: {audioDebug.canPlayType || "unknown"}</p>
+          <p className="m-0">
+            last error: {audioDebug.lastError && audioDebug.lastError.length > 0 ? audioDebug.lastError : "-"}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

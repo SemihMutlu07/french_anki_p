@@ -23,9 +23,34 @@ interface RawVocabItem {
 }
 
 const VALID_UNIT_RANGE = { min: 1, max: 12 };
+const unitCache = new Map<string, Promise<RawVocabItem[] | null>>();
 
 function unitFilePath(course: string, n: number): string {
   return path.join(process.cwd(), "curriculum", course, `unit${n}.json`);
+}
+
+function unitCacheKey(course: string, unit: number): string {
+  return `${course}:unit${unit}`;
+}
+
+async function readRawUnit(
+  course: string,
+  unit: number
+): Promise<RawVocabItem[] | null> {
+  const key = unitCacheKey(course, unit);
+  const cached = unitCache.get(key);
+  if (cached) return cached;
+
+  const promise = (async () => {
+    try {
+      const raw = await fs.readFile(unitFilePath(course, unit), "utf-8");
+      return JSON.parse(raw) as RawVocabItem[];
+    } catch {
+      return null;
+    }
+  })();
+  unitCache.set(key, promise);
+  return promise;
 }
 
 function parseUnitRef(unitId: string): { course: string; unit: number } | null {
@@ -51,27 +76,24 @@ export async function getUnitItems(unitId: string): Promise<CardItem[] | null> {
   const parsed = parseUnitRef(unitId);
   if (parsed === null) return null;
 
-  try {
-    const raw = await fs.readFile(unitFilePath(parsed.course, parsed.unit), "utf-8");
-    const items: RawVocabItem[] = JSON.parse(raw);
-    return items.map(
-      (item, idx): CardItem => ({
-        id:
-          typeof item.id === "string"
-            ? item.id
-            : `${parsed.course}-unit${parsed.unit}:${idx}`,
-        french: item.french,
-        turkish: item.turkish,
-        ipa: item.ipa ?? "",
-        example_sentence: item.example_sentence ?? "",
-        example_translation: item.example_translation ?? "",
-        unit: item.unit,
-        course: item.course,
-      })
-    );
-  } catch {
-    return null;
-  }
+  const items = await readRawUnit(parsed.course, parsed.unit);
+  if (!items) return null;
+
+  return items.map(
+    (item, idx): CardItem => ({
+      id:
+        typeof item.id === "string"
+          ? item.id
+          : `${parsed.course}-unit${parsed.unit}:${idx}`,
+      french: item.french,
+      turkish: item.turkish,
+      ipa: item.ipa ?? "",
+      example_sentence: item.example_sentence ?? "",
+      example_translation: item.example_translation ?? "",
+      unit: item.unit,
+      course: item.course,
+    })
+  );
 }
 
 /** Returns the number of cards in a unit (0 if the unit doesn't exist). */
@@ -88,11 +110,6 @@ export async function getCourseUnitCount(
   if (!/^\d+$/.test(course)) return 0;
   if (unit < VALID_UNIT_RANGE.min || unit > VALID_UNIT_RANGE.max) return 0;
 
-  try {
-    const raw = await fs.readFile(unitFilePath(course, unit), "utf-8");
-    const items: RawVocabItem[] = JSON.parse(raw);
-    return items.length;
-  } catch {
-    return 0;
-  }
+  const items = await readRawUnit(course, unit);
+  return items?.length ?? 0;
 }
