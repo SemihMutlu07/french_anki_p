@@ -15,3 +15,39 @@ body {
 @media (min-width: 768px) {
   .mobile-only { display: none !important; }
 }
+
+@keyframes flagBounce {
+  0%   { opacity: 0; transform: scale(0.2) rotate(-8deg); }
+  65%  { opacity: 1; transform: scale(1.18) rotate(4deg); }
+  82%  { transform: scale(0.94) rotate(-2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.anim-flag { animation: flagBounce 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anim-1    { opacity: 0; animation: fadeUp 0.45s ease both; animation-delay: 0.35s; }
+.anim-2    { opacity: 0; animation: fadeUp 0.45s ease both; animation-delay: 0.5s; }
+.anim-3    { opacity: 0; animation: fadeUp 0.45s ease both; animation-delay: 0.65s; }
+.anim-4    { opacity: 0; animation: slideUpIn 0.5s cubic-bezier(0.22,1,0.36,1) both; animation-delay: 0.85s; }
+.anim-5    { opacity: 0; animation: slideUpIn 0.5s cubic-bezier(0.22,1,0.36,1) both; animation-delay: 1.0s; }
+
+@keyframes cardPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244, 244, 245, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba(244, 244, 245, 0.08); }
+}
+.pulse-hint { animation: cardPulse 2.2s ease-in-out infinite; }
+
+@keyframes sheetSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.sheet-slide-up { animation: sheetSlideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }

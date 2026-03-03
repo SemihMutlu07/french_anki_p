@@ -8,13 +8,14 @@ import {
   useRef,
 } from "react";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import LessonCard from "@/components/LessonCard";
+import AnswerSheet from "@/components/AnswerSheet";
 import { saveProgress, getProgress } from "@/lib/progress";
 import { updateState, sortQueueByR } from "@/lib/fsrs";
 import type { FSRSState } from "@/lib/fsrs";
 import { createBrowserSupabase } from "@/lib/supabase";
+import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import type { CardItem } from "@/lib/types";
 
 interface CardProgress {
@@ -48,22 +49,26 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   const [sessionUnknown, setSessionUnknown] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [showAlways, setShowAlways] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [audioError, setAudioError] = useState<string | null>(null);
-  const [audioSrcLoaded, setAudioSrcLoaded] = useState(false);
-  const [audioCanPlayType, setAudioCanPlayType] = useState("unknown");
-  const [hasInteractedWithAudio, setHasInteractedWithAudio] = useState(false);
+  const [showAnswerSheet, setShowAnswerSheet] = useState(false);
+  const [hintCount, setHintCount] = useState(0);
   const [fsrsStates, setFsrsStates] = useState<Record<string, FSRSState>>({});
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const debugAudio = searchParams.get("debugAudio") === "1";
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const currentAudioSrcRef = useRef("");
+
+  const {
+    slowMode,
+    soundEnabled,
+    audioError,
+    audioHintShown,
+    firstAudioAttempted,
+    play,
+    retry,
+    toggleSlow,
+    toggleSound,
+    dismissHint,
+  } = useAudioPlayer();
 
   useEffect(() => {
     async function load() {
-      // Restore session mastery from localStorage
       let initialItems = [...items];
       const stored = localStorage.getItem(storageKey(unitId));
       if (stored) {
@@ -78,7 +83,6 @@ export default function LessonClient({ unitId, items, userId }: Props) {
         }
       }
 
-      // Fetch FSRS states from Supabase and sort queue by retrievability
       const records = await getProgress(courseName, unitNumber, userId);
       const stateMap: Record<string, FSRSState> = {};
       for (const rec of records) {
@@ -94,69 +98,16 @@ export default function LessonClient({ unitId, items, userId }: Props) {
       setFsrsStates(stateMap);
       setQueue(sortQueueByR(initialItems, stateMap));
 
-      if (localStorage.getItem("fr-tutor-sound") === "0") setSoundEnabled(false);
+      const storedHint = parseInt(
+        localStorage.getItem("fr-tutor-hint-count") ?? "0",
+        10
+      );
+      setHintCount(isNaN(storedHint) ? 0 : storedHint);
+
       setLoaded(true);
     }
     void load();
   }, [unitId, items, userId, courseName, unitNumber]);
-
-  useEffect(() => {
-    if (!audioRef.current) return;
-    setAudioCanPlayType(audioRef.current.canPlayType("audio/mpeg") || "no");
-  }, []);
-
-  function audioSrcFor(text: string): string {
-    const q = encodeURIComponent(text);
-    return `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=fr&q=${q}`;
-  }
-
-  function mediaErrorMessage(audio: HTMLAudioElement): string {
-    if (!audio.error) return "Unknown audio error";
-    switch (audio.error.code) {
-      case MediaError.MEDIA_ERR_ABORTED:
-        return "Audio playback aborted";
-      case MediaError.MEDIA_ERR_NETWORK:
-        return "Audio network error";
-      case MediaError.MEDIA_ERR_DECODE:
-        return "Audio decode error";
-      case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-        return "Audio source not supported";
-      default:
-        return "Unknown audio error";
-    }
-  }
-
-  const playAudio = useCallback(async (text: string) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const nextSrc = audioSrcFor(text);
-    setAudioError(null);
-
-    if (currentAudioSrcRef.current !== nextSrc) {
-      currentAudioSrcRef.current = nextSrc;
-      audio.src = nextSrc;
-      setAudioSrcLoaded(false);
-      audio.load();
-    }
-
-    try {
-      audio.pause();
-      audio.currentTime = 0;
-      await audio.play();
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : "Audio play() failed";
-      setAudioError(msg);
-    }
-  }, []);
-
-  const toggleSound = useCallback(() => {
-    setSoundEnabled((v) => {
-      const next = !v;
-      localStorage.setItem("fr-tutor-sound", next ? "1" : "0");
-      return next;
-    });
-  }, []);
 
   const updateProgress = useCallback(
     (newProgress: ProgressStore) => {
@@ -178,11 +129,12 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     [masteredCount, totalCards]
   );
 
+  const showPulse = loaded && hintCount < 2;
   const done = loaded && queue.length === 0;
-  const cardVisible = showAlways || isFlipped;
 
   const handleKnow = useCallback(() => {
     if (!loaded || queue.length === 0) return;
+    setShowAnswerSheet(false);
     const card = queue[0];
     const current = progress[card.id] ?? { knowCount: 0, unknownCount: 0 };
     const newKnowCount = current.knowCount + 1;
@@ -205,6 +157,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
 
   const handleDontKnow = useCallback(() => {
     if (!loaded || queue.length === 0) return;
+    setShowAnswerSheet(false);
     const card = queue[0];
     const current = progress[card.id] ?? { knowCount: 0, unknownCount: 0 };
     const newProgress: ProgressStore = {
@@ -218,7 +171,6 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     setFsrsStates((prev) => ({ ...prev, [card.id]: newFsrs }));
     void saveProgress(card, false, userId, newFsrs);
     const rest = queue.slice(1);
-    // Never reinsert at front if only 1 card remains (avoid immediate repeat)
     const insertAt = Math.max(
       Math.min(REINSERTION_OFFSET, rest.length),
       rest.length > 0 ? 1 : 0
@@ -227,27 +179,30 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   }, [loaded, queue, progress, updateProgress, userId, fsrsStates]);
 
   const handleFlip = useCallback(() => {
-    const alreadyInteracted = hasInteractedWithAudio;
-    if (!hasInteractedWithAudio) {
-      setHasInteractedWithAudio(true);
+    if (!isFlipped && soundEnabled && queue.length > 0) {
+      play(queue[0].french);
     }
-    if (!isFlipped && soundEnabled && alreadyInteracted && queue.length > 0) {
-      void playAudio(queue[0].french);
+    if (!isFlipped && hintCount < 2) {
+      const newCount = hintCount + 1;
+      setHintCount(newCount);
+      localStorage.setItem("fr-tutor-hint-count", String(newCount));
     }
     setIsFlipped((f) => !f);
-  }, [isFlipped, soundEnabled, queue, playAudio, hasInteractedWithAudio]);
+  }, [isFlipped, soundEnabled, queue, play, hintCount]);
 
   const doneRef = useRef(done);
   const handleFlipRef = useRef<() => void>(() => {});
   const handleKnowRef = useRef<() => void>(() => {});
   const handleDontKnowRef = useRef<() => void>(() => {});
+  const showAnswerSheetRef = useRef(false);
 
   useEffect(() => {
     doneRef.current = done;
     handleFlipRef.current = handleFlip;
     handleKnowRef.current = handleKnow;
     handleDontKnowRef.current = handleDontKnow;
-  }, [done, handleFlip, handleKnow, handleDontKnow]);
+    showAnswerSheetRef.current = showAnswerSheet;
+  }, [done, handleFlip, handleKnow, handleDontKnow, showAnswerSheet]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -255,12 +210,17 @@ export default function LessonClient({ unitId, items, userId }: Props) {
         e.preventDefault();
         if (doneRef.current) {
           router.push("/");
+        } else if (showAnswerSheetRef.current) {
+          setShowAnswerSheet(false);
+          setIsFlipped(true);
         } else {
           handleFlipRef.current();
         }
       } else if (e.key === "1") {
+        if (showAnswerSheetRef.current) setShowAnswerSheet(false);
         handleDontKnowRef.current();
       } else if (e.key === "2") {
+        if (showAnswerSheetRef.current) setShowAnswerSheet(false);
         handleKnowRef.current();
       }
     };
@@ -295,16 +255,6 @@ export default function LessonClient({ unitId, items, userId }: Props) {
 
   return (
     <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex flex-col">
-      <audio
-        ref={audioRef}
-        preload="none"
-        onCanPlay={() => setAudioSrcLoaded(true)}
-        onLoadedData={() => setAudioSrcLoaded(true)}
-        onError={() => {
-          if (!audioRef.current) return;
-          setAudioError(mediaErrorMessage(audioRef.current));
-        }}
-      />
       {/* Top bar */}
       <header className="flex flex-col px-4 sm:px-6 md:px-8">
         <div className="flex items-center py-3 sm:py-4">
@@ -380,7 +330,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           <div className="flex flex-1 items-center justify-center pb-[calc(env(safe-area-inset-bottom)+1rem)]">
             <div className="w-full max-w-[30rem] text-center">
               <p className="m-0 text-2xl font-semibold">
-              Ünite tamamlandı
+                Ünite tamamlandı
               </p>
               <p className="mt-3 text-[13px] text-[#71717A]">
                 {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
@@ -401,34 +351,41 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 <div className="mx-auto w-full max-w-[40rem]">
                   <LessonCard
                     item={queue[0]}
-                    isFlipped={cardVisible}
+                    isFlipped={isFlipped}
                     onFlip={handleFlip}
                     soundEnabled={soundEnabled}
                     onToggleSound={toggleSound}
-                    onPlayAudio={() => {
-                      setHasInteractedWithAudio(true);
-                      void playAudio(queue[0].french);
-                    }}
+                    onPlayAudio={() => play(queue[0].french)}
+                    showPulse={showPulse}
+                    slowMode={slowMode}
+                    onToggleSlow={toggleSlow}
                     audioError={audioError}
-                    debugAudio={debugAudio}
-                    audioDebug={{
-                      srcLoaded: audioSrcLoaded,
-                      canPlayType: audioCanPlayType,
-                      lastError: audioError,
-                    }}
+                    onRetry={retry}
                   />
                 </div>
                 <p className="mt-4 text-center text-[13px] text-[#52525B]">
                   {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
                 </p>
-                <button
-                  onClick={() => setShowAlways((v) => !v)}
-                  aria-pressed={showAlways}
-                  className="mt-4 block w-full bg-transparent border-none p-0 text-center text-xs cursor-pointer"
-                  style={{ color: showAlways ? "#A1A1AA" : "#52525B" }}
-                >
-                  {showAlways ? "● Yanıtı her zaman göster" : "○ Yanıtı her zaman göster"}
-                </button>
+                {!isFlipped && queue.length > 0 && (
+                  <button
+                    onClick={() => {
+                      localStorage.setItem(
+                        "fr-tutor-answers-shown",
+                        String(
+                          parseInt(
+                            localStorage.getItem("fr-tutor-answers-shown") ?? "0",
+                            10
+                          ) + 1
+                        )
+                      );
+                      setShowAnswerSheet(true);
+                    }}
+                    className="mt-3 block w-full bg-transparent border-none p-0 text-center text-xs cursor-pointer"
+                    style={{ color: "#52525B" }}
+                  >
+                    Yanıtı göster
+                  </button>
+                )}
               </div>
             </div>
             <div className="sticky bottom-0 left-0 right-0 bg-[#09090B] pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 md:static md:bg-transparent md:pt-5 md:pb-0">
@@ -458,6 +415,37 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           </div>
         )}
       </section>
+
+      {/* Answer Sheet */}
+      {showAnswerSheet && queue.length > 0 && (
+        <AnswerSheet
+          item={queue[0]}
+          onContinue={() => {
+            setShowAnswerSheet(false);
+            setIsFlipped(true);
+          }}
+        />
+      )}
+
+      {/* Volume hint toast */}
+      {!audioHintShown && firstAudioAttempted && (
+        <div
+          className="fixed left-4 right-4 flex items-center justify-between rounded-xl border border-[#3F3F46] bg-[#18181B] px-4 py-3 text-sm text-[#A1A1AA]"
+          style={{
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
+            zIndex: 60,
+            animation: "slideUpIn 0.35s cubic-bezier(0.22,1,0.36,1) both",
+          }}
+        >
+          <span>Ses düşükse: sessiz modu kapatıp sesi aç.</span>
+          <button
+            onClick={dismissHint}
+            className="ml-4 shrink-0 rounded border border-[#3F3F46] bg-transparent px-3 py-1 text-xs text-[#71717A] cursor-pointer"
+          >
+            Tamam
+          </button>
+        </div>
+      )}
     </main>
   );
 }

@@ -3,6 +3,64 @@
 import { useState } from "react";
 import { createBrowserSupabase } from "@/lib/supabase";
 
+function MailButton({ label, href }: { label: string; href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "12px 14px",
+        background: "#27272A",
+        borderRadius: 8,
+        color: "#E4E4E7",
+        fontSize: 14,
+        textDecoration: "none",
+      }}
+    >
+      {label}
+      <span style={{ color: "#71717A" }}>→</span>
+    </a>
+  );
+}
+
+function CopyButton({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false);
+
+  return (
+    <button
+      onClick={async () => {
+        await navigator.clipboard.writeText(email);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+        padding: "12px 14px",
+        background: "#27272A",
+        border: "none",
+        borderRadius: 8,
+        color: "#E4E4E7",
+        fontSize: 14,
+        cursor: "pointer",
+        textAlign: "left",
+        boxSizing: "border-box",
+      }}
+    >
+      {copied ? "Kopyalandı ✓" : email}
+      {!copied && (
+        <span style={{ color: "#71717A", fontSize: 12 }}>Kopyala</span>
+      )}
+    </button>
+  );
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,7 +89,6 @@ export default function LoginPage() {
     }
   }
 
-  // Button appearance based on state
   const btnStyle = (): React.CSSProperties => {
     if (sent) {
       return {
@@ -174,16 +231,45 @@ export default function LoginPage() {
         )}
 
         {sent && (
-          <p
+          <div
             style={{
-              fontSize: 12,
-              color: "#52525B",
-              textAlign: "center",
-              marginTop: 16,
+              marginTop: 24,
+              borderRadius: 12,
+              border: "1px solid #27272A",
+              background: "#18181B",
+              padding: 16,
             }}
           >
-            Gelmediyse spam klasörünü kontrol et.
-          </p>
+            <p
+              style={{
+                fontSize: 12,
+                color: "#71717A",
+                margin: "0 0 12px",
+              }}
+            >
+              Mail uygulamanı aç:
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <MailButton label="Mail uygulaması" href="mailto:" />
+              <MailButton label="Gmail" href="https://mail.google.com" />
+              <MailButton
+                label="Outlook"
+                href="https://outlook.live.com/mail/"
+              />
+              <MailButton label="Yahoo Mail" href="https://mail.yahoo.com" />
+              <CopyButton email={email} />
+            </div>
+            <p
+              style={{
+                fontSize: 12,
+                color: "#52525B",
+                textAlign: "center",
+                margin: "12px 0 0",
+              }}
+            >
+              Gelmediyse spam klasörünü kontrol et.
+            </p>
+          </div>
         )}
       </div>
     </main>
