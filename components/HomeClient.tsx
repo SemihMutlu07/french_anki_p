@@ -3,8 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import WelcomeScreen from "@/components/WelcomeScreen";
+import { PLACEMENT_RESULT_KEY } from "@/lib/placement";
 
-const WELCOMED_KEY = "fr-tutor-welcomed";
+// Set only when user explicitly skips the placement test via "Ünitelere geç".
+// PLACEMENT_RESULT_KEY being present means the test was completed — also welcomed.
+const SKIP_KEY = "fr-tutor-welcomed";
 
 interface Unit {
   id: string;
@@ -23,7 +26,9 @@ export default function HomeClient({ groups }: Props) {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    setWelcomed(!!localStorage.getItem(WELCOMED_KEY));
+    const hasResult = !!localStorage.getItem(PLACEMENT_RESULT_KEY);
+    const hasSkipped = !!localStorage.getItem(SKIP_KEY);
+    setWelcomed(hasResult || hasSkipped);
     setOpenGroups(
       groups.reduce<Record<string, boolean>>((acc, group) => {
         acc[group.course] = true;
@@ -33,7 +38,8 @@ export default function HomeClient({ groups }: Props) {
   }, [groups]);
 
   function handleStart() {
-    localStorage.setItem(WELCOMED_KEY, "1");
+    // Only called by "Ünitelere geç" — marks user as having explicitly skipped the test.
+    localStorage.setItem(SKIP_KEY, "1");
     setWelcomed(true);
   }
 

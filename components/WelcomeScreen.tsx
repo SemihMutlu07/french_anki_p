@@ -1,10 +1,20 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 interface Props {
   onStart: () => void;
 }
 
 export default function WelcomeScreen({ onStart }: Props) {
+  const router = useRouter();
+
+  function handlePlacementTest() {
+    // Don't mark as welcomed here — PLACEMENT_RESULT_KEY being set on
+    // test completion is what gates the welcome screen for returning visits.
+    router.push("/test");
+  }
+
   return (
     <div
       style={{
@@ -15,64 +25,92 @@ export default function WelcomeScreen({ onStart }: Props) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "40px 24px calc(env(safe-area-inset-bottom) + 40px)",
+        padding: "40px 24px calc(env(safe-area-inset-bottom) + 56px)",
         textAlign: "center",
       }}
     >
-      <p style={{ fontSize: 48, margin: "0 0 32px" }}>🇫🇷</p>
+      <p className="anim-flag" style={{ fontSize: 64, margin: "0 0 28px", lineHeight: 1 }}>
+        🇫🇷
+      </p>
 
       <p
+        className="anim-1"
         style={{
-          fontSize: 13,
-          color: "#9CA3AF",
-          letterSpacing: "0.1em",
+          fontSize: 11,
+          color: "#52525B",
+          letterSpacing: "0.14em",
           textTransform: "uppercase",
-          margin: "0 0 12px",
+          margin: "0 0 10px",
         }}
       >
         Fransızca 101
       </p>
 
       <h1
+        className="anim-2"
         style={{
-          fontSize: 32,
+          fontSize: "clamp(28px, 8vw, 38px)",
           fontWeight: 700,
-          margin: "0 0 16px",
-          lineHeight: 1.2,
+          margin: "0 0 14px",
+          lineHeight: 1.15,
         }}
       >
         Hoş geldin.
       </h1>
 
       <p
+        className="anim-3"
         style={{
           fontSize: 15,
           color: "#71717A",
-          maxWidth: 280,
-          lineHeight: 1.6,
-          margin: "0 0 48px",
+          maxWidth: 272,
+          lineHeight: 1.65,
+          margin: "0 0 52px",
         }}
       >
-        10 ünite, 150+ kelime kartı. Her gün birkaç dakikayla Fransızca kelime bilgini kalıcı hale getir.
+        10 ünite, 150+ kart. Seviyeni hızlı belirle ve sana uygun yerden başla.
       </p>
 
-      <button
-        onClick={onStart}
-        style={{
-          minHeight: 56,
-          padding: "0 40px",
-          background: "#F4F4F5",
-          border: "none",
-          borderRadius: 12,
-          color: "#09090B",
-          fontSize: 15,
-          fontWeight: 600,
-          cursor: "pointer",
-          letterSpacing: "0.01em",
-        }}
-      >
-        Başla →
-      </button>
+      <div style={{ width: "100%", maxWidth: 320, display: "flex", flexDirection: "column", gap: 10 }}>
+        <button
+          className="anim-4"
+          onClick={handlePlacementTest}
+          style={{
+            minHeight: 58,
+            padding: "0 32px",
+            background: "#F4F4F5",
+            border: "none",
+            borderRadius: 14,
+            color: "#09090B",
+            fontSize: 16,
+            fontWeight: 600,
+            cursor: "pointer",
+            width: "100%",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          Seviyeni belirle →
+        </button>
+
+        <button
+          className="anim-5"
+          onClick={onStart}
+          style={{
+            minHeight: 52,
+            padding: "0 32px",
+            background: "transparent",
+            border: "1px solid #27272A",
+            borderRadius: 14,
+            color: "#52525B",
+            fontSize: 14,
+            fontWeight: 500,
+            cursor: "pointer",
+            width: "100%",
+          }}
+        >
+          Ünitelere geç
+        </button>
+      </div>
     </div>
   );
 }
