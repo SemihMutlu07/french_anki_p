@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   PLACEMENT_RESULT_KEY,
@@ -26,6 +26,25 @@ export default function TestRunClient({ cards }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const current = questions[index];
+  const selectChoiceRef = useRef(selectChoice);
+  const currentRef = useRef(current);
+
+  useEffect(() => {
+    selectChoiceRef.current = selectChoice;
+    currentRef.current = current;
+  });
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const idx = parseInt(e.key, 10) - 1;
+      if (isNaN(idx) || idx < 0 || idx > 3) return;
+      if (!currentRef.current) return;
+      if (idx >= currentRef.current.choices.length) return;
+      selectChoiceRef.current(idx);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   useEffect(() => {
     if (questions.length === 0) return;
@@ -67,9 +86,9 @@ export default function TestRunClient({ cards }: Props) {
     return (
       <main className="min-h-screen bg-[#09090B] px-5 py-10 text-[#F4F4F5]">
         <div className="mx-auto max-w-xl rounded-2xl border border-[#27272A] bg-[#18181B] p-6">
-          <p className="text-lg font-semibold">Test su an hazir degil</p>
+          <p className="text-lg font-semibold">Test şu an hazır değil</p>
           <p className="mt-2 text-sm text-[#A1A1AA]">
-            Soru havuzu bulunamadi. Lutfen daha sonra tekrar dene.
+            Soru havuzu bulunamadı. Lütfen daha sonra tekrar dene.
           </p>
         </div>
       </main>
@@ -80,7 +99,7 @@ export default function TestRunClient({ cards }: Props) {
     return (
       <main className="min-h-screen bg-[#09090B] px-5 py-10 text-[#F4F4F5]">
         <div className="mx-auto max-w-xl rounded-2xl border border-[#27272A] bg-[#18181B] p-6">
-          <p className="text-lg font-semibold">Sonuclar hazirlaniyor...</p>
+          <p className="text-lg font-semibold">Sonuçlar hazırlanıyor…</p>
         </div>
       </main>
     );
@@ -121,7 +140,7 @@ export default function TestRunClient({ cards }: Props) {
               onClick={() => playAudio(current.audioText)}
               className="mt-5 flex min-h-[56px] w-full items-center justify-center rounded-xl border border-[#3F3F46] bg-[#09090B] px-4 text-base font-semibold"
             >
-              {isPlaying ? "Caliyor..." : "Sesi oynat"}
+              {isPlaying ? "Çalıyor…" : "Sesi oynat"}
             </button>
           ) : null}
         </div>
@@ -132,8 +151,11 @@ export default function TestRunClient({ cards }: Props) {
               key={`${current.id}-choice-${choice}`}
               type="button"
               onClick={() => selectChoice(choiceIndex)}
-              className="flex min-h-[56px] w-full items-center justify-start rounded-2xl border border-[#3F3F46] bg-[#18181B] px-4 text-left text-base font-medium"
+              className="relative flex min-h-[56px] w-full items-center justify-start rounded-2xl border border-[#3F3F46] bg-[#18181B] px-4 text-left text-base font-medium"
             >
+              <span className="mr-3 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded text-[11px] text-[#52525B]" style={{ border: "1px solid #3F3F46" }}>
+                {choiceIndex + 1}
+              </span>
               {choice}
             </button>
           ))}
