@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   PLACEMENT_RESULT_KEY,
   type PlacementQuestionType,
   type PlacementResult,
 } from "@/lib/placement";
+import { FORCE_ONBOARDING_KEY, ONBOARDING_PLACEMENT_KEY } from "@/components/OnboardingGuard";
 
 const TYPE_LABEL: Record<PlacementQuestionType, string> = {
   recognition: "Kelime tanıma",
@@ -278,13 +278,18 @@ export default function TestResultClient() {
         </div>
 
         {/* CTA */}
-        <Link
-          href="/"
+        <button
+          onClick={() => {
+            if (localStorage.getItem(FORCE_ONBOARDING_KEY) === "1") {
+              localStorage.setItem(ONBOARDING_PLACEMENT_KEY, "1");
+            }
+            router.push("/");
+          }}
           className="mt-8 flex min-h-[56px] w-full items-center justify-center rounded-2xl text-base font-semibold transition-opacity hover:opacity-90"
           style={{ background: "#3B82F6", color: "#fff" }}
         >
           Ana sayfaya dön
-        </Link>
+        </button>
         <p className="mt-3 text-center text-xs" style={{ color: "#3D5570" }}>
           İstersen sonra tekrar seviye testi yapabilirsin.
         </p>

@@ -7,7 +7,7 @@ import { PLACEMENT_RESULT_KEY } from "@/lib/placement";
 
 // Set only when user explicitly skips the placement test via "Ünitelere geç".
 // PLACEMENT_RESULT_KEY being present means the test was completed — also welcomed.
-const SKIP_KEY = "fr-tutor-welcomed";
+const SKIP_KEY = "fr-tutor-welcomed-v2";
 
 interface Unit {
   id: string;

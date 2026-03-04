@@ -1,6 +1,6 @@
 import type { CardItem } from "@/lib/types";
 
-export const PLACEMENT_RESULT_KEY = "fr-tutor-placement-result-v1";
+export const PLACEMENT_RESULT_KEY = "fr-tutor-placement-result-v2";
 export const MAX_PLACEMENT_QUESTIONS = 12;
 
 export type PlacementQuestionType =
