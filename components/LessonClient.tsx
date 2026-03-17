@@ -60,6 +60,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     audioError,
     audioHintShown,
     firstAudioAttempted,
+    isPlaying,
     play,
     retry,
     toggleSlow,
@@ -361,6 +362,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                     onToggleSlow={toggleSlow}
                     audioError={audioError}
                     onRetry={retry}
+                    isPlaying={isPlaying}
                   />
                 </div>
                 <p className="mt-4 text-center text-[13px] text-[#52525B]">

@@ -12,6 +12,7 @@ interface Props {
   onToggleSlow: () => void;
   audioError: string | null;
   onRetry: () => void;
+  isPlaying: boolean;
 }
 
 export default function LessonCard({
@@ -26,6 +27,7 @@ export default function LessonCard({
   onToggleSlow,
   audioError,
   onRetry,
+  isPlaying,
 }: Props) {
   return (
     <div
@@ -40,21 +42,36 @@ export default function LessonCard({
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") onFlip();
       }}
-      className={`relative w-full max-w-[40rem] select-none rounded-2xl bg-[#18181B] px-5 py-7 sm:px-8 sm:py-10 md:px-12 md:py-12 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#3F3F46]${
+      className={`relative w-full select-none rounded-2xl bg-gradient-to-br from-[#18181B] to-[#121214] px-6 py-8 sm:px-8 sm:py-10 md:px-10 md:py-12 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#3F3F46] shadow-xl${
         showPulse && !isFlipped ? " pulse-hint" : ""
       }`}
     >
-      <div className="absolute right-3 top-3 flex gap-2">
+      {/* Control buttons */}
+      <div className="absolute right-3 top-3 flex gap-1.5 sm:right-4 sm:top-4">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onPlayAudio();
           }}
           aria-label="Ses oynat"
-          title="Ses oynat"
-          className="rounded-md border border-[#3F3F46] px-2.5 py-1 text-xs font-medium text-[#D4D4D8]"
+          title="Ses oynat (Fransızca telaffuz)"
+          className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
+            isPlaying
+              ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
+              : "border-[#3F3F46] bg-[#27272A]/50 text-[#A1A1AA] hover:bg-[#27272A]"
+          }`}
         >
-          ♪
+          {isPlaying ? (
+            <>
+              <span className="animate-pulse">🔊</span>
+              <span>Oynatılıyor...</span>
+            </>
+          ) : (
+            <>
+              <span>♪</span>
+              <span className="hidden sm:inline">Dinle</span>
+            </>
+          )}
         </button>
         <button
           onClick={(e) => {
@@ -62,11 +79,14 @@ export default function LessonCard({
             onToggleSlow();
           }}
           aria-label={slowMode ? "Normal hıza geç" : "Yavaş oynat"}
-          title={slowMode ? "Normal hıza geç" : "Yavaş oynat"}
-          className="rounded-md border border-[#3F3F46] px-2.5 py-1 text-xs font-medium"
-          style={{ color: slowMode ? "#A1A1AA" : "#52525B" }}
+          title={slowMode ? "Normal hız" : "Yavaş telaffuz (0.5x)"}
+          className={`rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-all ${
+            slowMode
+              ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#3B82F6]"
+              : "border-[#3F3F46] bg-[#27272A]/50 text-[#52525B] hover:bg-[#27272A]"
+          }`}
         >
-          {slowMode ? "0.5x" : "norm"}
+          {slowMode ? "0.5×" : "1×"}
         </button>
         <button
           onClick={(e) => {
@@ -74,36 +94,47 @@ export default function LessonCard({
             onToggleSound();
           }}
           aria-label={soundEnabled ? "Otomatik sesi kapat" : "Otomatik sesi aç"}
-          title={soundEnabled ? "Otomatik sesi kapat" : "Otomatik sesi aç"}
-          className="rounded-md p-1.5 text-lg leading-none"
-          style={{ color: soundEnabled ? "#71717A" : "#3F3F46" }}
+          title={soundEnabled ? "Otomatik ses: Açık" : "Otomatik ses: Kapalı"}
+          className={`rounded-lg border p-2 text-sm transition-all ${
+            soundEnabled
+              ? "border-[#3F3F46] bg-[#27272A]/50 text-[#A1A1AA] hover:bg-[#27272A]"
+              : "border-[#27272A] bg-transparent text-[#3F3F46]"
+          }`}
         >
           {soundEnabled ? "🔊" : "🔇"}
         </button>
       </div>
 
-      {/* Front — always visible */}
+      {/* French word */}
       <p className="m-0 text-center text-4xl font-bold leading-tight text-[#F4F4F5] sm:text-5xl md:text-6xl">
         {item.french}
       </p>
-      <p className="mb-0 mt-2 text-center font-mono text-sm text-[#A1A1AA] sm:text-base">
+      
+      {/* IPA pronunciation */}
+      <p className="mb-0 mt-3 text-center font-mono text-sm text-[#71717A] sm:text-base">
         {item.ipa}
       </p>
 
       {/* Back — hidden until flipped */}
       {isFlipped && (
-        <>
-          <div className="my-6 border-t border-[#3F3F46]" />
-          <p className="m-0 text-center text-xl text-[#E4E4E7] sm:text-2xl">
+        <div className="animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="my-6 border-t border-[#27272A]" />
+          
+          {/* Turkish translation */}
+          <p className="m-0 text-center text-xl font-medium text-[#E4E4E7] sm:text-2xl">
             {item.turkish}
           </p>
-          <p className="mb-0 mt-6 text-center text-sm italic text-[#A1A1AA] sm:text-[15px]">
-            {item.example_sentence}
-          </p>
-          <p className="mb-0 mt-1 text-center text-sm text-[#71717A]">
-            {item.example_translation}
-          </p>
-        </>
+          
+          {/* Example sentence */}
+          <div className="mt-6 rounded-xl bg-[#18181B]/50 p-4 text-center">
+            <p className="m-0 text-sm italic text-[#A1A1AA] sm:text-[15px]">
+              &ldquo;{item.example_sentence}&rdquo;
+            </p>
+            <p className="mb-0 mt-2 text-sm text-[#52525B]">
+              {item.example_translation}
+            </p>
+          </div>
+        </div>
       )}
 
       {/* Audio error */}
@@ -112,15 +143,15 @@ export default function LessonCard({
           className="mt-4 text-center"
           onClick={(e) => e.stopPropagation()}
         >
-          <p className="m-0 text-xs text-red-400">{audioError}</p>
+          <p className="m-0 text-xs text-[#F87171]">{audioError}</p>
           <button
             onClick={(e) => {
               e.stopPropagation();
               onRetry();
             }}
-            className="mt-1 rounded border border-[#3F3F46] bg-transparent px-3 py-1 text-xs text-[#A1A1AA] cursor-pointer"
+            className="mt-2 rounded-lg border border-[#3F3F46] bg-[#27272A] px-4 py-1.5 text-xs text-[#F4F4F5] transition-colors hover:bg-[#27272A]/80"
           >
-            Tekrar dene
+            🔁 Tekrar dene
           </button>
         </div>
       )}
