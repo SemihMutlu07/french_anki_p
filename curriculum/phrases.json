@@ -1,0 +1,18 @@
+[
+  {"fr": "Pardon, je ne comprends pas.", "tr": "Özür dilerim, anlamıyorum.", "audio": true},
+  {"fr": "Pouvez-vous répéter?", "tr": "Tekrar edebilir misiniz?", "audio": true},
+  {"fr": "Plus lentement, s'il vous plaît.", "tr": "Daha yavaş, lütfen.", "audio": true},
+  {"fr": "Comment dit-on ... en français?", "tr": "Fransızca'da ... nasıl denir?", "audio": true},
+  {"fr": "Qu'est-ce que ça veut dire?", "tr": "Bu ne anlama geliyor?", "audio": true},
+  {"fr": "Comment ça s'écrit?", "tr": "Bu nasıl yazılır?", "audio": true},
+  {"fr": "D'accord.", "tr": "Tamam.", "audio": true},
+  {"fr": "Je ne sais pas.", "tr": "Bilmiyorum.", "audio": true},
+  {"fr": "Merci beaucoup.", "tr": "Çok teşekkürler.", "audio": true},
+  {"fr": "Excusez-moi.", "tr": "Afedersiniz.", "audio": true},
+  {"fr": "C'est correct?", "tr": "Bu doğru mu?", "audio": true},
+  {"fr": "Encore une fois, s'il vous plaît.", "tr": "Bir kez daha, lütfen.", "audio": true},
+  {"fr": "J'ai une question.", "tr": "Bir sorum var.", "audio": true},
+  {"fr": "Je suis désolé(e).", "tr": "Özür dilerim.", "audio": true},
+  {"fr": "Pas de problème.", "tr": "Sorun yok.", "audio": true},
+  {"fr": "La Belle au bois dormant.", "tr": "Uyuyan Güzel. 👑", "audio": true}
+]

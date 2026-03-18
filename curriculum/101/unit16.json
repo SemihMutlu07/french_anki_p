@@ -1,0 +1,220 @@
+[
+  {
+    "id": "unit16-001",
+    "front": "___ tu fumes? (Sigara içeriyor musun?)",
+    "back": "Est-ce que tu fumes?",
+    "ipa": "/ɛs kə ty fym/",
+    "tags": ["question", "est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-002",
+    "front": "___ tu habites ici? (Burada mı oturuyorsun?)",
+    "back": "Est-ce que tu habites ici?",
+    "ipa": "/ɛs kə ty a.bit i.si/",
+    "tags": ["question", "est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-003",
+    "front": "___ il vient? (O geliyor mu?)",
+    "back": "Est-ce qu'il vient?",
+    "ipa": "/ɛs kil vjɛ̃/",
+    "tags": ["question", "est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-004",
+    "front": "___ tu habites chez tes parents? (Ailenin yanında mı oturuyorsun?)",
+    "back": "Est-ce que tu habites chez tes parents?",
+    "ipa": "/ɛs kə ty a.bit ʃe te pa.ʁɑ̃/",
+    "tags": ["question", "est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-005",
+    "front": "___ c'est? (Bu nedir?)",
+    "back": "Qu'est-ce que c'est?",
+    "ipa": "/kɛs kə sɛ/",
+    "tags": ["question", "qu'est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-006",
+    "front": "___ tu vois? (Ne görüyorsun?)",
+    "back": "Qu'est-ce que tu vois?",
+    "ipa": "/kɛs kə ty vwa/",
+    "tags": ["question", "qu'est-ce que"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-007",
+    "front": "___ est-ce? (Bu kim?)",
+    "back": "Qui est-ce?",
+    "ipa": "/ki ɛs sɛ/",
+    "tags": ["question", "qui"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-008",
+    "front": "___ es-tu? (Sen kimsin?)",
+    "back": "Qui es-tu?",
+    "ipa": "/ki ɛ ty/",
+    "tags": ["question", "qui"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-009",
+    "front": "___ êtes-vous? (Siz kimsiniz?)",
+    "back": "Qui êtes-vous?",
+    "ipa": "/ki ɛt vu/",
+    "tags": ["question", "qui"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-010",
+    "front": "___? (Kim için?)",
+    "back": "Pour qui?",
+    "ipa": "/puʁ ki/",
+    "tags": ["question", "pour qui"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-011",
+    "front": "___ est...? (...nerede?)",
+    "back": "Où est...?",
+    "ipa": "/u ɛ/",
+    "tags": ["question", "où"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-012",
+    "front": "___ est votre prénom? (Adınız nedir?)",
+    "back": "Quel est votre prénom?",
+    "ipa": "/kɛl ɛ vɔtʁ pʁe.nɔ̃/",
+    "note": "⚠️ 'prénom' eril olduğu için 'Quel'",
+    "tags": ["question", "quel"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-013",
+    "front": "___ est votre adresse? (Adresiniz nedir?)",
+    "back": "Quelle est votre adresse?",
+    "ipa": "/kɛl ɛ vɔtʁ a.dʁɛs/",
+    "note": "⚠️ 'adresse' dişil olduğu için 'Quelle'",
+    "tags": ["question", "quelle"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-014",
+    "front": "⚠️ 'Qu'est-ce que c'est?' nasıl okunur?",
+    "back": "/kɛs kə sɛ/ = 'kes ku se'\n\n⚠️ 'Que est' → 'Qu'est' birleşik",
+    "ipa": "/kɛs kə sɛ/",
+    "tags": ["question", "prononciation"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-015",
+    "front": "Le petit déjeuner est compris?",
+    "back": "Kahvaltı dahil mi?",
+    "ipa": "/lə pə.ti de.ʒœ.ne ɛ̃ kɔ̃.pʁi/",
+    "tags": ["hôtel", "question", "dialogue"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-016",
+    "front": "Est-ce que le thé est compris?",
+    "back": "Çay dahil mi?",
+    "ipa": "/ɛs kə lə te ɛ̃ kɔ̃.pʁi/",
+    "tags": ["hôtel", "question", "dialogue"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-017",
+    "front": "Vous avez une réservation sur Booking?",
+    "back": "Booking'de rezervasyonunuz var mı?",
+    "ipa": "/vu za.ve yn ʁe.zɛʁ.va.sjɔ̃ syʁ bu.kiɲ/",
+    "tags": ["hôtel", "question", "dialogue"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-018",
+    "front": "Vous avez un numéro de téléphone portable?",
+    "back": "Cep telefonu numaranız var mı?",
+    "ipa": "/vu za.ve œ̃ ny.me.ʁo de te.le.fɔn pɔʁ.tabl/",
+    "tags": ["hôtel", "question", "dialogue"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-019",
+    "front": "s'il vous plaît",
+    "back": "lütfen (resmi / çoğul)",
+    "ipa": "/sil vu plɛ/",
+    "tags": ["politesse", "formel"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-020",
+    "front": "s'il te plaît",
+    "back": "lütfen (samimi / tekil)",
+    "ipa": "/sil tə plɛ/",
+    "tags": ["politesse", "informel"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-021",
+    "front": "Désolé(e)",
+    "back": "Üzgünüm / Pardon",
+    "ipa": "/de.zɔ.le/",
+    "tags": ["politesse", "excuse"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-022",
+    "front": "Tu as raison.",
+    "back": "Haklısın.",
+    "ipa": "/ty a ʁɛ.zɔ̃/",
+    "tags": ["expression", "accord"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-023",
+    "front": "d'accord",
+    "back": "tamam / anlaştık",
+    "ipa": "/da.kɔʁ/",
+    "tags": ["expression", "accord"],
+    "unit": 16,
+    "course": "101"
+  },
+  {
+    "id": "unit16-024",
+    "front": "Merci!",
+    "back": "Teşekkürler!",
+    "ipa": "/mɛʁ.si/",
+    "tags": ["politesse", "remerciement"],
+    "unit": 16,
+    "course": "101"
+  }
+]

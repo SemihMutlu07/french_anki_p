@@ -13,3 +13,29 @@ export interface CardItem {
   unit: number;
   course: string;
 }
+
+/** Sentence practice card — Q&A, translate, fill-blank, listen-respond. */
+export interface SentenceCard {
+  id: string;
+  type: "qa" | "translate" | "fill_blank" | "listen_respond";
+  question_fr: string;
+  question_tr: string;
+  answer_fr: string;
+  answer_tr: string;
+  hint?: string;
+  audio: boolean;
+  unit: number;
+  tags: string[];
+  difficulty: 1 | 2 | 3;
+}
+
+/** Card with grammatical gender info — used by gender quiz. */
+export interface GenderedCard {
+  id: string;
+  french: string;
+  turkish: string;
+  bareWord: string;
+  gender: "m" | "f";
+  unit: number;
+  course: string;
+}

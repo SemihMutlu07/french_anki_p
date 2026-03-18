@@ -172,7 +172,7 @@ export default function LoginPage() {
               border: "1px solid #3F3F46",
               borderRadius: 10,
               color: sent ? "#52525B" : "#F4F4F5",
-              fontSize: 15,
+              fontSize: 16,
               outline: "none",
               boxSizing: "border-box",
               opacity: sent ? 0.5 : 1,

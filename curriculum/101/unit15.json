@@ -1,0 +1,183 @@
+[
+  {
+    "id": "unit15-001",
+    "front": "un sac",
+    "back": "çanta",
+    "ipa": "/œ̃ sak/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-002",
+    "front": "un sac à dos",
+    "back": "sırt çantası",
+    "ipa": "/œ̃ sa a do/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-003",
+    "front": "un cartable",
+    "back": "okul çantası",
+    "ipa": "/œ̃ kaʁ.tabl/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-004",
+    "front": "une chemise",
+    "back": "gömlek",
+    "ipa": "/yn ʃə.miz/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-005",
+    "front": "un blouson",
+    "back": "ceket",
+    "ipa": "/œ̃ blu.zɔ̃/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-006",
+    "front": "une doudoune",
+    "back": "şişme mont",
+    "ipa": "/yn du.dun/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-007",
+    "front": "un manteau",
+    "back": "palto / kışlık mont",
+    "ipa": "/œ̃ mɑ̃.to/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-008",
+    "front": "un porte-manteau",
+    "back": "portmanto / askılık",
+    "ipa": "/œ̃ pɔʁt.mɑ̃.to/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-009",
+    "front": "un bureau",
+    "back": "masa / ofis",
+    "ipa": "/œ̃ by.ʁo/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-010",
+    "front": "une gomme",
+    "back": "silgi",
+    "ipa": "/yn gɔm/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-011",
+    "front": "un cache-col",
+    "back": "atkı / boyun örtüsü",
+    "ipa": "/œ̃ kaʃ.kɔl/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-012",
+    "front": "un écran",
+    "back": "ekran",
+    "ipa": "/œ̃ e.kʁɑ̃/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-013",
+    "front": "une montre",
+    "back": "kol saati",
+    "ipa": "/yn mɔ̃tʁ/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-014",
+    "front": "un collier",
+    "back": "kolye",
+    "ipa": "/œ̃ kɔ.lje/",
+    "tags": ["objet", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-015",
+    "front": "un pantalon",
+    "back": "pantolon",
+    "ipa": "/œ̃ pɑ̃.ta.lɔ̃/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-016",
+    "front": "un t-shirt",
+    "back": "tişört",
+    "ipa": "/œ̃ ti.ʃœʁt/",
+    "tags": ["vêtement", "vocabulaire"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-017",
+    "front": "⚠️ 'lunettes' (gözlük) kelimesi hakkında önemli kural",
+    "back": "⚠️ PİEGE!\n\n'des lunettes' DAİMA ÇOĞUL kullanılır!\n\n'un lunette' YANLIŞ!\n\nCe sont des lunettes. (DOĞRU)",
+    "ipa": "/de ly.nɛt/",
+    "tags": ["objet", "piège", "pluriel"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-018",
+    "front": "___ un sac. (Bu bir çanta.)",
+    "back": "C'est un sac.",
+    "ipa": "/sɛ tœ̃ sak/",
+    "tags": ["c'est", "phrase"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-019",
+    "front": "___ des lunettes. (Bunlar gözlük.)",
+    "back": "Ce sont des lunettes.",
+    "ipa": "/sə sɔ̃ de ly.nɛt/",
+    "note": "⚠️ Çoğul için 'Ce sont' kullanılır",
+    "tags": ["ce sont", "phrase"],
+    "unit": 15,
+    "course": "101"
+  },
+  {
+    "id": "unit15-020",
+    "front": "___ une montre. (Bu bir saat.)",
+    "back": "C'est une montre.",
+    "ipa": "/sɛt yn mɔ̃tʁ/",
+    "tags": ["c'est", "phrase"],
+    "unit": 15,
+    "course": "101"
+  }
+]

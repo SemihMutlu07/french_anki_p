@@ -245,7 +245,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
       const dy = e.changedTouches[0].clientY - touchStartY.current;
       touchStartX.current = null;
       touchStartY.current = null;
-      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+      if (Math.abs(dx) < 80 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
       if (dx > 0) handleKnow();
       else handleDontKnow();
     },

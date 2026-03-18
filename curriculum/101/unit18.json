@@ -1,0 +1,227 @@
+[
+  {
+    "id": "unit18-001",
+    "front": "janvier / février",
+    "back": "Ocak / Şubat",
+    "ipa": "/ʒɑ̃.vje/ / /fe.vʁje/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-002",
+    "front": "mars / avril",
+    "back": "Mart / Nisan",
+    "ipa": "/maʁs/ / /a.vʁil/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-003",
+    "front": "mai / juin",
+    "back": "Mayıs / Haziran",
+    "ipa": "/mɛ/ / /ʒɥɛ̃/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-004",
+    "front": "juillet / août",
+    "back": "Temmuz / Ağustos",
+    "ipa": "/ʒɥi.jɛ/ / /u(t)/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-005",
+    "front": "septembre / octobre",
+    "back": "Eylül / Ekim",
+    "ipa": "/sɛp.tɑ̃bʁ/ / /ɔk.tɔbʁ/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-006",
+    "front": "novembre / décembre",
+    "back": "Kasım / Aralık",
+    "ipa": "/nɔ.vɑ̃bʁ/ / /de.sɑ̃bʁ/",
+    "tags": ["mois", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-007",
+    "front": "le printemps",
+    "back": "ilkbahar",
+    "ipa": "/lə pʁɛ̃.tɑ̃/",
+    "tags": ["saison", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-008",
+    "front": "l'été",
+    "back": "yaz",
+    "ipa": "/le.te/",
+    "tags": ["saison", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-009",
+    "front": "l'automne",
+    "back": "sonbahar",
+    "ipa": "/lo.tɔn/",
+    "tags": ["saison", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-010",
+    "front": "l'hiver",
+    "back": "kış",
+    "ipa": "/li.vɛʁ/",
+    "tags": ["saison", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-011",
+    "front": "___, il fait chaud. (Yazın hava sıcaktır.)",
+    "back": "En été, il fait chaud.",
+    "ipa": "/ɑ̃ ne.te il fɛ ʃo/",
+    "tags": ["saison", "phrase"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-012",
+    "front": "___, il fait froid. (Kışın hava soğuktur.)",
+    "back": "En hiver, il fait froid.",
+    "ipa": "/ɑ̃ li.vɛʁ il fɛ fʁwa/",
+    "tags": ["saison", "phrase"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-013",
+    "front": "aujourd'hui",
+    "back": "bugün",
+    "ipa": "/o.ʒuʁ.dɥi/",
+    "tags": ["temps", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-014",
+    "front": "hier",
+    "back": "dün",
+    "ipa": "/jɛʁ/",
+    "tags": ["temps", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-015",
+    "front": "demain",
+    "back": "yarın",
+    "ipa": "/də.mɛ̃/",
+    "tags": ["temps", "vocabulaire"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-016",
+    "front": "é (accent aigu) = hangi ses?",
+    "back": "/e/ — kapalı e\n\nörnek: école, étudiant, fermé",
+    "ipa": "/e/",
+    "tags": ["accent", "prononciation"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-017",
+    "front": "è (accent grave) = hangi ses?",
+    "back": "/ɛ/ — açık e\n\nörnek: père, mère, frère",
+    "ipa": "/ɛ/",
+    "tags": ["accent", "prononciation"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-018",
+    "front": "ç (cédille) = hangi ses? Örnekler?",
+    "back": "/s/ sesi\n\nörnek: français, garçon, leçon",
+    "ipa": "/s/",
+    "tags": ["cédille", "prononciation"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-019",
+    "front": "⚠️ Sessiz harfler: -x, -s (çoğul), -ent (fiil)",
+    "back": "⚠️ PİEGE!\n\n• -x: deux (/dø/) — sessiz\n• -s (çoğul): les chats (/le ʃa/) — sessiz\n• -ent (fiil): ils marchent (/il maʁʃ/) — sessiz",
+    "ipa": "",
+    "tags": ["prononciation", "piège"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-020",
+    "front": "⚠️ 'sept' (7) nasıl okunur?",
+    "back": "/sɛt/\n\n⚠️ İSTİSNA: final 't' OKUNUR!\n\n'dix' (/dis/) da öyle.",
+    "ipa": "/sɛt/",
+    "tags": ["prononciation", "piège", "nombre"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-021",
+    "front": "Ça s'écrit comment?",
+    "back": "Nasıl yazılır?",
+    "ipa": "/sa se.kʁi kɔ.mɑ̃/",
+    "tags": ["expression", "orthographe"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-022",
+    "front": "Comment on dit 'bugün' en français?",
+    "back": "aujourd'hui",
+    "ipa": "/o.ʒuʁ.dɥi/",
+    "tags": ["temps", "question"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-023",
+    "front": "Comment on dit 'ilkbahar' en français?",
+    "back": "le printemps",
+    "ipa": "/lə pʁɛ̃.tɑ̃/",
+    "tags": ["saison", "question"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-024",
+    "front": "Quel mois est après janvier?",
+    "back": "février (Şubat)",
+    "ipa": "/fe.vʁje/",
+    "tags": ["mois", "question"],
+    "unit": 18,
+    "course": "101"
+  },
+  {
+    "id": "unit18-025",
+    "front": "Quel mois est avant décembre?",
+    "back": "novembre (Kasım)",
+    "ipa": "/nɔ.vɑ̃bʁ/",
+    "tags": ["mois", "question"],
+    "unit": 18,
+    "course": "101"
+  }
+]

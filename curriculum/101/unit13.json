@@ -1,0 +1,182 @@
+[
+  {
+    "id": "unit13-001",
+    "front": "Je fume.",
+    "back": "Sigara içerim.\n\nOlumsuzu: Je ne fume pas. (Sigara içmiyorum.)",
+    "ipa": "/ʒə nə fym pa/",
+    "tags": ["négation", "ne...pas"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-002",
+    "front": "Je t'aime.",
+    "back": "Seni seviyorum.\n\nOlumsuzu: Je ne t'aime pas. (Seni sevmiyorum.)",
+    "ipa": "/ʒə nə tɛm pa/",
+    "tags": ["négation", "ne...pas"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-003",
+    "front": "Je comprends.",
+    "back": "Anlıyorum.\n\nOlumsuzu: Je ne comprends pas. (Anlamıyorum.)",
+    "ipa": "/ʒə nə kɔ̃.pʁɑ̃ pa/",
+    "tags": ["négation", "ne...pas"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-004",
+    "front": "Je bois du café.",
+    "back": "Kahve içerim.\n\nOlumsuzu (bıraktım): Je ne bois plus de café. (Artık kahve içmiyorum.)",
+    "ipa": "/ʒə nə bwa ply də ka.fe/",
+    "tags": ["négation", "ne...plus"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-005",
+    "front": "Je fume.",
+    "back": "Sigara içerim.\n\nOlumsuzu (bıraktım): Je ne fume plus. (Artık sigara içmiyorum.)",
+    "ipa": "/ʒə nə fym ply/",
+    "tags": ["négation", "ne...plus"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-006",
+    "front": "Je t'aime.",
+    "back": "Seni seviyorum.\n\nOlumsuzu (bıraktım): Je ne t'aime plus. (Artık seni sevmiyorum.)",
+    "ipa": "/ʒə nə tɛm ply/",
+    "tags": ["négation", "ne...plus"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-007",
+    "front": "⚠️ 'plus' kelimesinin telaffuzu ne zaman değişir?",
+    "back": "⚠️ PİEGE!\n\n• Olumsuzlukta (ne...plus = artık ...mıyor): /ply/ — 's' sessiz\n• 'Daha fazla' anlamında: /plys/ — 's' okunur\n\nJe ne fume plus. (/ply/) vs Plus de pain! (/plys/)",
+    "ipa": "/ply/ vs /plys/",
+    "tags": ["négation", "piège", "prononciation"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-008",
+    "front": "Je fume → Je ne fume pas → Je ne fume plus",
+    "back": "Sigara içerim → Sigara içmiyorum → Artık sigara içmiyorum (bıraktım)",
+    "ipa": "",
+    "tags": ["négation", "contraste"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-009",
+    "front": "Je bois → Je ne bois pas → Je ne bois plus",
+    "back": "İçerim → İçmem → Artık içmiyorum (bıraktım)",
+    "ipa": "",
+    "tags": ["négation", "contraste"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-010",
+    "front": "Je comprends → Je ne comprends pas → Je ne comprends plus",
+    "back": "Anlıyorum → Anlamıyorum → Artık anlamıyorum (takip edemiyorum)",
+    "ipa": "",
+    "tags": ["négation", "contraste"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-011",
+    "front": "___, j'aime les chats. (Ben, kedileri severim.)",
+    "back": "Moi, j'aime les chats.",
+    "ipa": "/mwa ʒɛm le ʃa/",
+    "tags": ["pronom tonique", "moi"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-012",
+    "front": "___, il parle français. (O, Fransızca konuşur.)",
+    "back": "Lui, il parle français.",
+    "ipa": "/lɥi il paʁl fʁɑ̃.sɛ/",
+    "tags": ["pronom tonique", "lui"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-013",
+    "front": "___, ils travaillent. (Onlar, çalışıyorlar.)",
+    "back": "Eux, ils travaillent.",
+    "ipa": "/ø il tʁa.vaj/",
+    "tags": ["pronom tonique", "eux"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-014",
+    "front": "Toi",
+    "back": "Sen (vurgulu zamir)",
+    "ipa": "/twa/",
+    "tags": ["pronom tonique"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-015",
+    "front": "Elle",
+    "back": "O (kadın, vurgulu zamir)",
+    "ipa": "/ɛl/",
+    "tags": ["pronom tonique"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-016",
+    "front": "Nous",
+    "back": "Biz (vurgulu zamir)",
+    "ipa": "/nu/",
+    "tags": ["pronom tonique"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-017",
+    "front": "Vous",
+    "back": "Siz (vurgulu zamir)",
+    "ipa": "/vu/",
+    "tags": ["pronom tonique"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-018",
+    "front": "Elles",
+    "back": "Onlar (kadınlar, vurgulu zamir)",
+    "ipa": "/ɛl/",
+    "tags": ["pronom tonique"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-019",
+    "front": "⚠️ 'Tu n'aimes pas le café?' sorusuna 'Evet, severim' demek için ne kullanılır?",
+    "back": "⚠️ PİEGE!\n\n'Oui' DEĞİL, 'Si' kullanılır!\n\n— Tu n'aimes pas le café?\n— Si, j'aime le café!",
+    "ipa": "/si ʒɛm lə ka.fe/",
+    "tags": ["si", "piège", "réponse"],
+    "unit": 13,
+    "course": "101"
+  },
+  {
+    "id": "unit13-020",
+    "front": "Tu ne parles pas français? — ___! (Evet, konuşuyorum!)",
+    "back": "Tu ne parles pas français? — Si, je parle français!",
+    "ipa": "/si ʒə paʁl fʁɑ̃.sɛ/",
+    "tags": ["si", "piège", "réponse"],
+    "unit": 13,
+    "course": "101"
+  }
+]

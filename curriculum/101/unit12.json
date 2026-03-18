@@ -1,0 +1,450 @@
+[
+  {
+    "id": "unit12-001",
+    "front": "onze",
+    "back": "11 (on)",
+    "ipa": "/ɔ̃z/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-002",
+    "front": "douze",
+    "back": "12 (duz)",
+    "ipa": "/duz/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-003",
+    "front": "treize",
+    "back": "13 (trez)",
+    "ipa": "/tʁɛz/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-004",
+    "front": "quatorze",
+    "back": "14 (katörz)",
+    "ipa": "/katɔʁz/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-005",
+    "front": "quinze",
+    "back": "15 (kɛ̃z)\n⚠️ 50 DEĞİL! (50 = cinquante)",
+    "ipa": "/kɛ̃z/",
+    "tags": ["nombre", "piège"],
+    "note": "🎯 'quinze' = 15, 'cinquante' = 50. Sınavda karıştırma!",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-006",
+    "front": "seize",
+    "back": "16 (sez)",
+    "ipa": "/sɛz/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-007",
+    "front": "dix-sept",
+    "back": "17 (dis-set)\n⚠️ 't' okunur!",
+    "ipa": "/dis sɛt/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 'sept' tek başına /sɛ/ ama 'dix-sept'te /sɛt/ (t okunur)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-008",
+    "front": "dix-huit",
+    "back": "18 (di-züit)\n⚠️ 'x' → /z/ (liaison)",
+    "ipa": "/di zɥit/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 'dix' + sesli → liaison: dix-huit, dix-neuf",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-009",
+    "front": "dix-neuf",
+    "back": "19 (di-nöf)\n⚠️ 'x' → /z/ (liaison)",
+    "ipa": "/di nøf/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-010",
+    "front": "vingt",
+    "back": "20 (vɛ̃)",
+    "ipa": "/vɛ̃/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-011",
+    "front": "trente",
+    "back": "30 (tʁɑ̃t)",
+    "ipa": "/tʁɑ̃t/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-012",
+    "front": "quarante",
+    "back": "40 (kaʁɑ̃t)",
+    "ipa": "/kaʁɑ̃t/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-013",
+    "front": "cinquante",
+    "back": "50 (sɛkɑ̃t)\n⚠️ 15 DEĞİL! (15 = quinze)",
+    "ipa": "/sɛkɑ̃t/",
+    "tags": ["nombre", "piège"],
+    "note": "🎯 'quinze' = 15, 'cinquante' = 50",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-014",
+    "front": "soixante",
+    "back": "60 (swasɑ̃t)",
+    "ipa": "/swasɑ̃t/",
+    "tags": ["nombre"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-015",
+    "front": "soixante-dix",
+    "back": "70 (60+10)\n⚠️ 70 için ayrı kelime YOK!",
+    "ipa": "/swasɑ̃t dis/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 70 = 60+10, 71 = 60+11, 72 = 60+12... 79 = 60+19",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-016",
+    "front": "quatre-vingts",
+    "back": "80 (4×20)\n⚠️ -s TAKISI VAR! (ama sadece 80'de)",
+    "ipa": "/katʁə vɛ̃/",
+    "tags": ["nombre", "règle", "piège"],
+    "note": "🎯 80 = quatre-vingts (-s var)\n🎯 81 = quatre-vingt-un (-s YOK!)\n🎯 82-89 = quatre-vingt-deux... (-s YOK!)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-017",
+    "front": "quatre-vingt-un",
+    "back": "81 (4×20+1)\n⚠️ -s YOK! + 'et' YOK!",
+    "ipa": "/katʁə vɛ̃ œ̃/",
+    "tags": ["nombre", "règle", "piège"],
+    "note": "🎯 21 = vingt et un (et var)\n🎯 81 = quatre-vingt-un (et YOK!)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-018",
+    "front": "quatre-vingt-dix",
+    "back": "90 (4×20+10)\n⚠️ -s YOK!",
+    "ipa": "/katʁə ṽ dis/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 90 = 80+10 = 4×20+10\n🎯 91-99 = quatre-vingt-onze... (60+11 mantığı)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-019",
+    "front": "vingt et un",
+    "back": "21\n⚠️ 'et' sadece 1 ile!",
+    "ipa": "/vɛ̃t‿œ̃/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 21, 31, 41, 51, 61 = 'et un'\n🎯 71, 81, 91 = 'et' YOK!",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-020",
+    "front": "trente et un",
+    "back": "31\n⚠️ 'et' sadece 1 ile!",
+    "ipa": "/tʁɑ̃t‿œ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-021",
+    "front": "quarante et un",
+    "back": "41\n⚠️ 'et' sadece 1 ile!",
+    "ipa": "/kaʁɑ̃t‿œ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-022",
+    "front": "cinquante et un",
+    "back": "51\n⚠️ 'et' sadece 1 ile!",
+    "ipa": "/sɛkɑ̃t‿œ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-023",
+    "front": "soixante et un",
+    "back": "61\n⚠️ 'et' sadece 1 ile!",
+    "ipa": "/swasɑ̃t‿œ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-024",
+    "front": "cent",
+    "back": "100\n⚠️ 'un cent' DEĞİL, sadece 'cent'!",
+    "ipa": "/sɑ̃/",
+    "tags": ["nombre", "règle"],
+    "note": "🎯 100 = cent (un cent YANLIŞ)\n🎯 200 = deux cents (-s var)\n🎯 201 = deux cent un (-s YOK!)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-025",
+    "front": "deux cents",
+    "back": "200\n⚠️ -s VAR! (ama sadece 200, 300, 400... bitince)",
+    "ipa": "/dø sɑ̃/",
+    "tags": ["nombre", "règle", "piège"],
+    "note": "🎯 200 = deux cents (-s var)\n🎯 201 = deux cent un (-s YOK!)\n🎯 250 = deux cent cinquante (-s YOK!)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-026",
+    "front": "deux cent un",
+    "back": "201\n⚠️ -s YOK! (çünkü 1 geliyor)",
+    "ipa": "/dø sɑ̃t‿œ̃/",
+    "tags": ["nombre", "règle", "piège"],
+    "note": "🎯 cent + un/une → -s düşer",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-027",
+    "front": "mille",
+    "back": "1000\n⚠️ JAMAIS -s! JAMAIS 'un mille'!",
+    "ipa": "/mil/",
+    "tags": ["nombre", "règle", "piège"],
+    "note": "🎯 1000 = mille (un mille YANLIŞ)\n🎯 2000 = deux mille (-s YOK!)\n🎯 3000 = trois mille (-s YOK!)\n🎯 'mille' HİÇBİR ZAMAN çoğul olmaz!",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-028",
+    "front": "deux mille",
+    "back": "2000\n⚠️ -s YOK! (mille hiç çoğul olmaz)",
+    "ipa": "/dø mil/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-029",
+    "front": "485 380 nasıl yazılır?",
+    "back": "quatre cent quatre-vingt-cinq mille trois cent quatre-vingts\n\n⚠️ Dikkat:\n- quatre-vingt-cinq (-s yok, çünkü 85)\n- quatre-vingts (-s var, çünkü 80'de bitiyor)",
+    "ipa": "/katʁə sɑ̃ katʁə vɛ̃ sɛ̃k mil tʁwa sɑ̃ katʁə vɛ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-030",
+    "front": "999 nasıl yazılır?",
+    "back": "neuf cent quatre-vingt-dix-neuf",
+    "ipa": "/nœf sɑ̃ katʁə ṽ dis nœf/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-031",
+    "front": "2001 nasıl yazılır?",
+    "back": "deux mille un",
+    "ipa": "/dø mil œ̃/",
+    "tags": ["nombre", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-032",
+    "front": "Qui est-ce?",
+    "back": "Kim bu?",
+    "ipa": "/ki ɛs/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-033",
+    "front": "Qu'est-ce que c'est?",
+    "back": "Bu ne?",
+    "ipa": "/kɛs kə sɛ/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-034",
+    "front": "Où?",
+    "back": "Nerede?",
+    "ipa": "/u/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-035",
+    "front": "Quel / Quelle / Quels / Quelles",
+    "back": "Hangi? (eril tekil / dişil tekil / eril çoğul / dişil çoğul)\n⚠️ İsimle UYUMLU olmalı!",
+    "ipa": "/kɛl / kɛl / kɛl / kɛl/",
+    "tags": ["question", "grammaire", "règle"],
+    "note": "🎯 Quel livre? (eril)\n🎯 Quelle maison? (dişil)\n🎯 Quels amis? (eril çoğul)\n🎯 Quelles fleurs? (dişil çoğul)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-036",
+    "front": "Combien?",
+    "back": "Ne kadar? / Kaç tane?",
+    "ipa": "/kɔ̃bjɛ̃/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-037",
+    "front": "Comment?",
+    "back": "Nasıl?",
+    "ipa": "/kɔmɑ/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-038",
+    "front": "Quand?",
+    "back": "Ne zaman?",
+    "ipa": "/kɑ̃/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-039",
+    "front": "Pourquoi?",
+    "back": "Neden? / Niçin?",
+    "ipa": "/purkwa/",
+    "tags": ["question", "vocabulaire"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-040",
+    "front": "Tu habites où?",
+    "back": "Nerede oturuyorsun?\n⚠️ Konuşma dili (informel)",
+    "ipa": "/ty abit u/",
+    "tags": ["question", "phrase"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-041",
+    "front": "Où habites-tu?",
+    "back": "Nerede oturuyorsun?\n⚠️ Resmi/formal soru kalıbı",
+    "ipa": "/u abit ty/",
+    "tags": ["question", "phrase", "règle"],
+    "note": "🎯 Soru 3 form:\n1. Tu habites où? (konuşma)\n2. Où habites-tu? (resmi)\n3. Est-ce que tu habites où? (nötr)",
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-042",
+    "front": "Vous habitez quelle ville?",
+    "back": "Hangi şehirde oturuyorsunuz?",
+    "ipa": "/vu habite kɛl vil/",
+    "tags": ["question", "phrase"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-043",
+    "front": "Quelles sont vos chansons favorites?",
+    "back": "Sizin favori şarkılarınız nelerdir?",
+    "ipa": "/kɛl sɔ̃ vo ʃɑ̃sɔ̃ favɔʁit/",
+    "tags": ["question", "phrase"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-044",
+    "front": "Tu as quel âge?",
+    "back": "Kaç yaşındasın?",
+    "ipa": "/ty a kɛl ɑʒ/",
+    "tags": ["question", "phrase"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-045",
+    "front": "Comment tu t'appelles?",
+    "back": "Adın ne? (Sen kimsin?)",
+    "ipa": "/kɔmɑ̃ ty tapɛl/",
+    "tags": ["question", "phrase", "salutation"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-046",
+    "front": "Comment vous appelez-vous?",
+    "back": "Adınız ne? (Resmi)\n⚠️ 'vous' + ters çevirme",
+    "ipa": "/kɔmɑ̃ vu zaple vu/",
+    "tags": ["question", "phrase", "salutation", "règle"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-047",
+    "front": "C'est combien?",
+    "back": "Ne kadar? (fiyat)\n⚠️ 'Combien ça coûte?' ile aynı",
+    "ipa": "/sɛ kɔ̃bjɛ̃/",
+    "tags": ["question", "phrase", "expression"],
+    "unit": 12,
+    "course": "101"
+  },
+  {
+    "id": "unit12-048",
+    "front": "Est-ce que...?",
+    "back": "... mı/mi? (soru kalıbı)\n⚠️ Cümle başına gelir, anlamı değiştirmez",
+    "ipa": "/ɛs kə/",
+    "tags": ["question", "grammaire", "règle"],
+    "note": "🎯 Tu parles français. (Fransızca konuşursun)\n🎯 Est-ce que tu parles français? (Fransızca konuşur musun?)",
+    "unit": 12,
+    "course": "101"
+  }
+]

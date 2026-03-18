@@ -1,0 +1,219 @@
+[
+  {
+    "id": "unit14-001",
+    "front": "aller — je",
+    "back": "je vais",
+    "ipa": "/ʒə vɛ/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-002",
+    "front": "aller — tu",
+    "back": "tu vas",
+    "ipa": "/ty va/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-003",
+    "front": "aller — il/elle",
+    "back": "il/elle va",
+    "ipa": "/il va/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-004",
+    "front": "aller — nous",
+    "back": "nous allons",
+    "ipa": "/nu za.lɔ̃/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-005",
+    "front": "aller — vous",
+    "back": "vous allez",
+    "ipa": "/vu za.le/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-006",
+    "front": "aller — ils/elles",
+    "back": "ils/elles vont",
+    "ipa": "/il vɔ̃/",
+    "tags": ["verbe", "conjugaison", "aller"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-007",
+    "front": "___ bien? (İyi misin?)",
+    "back": "Tu vas bien?",
+    "ipa": "/ty va bjɛ̃/",
+    "tags": ["verbe", "aller", "question"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-008",
+    "front": "Je ___ à Paris. (Paris'e gidiyorum.)",
+    "back": "Je vais à Paris.",
+    "ipa": "/ʒə vɛ a pa.ʁi/",
+    "tags": ["verbe", "aller", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-009",
+    "front": "Nous ___ au cinéma. (Sinemaya gidiyoruz.)",
+    "back": "Nous allons au cinéma.",
+    "ipa": "/nu za.lɔ̃ o si.ne.ma/",
+    "tags": ["verbe", "aller", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-010",
+    "front": "suivre — je",
+    "back": "je suis (takip ediyorum)\n\n⚠️ PİEGE: 'je suis' = être (I am) MI suivre (I follow) Mİ?\nBağlama göre değişir!",
+    "ipa": "/ʒə sɥis/",
+    "tags": ["verbe", "conjugaison", "suivre", "piège"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-011",
+    "front": "suivre — tu",
+    "back": "tu suis",
+    "ipa": "/ty sɥis/",
+    "tags": ["verbe", "conjugaison", "suivre"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-012",
+    "front": "suivre — il/elle",
+    "back": "il/elle suit",
+    "ipa": "/il sɥit/",
+    "tags": ["verbe", "conjugaison", "suivre"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-013",
+    "front": "Je ___ un cours de français. (Bir Fransızca kursu takip ediyorum.)",
+    "back": "Je suis un cours de français.",
+    "ipa": "/ʒə sɥis œ̃ kuʁ də fʁɑ̃.sɛ/",
+    "note": "⚠️ Burada 'suis' = suivre (takip etmek), être (olmak) değil!",
+    "tags": ["verbe", "suivre", "piège", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-014",
+    "front": "courir — je",
+    "back": "je cours",
+    "ipa": "/ʒə kuʁ/",
+    "tags": ["verbe", "conjugaison", "courir"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-015",
+    "front": "courir — tu",
+    "back": "tu cours",
+    "ipa": "/ty kuʁ/",
+    "tags": ["verbe", "conjugaison", "courir"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-016",
+    "front": "courir — il/elle",
+    "back": "il/elle court",
+    "ipa": "/il kuʁ/",
+    "tags": ["verbe", "conjugaison", "courir"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-017",
+    "front": "J'aime ___. (Koşmayı severim.)",
+    "back": "J'aime courir.",
+    "ipa": "/ʒɛm ku.ʁiʁ/",
+    "tags": ["verbe", "courir", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-018",
+    "front": "Il ___ vite. (Hızlı koşar.)",
+    "back": "Il court vite.",
+    "ipa": "/il kuʁ vit/",
+    "tags": ["verbe", "courir", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-019",
+    "front": "-er fiilleri geniş zaman çekim tablosu",
+    "back": "je -e\ntu -es\nil/elle -e\nnous -ons\nvous -ez\nils/elles -ent\n\n⚠️ -ent DAİMA sessiz okunur!",
+    "ipa": "",
+    "tags": ["verbe", "conjugaison", "règle", "-er"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-020",
+    "front": "⚠️ 'ils marchent' nasıl okunur?",
+    "back": "/il maʁʃ/\n\n⚠️ PİEGE: -ent eki SES-SİZ okunur!\n\n'ils marchent' = 'il marş' (tekil gibi!)",
+    "ipa": "/il maʁʃ/",
+    "tags": ["verbe", "piège", "prononciation", "-er"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-021",
+    "front": "Ils ___ la télé. (Televizyon izliyorlar.)",
+    "back": "Ils regardent la télé.",
+    "ipa": "/il ʁaʁd la te.le/",
+    "tags": ["verbe", "regarder", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-022",
+    "front": "Nous ___ ensemble. (Birlikte çalışıyoruz.)",
+    "back": "Nous travaillons ensemble.",
+    "ipa": "/nu tʁa.vaj.ɔ̃ ɑ̃.sɑ̃bl/",
+    "tags": ["verbe", "travailler", "phrase"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-023",
+    "front": "Ça ___ bien. (İyi gidiyor.)",
+    "back": "Ça va bien.",
+    "ipa": "/sa va bjɛ̃/",
+    "tags": ["verbe", "aller", "expression"],
+    "unit": 14,
+    "course": "101"
+  },
+  {
+    "id": "unit14-024",
+    "front": "Vous ___ bien? (İyi misiniz?)",
+    "back": "Vous allez bien?",
+    "ipa": "/vu za.le bjɛ̃/",
+    "tags": ["verbe", "aller", "question"],
+    "unit": 14,
+    "course": "101"
+  }
+]

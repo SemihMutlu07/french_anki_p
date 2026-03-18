@@ -1,0 +1,551 @@
+[
+  {
+    "id": "unit11-001",
+    "front": "le père",
+    "back": "baba",
+    "ipa": "/lə pɛʁ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-002",
+    "front": "la mère",
+    "back": "anne",
+    "ipa": "/la mɛʁ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-003",
+    "front": "le frère",
+    "back": "erkek kardeş",
+    "ipa": "/lə fʁɛʁ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-004",
+    "front": "la sœur",
+    "back": "kız kardeş",
+    "ipa": "/la sœʁ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-005",
+    "front": "le fils",
+    "back": "oğul",
+    "ipa": "/lə fis/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-006",
+    "front": "la fille",
+    "back": "kız / kız evlat",
+    "ipa": "/la fij/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-007",
+    "front": "le mari",
+    "back": "koca",
+    "ipa": "/lə maʁi/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-008",
+    "front": "la femme",
+    "back": "kadın / eş (karı)",
+    "ipa": "/la fam/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-009",
+    "front": "les grands-parents",
+    "back": "büyükanne ve büyükbaba",
+    "ipa": "/le ɡʁɑ̃ paʁɛ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-010",
+    "front": "le grand-père",
+    "back": "büyükbaba, dede",
+    "ipa": "/lə ɡʁɑ̃ pɛ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-011",
+    "front": "la grand-mère",
+    "back": "büyükanne, nine",
+    "ipa": "/la ɡʁɑ̃ mɛʁ/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-012",
+    "front": "l'oncle",
+    "back": "amca, dayı",
+    "ipa": "/lɔ̃kl/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-013",
+    "front": "la tante",
+    "back": "teyze, hala",
+    "ipa": "/la tɑ̃t/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-014",
+    "front": "le cousin",
+    "back": "erkek kuzen",
+    "ipa": "/lə kuzɛ̃/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-015",
+    "front": "la cousine",
+    "back": "kız kuzen",
+    "ipa": "/la kuzin/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-016",
+    "front": "le neveu",
+    "back": "erkek yeğen",
+    "ipa": "/lə nəvø/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-017",
+    "front": "la nièce",
+    "back": "kız yeğen",
+    "ipa": "/la njɛs/",
+    "tags": ["famille", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-018",
+    "front": "C'est ma femme.",
+    "back": "O benim eşim. (bu benim karım)",
+    "ipa": "/sɛ ma fam/",
+    "tags": ["famille", "phrase", "piège"],
+    "note": "⚠️ 'femme' hem 'kadın' hem 'eş' anlamına gelir!",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-019",
+    "front": "Ce sont mes enfants.",
+    "back": "Onlar benim çocuklarım.",
+    "ipa": "/sə sɔ̃ mez‿ɑ̃fɑ̃/",
+    "tags": ["famille", "phrase", "possessifs"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-020",
+    "front": "Ce sont nos frères.",
+    "back": "Onlar bizim erkek kardeşlerimiz.",
+    "ipa": "/sə sɔ̃ no fʁɛ/",
+    "tags": ["famille", "phrase", "possessifs"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-021",
+    "front": "mon / ma / mes",
+    "back": "benim (tekil eril / tekil dişil / çoğul)",
+    "ipa": "/mɔ̃ / ma / me/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-022",
+    "front": "ton / ta / tes",
+    "back": "senin (tekil eril / tekil dişil / çoğul)",
+    "ipa": "/tɔ̃ / ta / te/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-023",
+    "front": "son / sa / ses",
+    "back": "onun (tekil eril / tekil dişil / çoğul)",
+    "ipa": "/sɔ̃ / sa / se/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-024",
+    "front": "notre / nos",
+    "back": "bizim (tekil / çoğul)",
+    "ipa": "/nɔtʁ / no/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-025",
+    "front": "votre / vos",
+    "back": "sizin (tekil / çoğul)",
+    "ipa": "/vɔtʁ / vo/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-026",
+    "front": "leur / leurs",
+    "back": "onların (tekil / çoğul)",
+    "ipa": "/lœʁ / lœʁ/",
+    "tags": ["possessifs", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-027",
+    "front": "C'est ___ amie. (mon/ma?)",
+    "back": "C'est MON amie. ✅\n\n⚠️ 'ma amie' YANLIŞ! Sesli harfle başlayan dişil kelimelerde 'mon' kullanılır.",
+    "ipa": "/sɛ mɔ̃n‿ami/",
+    "tags": ["possessifs", "piège", "grammaire"],
+    "note": "🎯 KURAL: Sesli harfle başlayan dişil kelimelerde 'ma' yerine 'mon' kullanılır: mon amie, mon école, mon histoire",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-028",
+    "front": "C'est ___ enfant. (leur/leurs?)",
+    "back": "C'est LEUR enfant. ✅\n\n⚠️ 'leurs enfant' YANLIŞ! 'enfant' tekil olduğu için 'leur' kullanılır.",
+    "ipa": "/sɛ lœʁ‿ɑ̃fɑ̃/",
+    "tags": ["possessifs", "piège", "grammaire"],
+    "note": "🎯 KURAL: leur (tekil isim) / leurs (çoğul isim)",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-029",
+    "front": "Ce sont ___ enfants. (leur/leurs?)",
+    "back": "Ce sont LEURS enfants. ✅\n\n⚠️ 'leur enfants' YANLIŞ! 'enfants' çoğul olduğu için 'leurs' kullanılır.",
+    "ipa": "/sə sɔ̃ lœz‿ɑ̃fɑ̃/",
+    "tags": ["possessifs", "piège", "grammaire"],
+    "note": "🎯 KURAL: leur (tekil) / leurs (çoğul)",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-030",
+    "front": "grand / grande",
+    "back": "uzun / büyük (eril / dişil)",
+    "ipa": "/ɡʁɑ̃ / ɡʁɑ̃d/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-031",
+    "front": "petit / petite",
+    "back": "küçük / kısa (eril / dişil)",
+    "ipa": "/pəti / pətit/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-032",
+    "front": "brun / brune",
+    "back": "esmer (eril / dişil)",
+    "ipa": "/bʁœ̃ / bʁyn/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-033",
+    "front": "blond / blonde",
+    "back": "sarışın (eril / dişil)",
+    "ipa": "/blɔ̃ / blɔ̃d/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-034",
+    "front": "châtain",
+    "back": "kestane rengi (saç)\n⚠️ DEĞİŞMEZ! (dişil formu yok)",
+    "ipa": "/ʃatɛ̃/",
+    "tags": ["description", "vocabulaire", "adjectif", "piège"],
+    "note": "🎯 'châtain' dişil kelimelerle de değişmez: des cheveux châtain (DOĞRU) / des cheveux châtains (kabul edilir ama nadir)",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-035",
+    "front": "roux / rousse",
+    "back": "kızıl (eril / dişil)",
+    "ipa": "/ʁu / ʁus/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-036",
+    "front": "beau / belle",
+    "back": "yakışıklı / güzel (eril / dişil)",
+    "ipa": "/bo / bɛl/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-037",
+    "front": "mince",
+    "back": "zayıf, ince\n⚠️ DEĞİŞMEZ!",
+    "ipa": "/mɛ̃s/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "note": "🎯 'mince' hem eril hem dişil aynı: un homme mince / une femme mince",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-038",
+    "front": "gros / grosse",
+    "back": "şişman, iri (eril / dişil)",
+    "ipa": "/ɡʁo / ɡʁɔs/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-039",
+    "front": "fort / forte",
+    "back": "güçlü, iri yapılı (eril / dişil)",
+    "ipa": "/fɔ / fɔʁt/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-040",
+    "front": "jeune",
+    "back": "genç\n⚠️ DEĞİŞMEZ!",
+    "ipa": "/ʒœn/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-041",
+    "front": "vieux / vieille",
+    "back": "yaşlı, eski (eril / dişil)",
+    "ipa": "/vjø / vjɛj/",
+    "tags": ["description", "vocabulaire", "adjectif"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-042",
+    "front": "Il fait un mètre quatre-vingt-trois.",
+    "back": "O, bir metre seksen üç boyunda. (1.83m)",
+    "ipa": "/il fɛ œ̃ mɛtʁ katʁə vɛ̃ twʁwa/",
+    "tags": ["description", "phrase", "taille"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-043",
+    "front": "Il porte un chapeau.",
+    "back": "O, bir şapka takıyor/giyiyor.",
+    "ipa": "/il pɔʁt œ̃ ʃapo/",
+    "tags": ["description", "phrase", "porter"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-044",
+    "front": "Elle porte des lunettes.",
+    "back": "O, gözlük takıyor.",
+    "ipa": "/ɛl pʁt de lynɛt/",
+    "tags": ["description", "phrase", "porter"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-045",
+    "front": "un copain / une copine",
+    "back": "bir arkadaş (erkek / kadın)\n⚠️ BAĞLAMA GÖRE DEĞİŞİR!",
+    "ipa": "/œ̃ kopɛ̃ / yn kopin/",
+    "tags": ["relations", "vocabulaire", "piège"],
+    "note": "🎯 'C'est un copain' = O bir arkadaş (arkadaş)\n🎯 'C'est MON copain' = O benim sevgilim (sevgili)",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-046",
+    "front": "C'est un copain. vs C'est mon copain.\n\nFark nedir?",
+    "back": "C'est UN copain. = O bir arkadaş. (arkadaş)\nC'est MON copain. = O benim sevgilim. (sevgili)\n\n⚠️ 'mon/ma' possessif sıfatı eklenince anlam değişir!",
+    "ipa": "/sɛt‿œ̃ kopɛ̃/ vs /sɛ mɔ̃ kopɛ̃/",
+    "tags": ["relations", "piège", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-047",
+    "front": "un petit ami / une petite amie",
+    "back": "erkek arkadaş / kız arkadaş (sevgili)",
+    "ipa": "/œ̃ pəti t‿ami / yn pətit t‿ami/",
+    "tags": ["relations", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-048",
+    "front": "marié(e)",
+    "back": "evli",
+    "ipa": "/maʁje/",
+    "tags": ["état civil", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-049",
+    "front": "célibataire",
+    "back": "bekar",
+    "ipa": "/selibatɛʁ/",
+    "tags": ["état civil", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-050",
+    "front": "divorcé(e)",
+    "back": "boşanmış",
+    "ipa": "/divɔʁse/",
+    "tags": ["état civil", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-051",
+    "front": "___ mon frère. (C'est / Ce sont?)",
+    "back": "C'EST mon frère. ✅\n\n⚠️ Tekil isimlerle 'c'est' kullanılır.",
+    "ipa": "/sɛ mɔ̃ fʁɛ/",
+    "tags": ["c'est/ce sont", "grammaire", "piège"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-052",
+    "front": "___ mes frères. (C'est / Ce sont?)",
+    "back": "CE SONT mes frères. ✅\n\n⚠️ Çoğul isimlerle 'ce sont' kullanılır.",
+    "ipa": "/sə sɔ̃ me fʁɛʁ/",
+    "tags": ["c'est/ce sont", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-053",
+    "front": "___ mes frères. (Ce sont / Ces sont?)",
+    "back": "CE SONT mes frères. ✅\n\n⚠️ 'CES SONT' YANLIŞ! Sınavda bu hatayı yapma!\n\n❌ Ces sont → DOĞRU: Ce sont",
+    "ipa": "/sə sɔ̃ me fɛʁ/",
+    "tags": ["c'est/ce sont", "grammaire", "piège"],
+    "note": "🎯 'Ces' işaret sıfatıdır, 'sont' fiiliyle kullanılmaz! 'Ces' sadece isimlerle: ces livres, ces enfants",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-054",
+    "front": "Voici vs Voilà\n\nFark nedir?",
+    "back": "VOICI = İşte burada (yakın)\nVOILÀ = İşte orada (uzak)\n\nVoici mon frère. (İşte kardeşim - burada)\nVoilà mon frère. (İşte kardeşim - orada)",
+    "ipa": "/vwasi/ vs /vwala/",
+    "tags": ["c'est/ce sont", "grammaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-055",
+    "front": "d'accord",
+    "back": "tamam, anlaştık, uygun",
+    "ipa": "/dakɔʁ/",
+    "tags": ["expression", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-056",
+    "front": "pas de problème",
+    "back": "sorun yok, sıkıntı yok",
+    "ipa": "/pa də pʁɔblɛm/",
+    "tags": ["expression", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-057",
+    "front": "Merde!",
+    "back": "Kahretsin! / Bok!\n⚠️ Kaba ifade, dikkatli kullan!",
+    "ipa": "/mɛʁd/",
+    "tags": ["expression", "vocabulaire", "familier"],
+    "note": "🎯 Tiyatroda 'bonne chance' yerine 'merde' denir (uğur getirsin diye)",
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-058",
+    "front": "voilà!",
+    "back": "işte! / buyurun! / tamam!",
+    "ipa": "/vwala/",
+    "tags": ["expression", "vocabulaire"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-059",
+    "front": "Qui est-ce?",
+    "back": "Bu kim?",
+    "ipa": "/ki ɛs/",
+    "tags": ["expression", "phrase", "question"],
+    "unit": 11,
+    "course": "101"
+  },
+  {
+    "id": "unit11-060",
+    "front": "Comment est-il / elle?",
+    "back": "O nasıl? (görünüş / karakter)\n\nComment est-il? - Il est grand et blond.",
+    "ipa": "/kɔmɑ̃ ɛtil / ɛl/",
+    "tags": ["expression", "phrase", "question", "description"],
+    "unit": 11,
+    "course": "101"
+  }
+]

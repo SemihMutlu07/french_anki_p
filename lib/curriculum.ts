@@ -7,7 +7,7 @@
  */
 import { promises as fs } from "fs";
 import path from "path";
-import type { CardItem } from "./types";
+import type { CardItem, GenderedCard, SentenceCard } from "./types";
 
 // Raw shape as it exists in the JSON files (includes unused fields)
 interface RawVocabItem {
@@ -22,7 +22,7 @@ interface RawVocabItem {
   [key: string]: unknown;
 }
 
-const VALID_UNIT_RANGE = { min: 1, max: 12 };
+const VALID_UNIT_RANGE = { min: 1, max: 18 };
 const unitCache = new Map<string, Promise<RawVocabItem[] | null>>();
 
 function unitFilePath(course: string, n: number): string {
@@ -80,19 +80,34 @@ export async function getUnitItems(unitId: string): Promise<CardItem[] | null> {
   if (!items) return null;
 
   return items.map(
-    (item, idx): CardItem => ({
-      id:
-        typeof item.id === "string"
-          ? item.id
-          : `${parsed.course}-unit${parsed.unit}:${idx}`,
-      french: item.french,
-      turkish: item.turkish,
-      ipa: item.ipa ?? "",
-      example_sentence: item.example_sentence ?? "",
-      example_translation: item.example_translation ?? "",
-      unit: item.unit,
-      course: item.course,
-    })
+    (item, idx): CardItem => {
+      const raw = item as Record<string, unknown>;
+      const french =
+        typeof item.french === "string"
+          ? item.french
+          : typeof raw.front === "string"
+          ? (raw.front as string)
+          : "";
+      const turkish =
+        typeof item.turkish === "string"
+          ? item.turkish
+          : typeof raw.back === "string"
+          ? (raw.back as string)
+          : "";
+      return {
+        id:
+          typeof item.id === "string"
+            ? item.id
+            : `${parsed.course}-unit${parsed.unit}:${idx}`,
+        french,
+        turkish,
+        ipa: item.ipa ?? "",
+        example_sentence: item.example_sentence ?? "",
+        example_translation: item.example_translation ?? "",
+        unit: item.unit ?? parsed.unit,
+        course: item.course ?? parsed.course,
+      };
+    }
   );
 }
 
@@ -100,6 +115,131 @@ export async function getUnitItems(unitId: string): Promise<CardItem[] | null> {
 export async function getUnitCount(unitId: string): Promise<number> {
   const items = await getUnitItems(unitId);
   return items?.length ?? 0;
+}
+
+/**
+ * Load all cards from all available units for quiz use.
+ * Normalises unit 11-12 format (front/back → french/turkish).
+ */
+export async function getAllCards(course: string): Promise<CardItem[]> {
+  const all: CardItem[] = [];
+  for (let u = VALID_UNIT_RANGE.min; u <= VALID_UNIT_RANGE.max; u++) {
+    const raw = await readRawUnit(course, u);
+    if (!raw) continue;
+    for (let i = 0; i < raw.length; i++) {
+      const item = raw[i];
+      const french =
+        typeof item.french === "string"
+          ? item.french
+          : typeof (item as Record<string, unknown>).front === "string"
+          ? (item as Record<string, unknown>).front as string
+          : "";
+      const turkish =
+        typeof item.turkish === "string"
+          ? item.turkish
+          : typeof (item as Record<string, unknown>).back === "string"
+          ? (item as Record<string, unknown>).back as string
+          : "";
+      if (!french) continue;
+      all.push({
+        id: typeof item.id === "string" ? item.id : `${course}-unit${u}:${i}`,
+        french,
+        turkish,
+        ipa: item.ipa ?? "",
+        example_sentence: item.example_sentence ?? "",
+        example_translation: item.example_translation ?? "",
+        unit: item.unit,
+        course: item.course,
+      });
+    }
+  }
+  return all;
+}
+
+/**
+ * Extract gendered cards: cards whose french text starts with le/la/l'/un/une.
+ * Returns cards with the article stripped and gender determined.
+ */
+export async function getGenderedCards(course: string): Promise<GenderedCard[]> {
+  const all = await getAllCards(course);
+  const result: GenderedCard[] = [];
+
+  for (const card of all) {
+    const text = card.french.trim();
+    let gender: "m" | "f" | null = null;
+    let bareWord = "";
+
+    if (text.startsWith("le ")) {
+      gender = "m";
+      bareWord = text.slice(3);
+    } else if (text.startsWith("la ")) {
+      gender = "f";
+      bareWord = text.slice(3);
+    } else if (text.startsWith("un ")) {
+      gender = "m";
+      bareWord = text.slice(3);
+    } else if (text.startsWith("une ")) {
+      gender = "f";
+      bareWord = text.slice(4);
+    } else if (text.startsWith("l'") || text.startsWith("l\u2019")) {
+      // l' is ambiguous — skip unless we can infer from common patterns
+      continue;
+    }
+
+    if (gender && bareWord) {
+      result.push({
+        id: card.id,
+        french: card.french,
+        turkish: card.turkish,
+        bareWord,
+        gender,
+        unit: card.unit,
+        course: card.course,
+      });
+    }
+  }
+
+  return result;
+}
+
+/** Load sentence cards from curriculum/101/sentences/ directory. */
+export async function getSentenceCards(
+  course: string
+): Promise<SentenceCard[]> {
+  const dir = path.join(process.cwd(), "curriculum", course, "sentences");
+  try {
+    const files = await fs.readdir(dir);
+    const all: SentenceCard[] = [];
+    for (const file of files) {
+      if (!file.endsWith(".json")) continue;
+      const raw = await fs.readFile(path.join(dir, file), "utf-8");
+      const cards = JSON.parse(raw) as SentenceCard[];
+      all.push(...cards);
+    }
+    return all;
+  } catch {
+    return [];
+  }
+}
+
+/** Phrase for the classroom quick-reference sheet. */
+export interface Phrase {
+  fr: string;
+  tr: string;
+  audio: boolean;
+}
+
+/** Load phrases from curriculum/phrases.json. */
+export async function getPhrases(): Promise<Phrase[]> {
+  try {
+    const raw = await fs.readFile(
+      path.join(process.cwd(), "curriculum", "phrases.json"),
+      "utf-8"
+    );
+    return JSON.parse(raw) as Phrase[];
+  } catch {
+    return [];
+  }
 }
 
 /** Returns number of cards in a specific course/unit (0 if file is missing). */

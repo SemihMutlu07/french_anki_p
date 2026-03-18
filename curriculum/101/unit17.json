@@ -1,0 +1,146 @@
+[
+  {
+    "id": "unit17-001",
+    "front": "le logo",
+    "back": "logo",
+    "ipa": "/lə lɔ.go/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-002",
+    "front": "le nom",
+    "back": "isim / ad",
+    "ipa": "/lə nɔ̃/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-003",
+    "front": "la fonction",
+    "back": "görev / unvan",
+    "ipa": "/la fɔ̃k.sjɔ̃/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-004",
+    "front": "les coordonnées",
+    "back": "iletişim bilgileri",
+    "ipa": "/le kɔ.ɔʁ.dɔ.ne/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-005",
+    "front": "l'adresse e-mail",
+    "back": "e-posta adresi",
+    "ipa": "/la.dʁɛs i.mɛl/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-006",
+    "front": "le numéro de téléphone",
+    "back": "telefon numarası",
+    "ipa": "/lə ny.me.ʁo de te.le.fɔn/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-007",
+    "front": "le site internet",
+    "back": "internet sitesi",
+    "ipa": "/lə sit ɛ̃.tɛʁ.nɛt/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-008",
+    "front": "l'adresse postale",
+    "back": "posta adresi",
+    "ipa": "/la.dʁɛs pɔs.tal/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-009",
+    "front": "les réseaux sociaux",
+    "back": "sosyal medya",
+    "ipa": "/le ʁe.zo so.sjo/",
+    "tags": ["carte_de_visite", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-010",
+    "front": "un compte Facebook",
+    "back": "Facebook hesabı",
+    "ipa": "/œ̃ kɔ̃t fejs.buk/",
+    "tags": ["réseaux_sociaux", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-011",
+    "front": "un comédien / une comédienne",
+    "back": "oyuncu (tiyatro/sinema)\n\n⚠️ -ien → -ienne",
+    "ipa": "/œ̃ kɔ.me.djɛ̃ / yn kɔ.me.djɛn/",
+    "tags": ["profession", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-012",
+    "front": "un réalisateur / une réalisatrice",
+    "back": "film yönetmeni\n\n⚠️ -eur → -rice",
+    "ipa": "/œ̃ ʁe.a.li.za.tœʁ / yn ʁe.a.li.za.tʁis/",
+    "tags": ["profession", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-013",
+    "front": "un metteur en scène",
+    "back": "sahne yönetmeni (tiyatro/opera)",
+    "ipa": "/œ̃ mɛ.tœʁ ɑ̃ sɛn/",
+    "tags": ["profession", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-014",
+    "front": "un étudiant / une étudiante",
+    "back": "öğrenci (üniversite)\n\n⚠️ -ant → -ante",
+    "ipa": "/œ̃ e.ty.djɑ̃ / yn e.ty.djɑ̃t/",
+    "tags": ["profession", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-015",
+    "front": "un professeur",
+    "back": "öğretmen / profesör\n\n⚠️ Cinsiyet değişmez (invariable)",
+    "ipa": "/œ̃ pʁɔ.fɛ.sœʁ/",
+    "tags": ["profession", "vocabulaire"],
+    "unit": 17,
+    "course": "101"
+  },
+  {
+    "id": "unit17-016",
+    "front": "Mesleklerde dişil yapma kuralları",
+    "back": "-ien → -ienne: comédien → comédienne\n-eur → -rice: réalisateur → réalisatrice\n-eur → -euse: chanteur → chanteuse\n-ant → -ante: étudiant → étudiante\n\n⚠️ Bazıları değişmez: professeur",
+    "ipa": "",
+    "tags": ["profession", "règle", "féminin"],
+    "unit": 17,
+    "course": "101"
+  }
+]

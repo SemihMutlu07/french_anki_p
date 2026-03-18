@@ -6,6 +6,23 @@ body {
   color: #E4E4E7;
   background: #09090B;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Prevent double-tap zoom on interactive elements */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -73,5 +90,60 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* French Color Utility Classes - Based on FRENCH_COLORS_IMPLEMENTATION.md */
+@layer utilities {
+  /* Text gradients */
+  .text-french-gradient {
+    background: linear-gradient(90deg, #ffffff, #e3b505);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-french-gold {
+    color: #e3b505;
+    text-shadow: 0 0 10px rgba(227, 181, 5, 0.5);
+  }
+  
+  .text-french-blue {
+    color: #000091;
+  }
+  
+  .text-french-red {
+    color: #e1000f;
+  }
+  
+  /* Background utilities */
+  .bg-french-dark {
+    background: #0B1220;
+  }
+  
+  .bg-french-card {
+    background: linear-gradient(135deg, rgba(0, 0, 145, 0.3) 0%, rgba(11, 18, 32, 0.5) 100%);
+  }
+  
+  /* Border utilities */
+  .border-french-gold {
+    border-color: rgba(227, 181, 5, 0.4);
+  }
+  
+  .border-french-blue {
+    border-color: rgba(65, 105, 225, 0.3);
+  }
+  
+  .border-french-red {
+    border-color: rgba(225, 0, 15, 0.3);
+  }
+  
+  /* Shadow utilities */
+  .shadow-french-gold {
+    box-shadow: 0 0 20px rgba(227, 181, 5, 0.5);
+  }
+  
+  .shadow-french-blue {
+    box-shadow: 0 4px 20px rgba(0, 0, 145, 0.4);
   }
 }
