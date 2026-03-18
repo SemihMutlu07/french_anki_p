@@ -32,7 +32,7 @@ function WowArrow({
   thisWeek: number;
   lastWeek: number;
 }) {
-  if (lastWeek === 0 && thisWeek === 0) return <span style={{ color: "#71717A" }}>—</span>;
+  if (lastWeek === 0 && thisWeek === 0) return <span style={{ color: "var(--text-muted)" }}>—</span>;
   if (lastWeek === 0) return <span style={{ color: "#22C55E" }}>+{thisWeek}</span>;
 
   const diff = thisWeek - lastWeek;
@@ -47,12 +47,12 @@ function WowArrow({
   }
   if (diff < 0) {
     return (
-      <span style={{ color: "#FF6B6B" }}>
+      <span style={{ color: "var(--fr-red-soft)" }}>
         ↓ %{Math.abs(pct)}
       </span>
     );
   }
-  return <span style={{ color: "#71717A" }}>→ aynı</span>;
+  return <span style={{ color: "var(--text-muted)" }}>→ aynı</span>;
 }
 
 export default function ClassDashboardClient({
@@ -69,13 +69,13 @@ export default function ClassDashboardClient({
 
   return (
     <AppLayout>
-      <div className="min-h-dvh bg-[#09090B]">
+      <div className="min-h-dvh" style={{ background: "var(--bg-base)" }}>
         {/* Header */}
         <header
           className="px-4 sm:px-6 md:px-8 py-6 md:py-8"
           style={{
-            background: "linear-gradient(180deg, #0B1220 0%, #09090B 100%)",
-            borderBottom: "1px solid rgba(65, 105, 225, 0.2)",
+            background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%)",
+            borderBottom: `1px solid var(--border-default)`,
           }}
         >
           <div className="max-w-4xl mx-auto">
@@ -84,7 +84,7 @@ export default function ClassDashboardClient({
               <h1
                 className="text-2xl md:text-3xl font-bold"
                 style={{
-                  background: "linear-gradient(90deg, #ffffff, #93C5FD)",
+                  background: "linear-gradient(90deg, var(--text-primary), var(--fr-blue-pale))",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -93,7 +93,7 @@ export default function ClassDashboardClient({
                 FR101 Sınıf Durumu
               </h1>
             </div>
-            <p className="text-sm" style={{ color: "#71717A" }}>
+            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               Son 7 gün — anonim sınıf verileri
             </p>
           </div>
@@ -107,21 +107,21 @@ export default function ClassDashboardClient({
               <StatCard
                 label="Aktif Öğrenci"
                 value={`${activeUsers}/${totalStudents}`}
-                color="#93C5FD"
+                color="var(--fr-blue-pale)"
               />
               {/* Class Average */}
               <StatCard
                 label="Sınıf Ortalaması"
                 value={`${classAvgMature} kelime`}
                 sub="olgun (21+ gün)"
-                color="#e3b505"
+                color="var(--fr-gold)"
               />
               {/* Listening Accuracy */}
               <StatCard
                 label="Dinleme Başarısı"
                 value={listeningAccuracy !== null ? `%${listeningAccuracy}` : "—"}
                 sub={listeningAccuracy === null ? "henüz veri yok" : undefined}
-                color="#4169E1"
+                color="var(--fr-blue-light)"
               />
               {/* Gender Quiz */}
               <StatCard
@@ -137,22 +137,22 @@ export default function ClassDashboardClient({
               className="rounded-2xl p-5"
               style={{
                 background: "rgba(11, 18, 32, 0.5)",
-                border: "1px solid rgba(65, 105, 225, 0.2)",
+                border: `1px solid var(--border-default)`,
               }}
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium" style={{ color: "#93C5FD" }}>
+                  <p className="text-sm font-medium" style={{ color: "var(--fr-blue-pale)" }}>
                     Bu Hafta vs Geçen Hafta
                   </p>
-                  <p className="text-xs mt-1" style={{ color: "#71717A" }}>
+                  <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
                     toplam tekrar sayısı
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xl font-bold" style={{ color: "#ffffff" }}>
+                  <p className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>
                     {weekOverWeek.thisWeek}
-                    <span className="text-sm font-normal" style={{ color: "#71717A" }}>
+                    <span className="text-sm font-normal" style={{ color: "var(--text-muted)" }}>
                       {" "}
                       vs {weekOverWeek.lastWeek}
                     </span>
@@ -172,12 +172,12 @@ export default function ClassDashboardClient({
               className="rounded-2xl p-5"
               style={{
                 background: "rgba(11, 18, 32, 0.5)",
-                border: "1px solid rgba(65, 105, 225, 0.2)",
+                border: `1px solid var(--border-default)`,
               }}
             >
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-xl">📚</span>
-                <h2 className="text-base font-bold" style={{ color: "#ffffff" }}>
+                <h2 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
                   En Çok Çalışılan Üniteler
                 </h2>
               </div>
@@ -189,10 +189,10 @@ export default function ClassDashboardClient({
                     return (
                       <div key={u.unit}>
                         <div className="flex items-center justify-between mb-1">
-                          <p className="text-xs font-medium" style={{ color: "#A1A1AA" }}>
+                          <p className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
                             Ünite {u.unit}
                           </p>
-                          <p className="text-xs" style={{ color: "#71717A" }}>
+                          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                             {u.reviews} tekrar
                           </p>
                         </div>
@@ -205,7 +205,7 @@ export default function ClassDashboardClient({
                             style={{
                               width: `${widthPct}%`,
                               background:
-                                "linear-gradient(90deg, #000091 0%, #4169E1 100%)",
+                                "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
                             }}
                           />
                         </div>
@@ -214,7 +214,7 @@ export default function ClassDashboardClient({
                   })}
                 </div>
               ) : (
-                <p className="text-sm" style={{ color: "#71717A" }}>
+                <p className="text-sm" style={{ color: "var(--text-muted)" }}>
                   Henüz veri yok
                 </p>
               )}
@@ -231,7 +231,7 @@ export default function ClassDashboardClient({
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-xl">🔥</span>
-                  <h2 className="text-base font-bold" style={{ color: "#ffffff" }}>
+                  <h2 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
                     En Zor Kartlar
                   </h2>
                 </div>
@@ -249,25 +249,25 @@ export default function ClassDashboardClient({
                       <div className="flex items-center gap-3">
                         <span
                           className="text-xs font-bold w-5 text-center"
-                          style={{ color: "#71717A" }}
+                          style={{ color: "var(--text-muted)" }}
                         >
                           {i + 1}
                         </span>
                         <div>
                           <p
                             className="text-sm font-semibold"
-                            style={{ color: "#e3b505" }}
+                            style={{ color: "var(--fr-gold)" }}
                           >
                             {card.french}
                           </p>
-                          <p className="text-xs" style={{ color: "#71717A" }}>
+                          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                             {card.turkish}
                           </p>
                         </div>
                       </div>
                       <p
                         className="text-xs font-medium"
-                        style={{ color: "#FF6B6B" }}
+                        style={{ color: "var(--fr-red-soft)" }}
                       >
                         {card.fails} hata
                       </p>
@@ -299,10 +299,10 @@ function StatCard({
       className="rounded-2xl p-4"
       style={{
         background: "rgba(11, 18, 32, 0.5)",
-        border: "1px solid rgba(65, 105, 225, 0.2)",
+        border: `1px solid var(--border-default)`,
       }}
     >
-      <p className="text-xs font-medium" style={{ color: "#71717A" }}>
+      <p className="text-xs font-medium" style={{ color: "var(--text-muted)" }}>
         {label}
       </p>
       <p
@@ -312,7 +312,7 @@ function StatCard({
         {value}
       </p>
       {sub && (
-        <p className="text-[10px] mt-0.5" style={{ color: "#52525B" }}>
+        <p className="text-[10px] mt-0.5" style={{ color: "var(--text-faint)" }}>
           {sub}
         </p>
       )}

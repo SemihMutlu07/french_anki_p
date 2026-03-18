@@ -1,7 +1,8 @@
 import { COURSE_GROUPS } from "@/curriculum/courseGroups";
 import { createServerSupabase } from "@/lib/supabase-server";
-import { getCourseUnitCount } from "@/lib/curriculum";
+import { getCourseUnitCount, getAllCards } from "@/lib/curriculum";
 import HomeClient from "@/components/HomeClient";
+import type { CardItem } from "@/lib/types";
 
 export default async function Home() {
   const supabase = createServerSupabase();
@@ -47,5 +48,17 @@ export default async function Home() {
     }))
   );
 
-  return <HomeClient groups={groups} />;
+  // Load cards for onboarding placement test (needed for new users)
+  let placementCards: CardItem[] = [];
+  if (!user) {
+    placementCards = await getAllCards("101");
+  }
+
+  return (
+    <HomeClient
+      groups={groups}
+      userId={user?.id ?? null}
+      placementCards={placementCards}
+    />
+  );
 }

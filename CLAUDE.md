@@ -1,5 +1,12 @@
 # CLAUDE.md — FR Tutor Project Instructions
 
+## Skills
+Always read before UI work:
+- /mnt/skills/user/frontend-design/SKILL.md
+- /mnt/skills/user/responsive-design/SKILL.md
+- /mnt/skills/user/ui-ux-pro-max/SKILL.md
+- /mnt/skills/user/building-native-ui/SKILL.md
+
 ## Project
 FR101 French learning app for 25 Boğaziçi University students. Mobile-first, audio-heavy, no-anxiety design.
 

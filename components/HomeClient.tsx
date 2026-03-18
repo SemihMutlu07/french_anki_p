@@ -1,14 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import WelcomeScreen from "@/components/WelcomeScreen";
-import { PLACEMENT_RESULT_KEY } from "@/lib/placement";
+import OnboardingFlow from "@/components/OnboardingFlow";
+import { hasOnboarded, mergeGuestProgress, getGuestProgress } from "@/lib/guestProgress";
 import AppLayout from "@/components/AppLayout";
-
-// Set only when user explicitly skips the placement test via "Ünitelere geç".
-// PLACEMENT_RESULT_KEY being present means the test was completed — also welcomed.
-const SKIP_KEY = "fr-tutor-welcomed-v2";
+import type { CardItem } from "@/lib/types";
 
 interface Unit {
   id: string;
@@ -20,16 +17,18 @@ interface Unit {
 
 interface Props {
   groups: { course: string; units: Unit[] }[];
+  userId: string | null;
+  placementCards: CardItem[];
 }
 
-export default function HomeClient({ groups }: Props) {
-  const [welcomed, setWelcomed] = useState<boolean | null>(null);
+export default function HomeClient({ groups, userId, placementCards }: Props) {
+  const [onboarded, setOnboarded] = useState<boolean | null>(null);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [mergeMessage, setMergeMessage] = useState<string | null>(null);
+  const mergeAttempted = useRef(false);
 
   useEffect(() => {
-    const hasResult = !!localStorage.getItem(PLACEMENT_RESULT_KEY);
-    const hasSkipped = !!localStorage.getItem(SKIP_KEY);
-    setWelcomed(hasResult || hasSkipped);
+    setOnboarded(hasOnboarded());
     setOpenGroups(
       groups.reduce<Record<string, boolean>>((acc, group) => {
         acc[group.course] = true;
@@ -38,17 +37,28 @@ export default function HomeClient({ groups }: Props) {
     );
   }, [groups]);
 
-  function handleStart() {
-    // Only called by "Ünitelere geç" — marks user as having explicitly skipped the test.
-    localStorage.setItem(SKIP_KEY, "1");
-    setWelcomed(true);
-  }
+  // Merge guest progress when a logged-in user has leftover guest data
+  useEffect(() => {
+    if (!userId || mergeAttempted.current) return;
+    mergeAttempted.current = true;
 
-  // Avoid flash: render nothing until localStorage is read
-  if (welcomed === null) return null;
+    const guestItems = getGuestProgress();
+    if (guestItems.length === 0) return;
 
-  if (!welcomed) {
-    return <WelcomeScreen onStart={handleStart} />;
+    mergeGuestProgress(userId).then((count) => {
+      if (count > 0) {
+        setMergeMessage(`${count} kart ilerlemen hesabına aktarıldı.`);
+        setTimeout(() => setMergeMessage(null), 4000);
+      }
+    });
+  }, [userId]);
+
+  // Wait for localStorage read
+  if (onboarded === null) return null;
+
+  // Show onboarding for new users
+  if (!onboarded) {
+    return <OnboardingFlow cards={placementCards} />;
   }
 
   return (
@@ -75,6 +85,21 @@ export default function HomeClient({ groups }: Props) {
         </div>
 
         <div className="relative mx-auto max-w-2xl px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-10 sm:px-6 sm:pt-14 md:px-8 md:py-16">
+          {/* Merge toast */}
+          {mergeMessage && (
+            <div
+              className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-3 rounded-xl text-sm font-medium"
+              style={{
+                background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+                color: "#ffffff",
+                border: "1px solid rgba(227, 181, 5, 0.4)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              {mergeMessage}
+            </div>
+          )}
+
           {/* Header with fun gradient */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
@@ -102,21 +127,37 @@ export default function HomeClient({ groups }: Props) {
               </div>
             </div>
 
-            <Link
-              href="/test"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all hover:scale-105 hover:shadow-lg no-underline"
-              style={{
-                background: 'linear-gradient(135deg, #e1000f 0%, #e3b505 100%)',
-                color: '#ffffff',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                boxShadow: '0 4px 15px rgba(225, 0, 15, 0.4)',
-              }}
-            >
-              🎯 Placement testi
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/test"
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition-all hover:scale-105 hover:shadow-lg no-underline"
+                style={{
+                  background: 'linear-gradient(135deg, #e1000f 0%, #e3b505 100%)',
+                  color: '#ffffff',
+                  border: '2px solid rgba(255, 255, 255, 0.3)',
+                  boxShadow: '0 4px 15px rgba(225, 0, 15, 0.4)',
+                }}
+              >
+                🎯 Placement testi
+              </Link>
+
+              {!userId && (
+                <Link
+                  href="/login"
+                  className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-xs font-bold transition-all hover:scale-105 no-underline"
+                  style={{
+                    background: 'rgba(65, 105, 225, 0.15)',
+                    color: '#93C5FD',
+                    border: '1px solid rgba(65, 105, 225, 0.3)',
+                  }}
+                >
+                  📧 Giriş yap
+                </Link>
+              )}
+            </div>
           </div>
 
-          {/* Course groups with vibrant colors */}
+          {/* Course groups */}
           <div className="space-y-4 sm:space-y-6">
             {groups.map((group, groupIndex) => {
               const groupColors = [
@@ -144,9 +185,7 @@ export default function HomeClient({ groups }: Props) {
                 >
                   <summary
                     className="cursor-pointer list-none px-6 py-4 border-b-2 transition-all hover:bg-white/10"
-                    style={{
-                      borderColor: `rgba(255, 255, 255, 0.3)`,
-                    }}
+                    style={{ borderColor: `rgba(255, 255, 255, 0.3)` }}
                   >
                     <div className="flex items-center justify-between">
                       <p
@@ -240,7 +279,7 @@ export default function HomeClient({ groups }: Props) {
             })}
           </div>
 
-          {/* Footer with fun message */}
+          {/* Footer */}
           <div className="mt-8 text-center">
             <p className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
               🎨 Fransızca öğrenmek hiç bu kadar eğlenceli olmamıştı!
@@ -252,7 +291,6 @@ export default function HomeClient({ groups }: Props) {
   );
 }
 
-// Helper function to convert hex to RGB
 function hexToRgb(hex: string) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result

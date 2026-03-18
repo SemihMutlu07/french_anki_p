@@ -31,13 +31,18 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Unauthenticated users get redirected to /login.
-  if (!user) {
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
-  }
+  // Authenticated users pass through.
+  if (user) return response;
 
-  return response;
+  // Allow root path without auth (onboarding lives here).
+  if (request.nextUrl.pathname === "/") return response;
+
+  // Guest users (completed onboarding, skipped email) can access the app.
+  if (request.cookies.get("fr-tutor-guest")?.value === "1") return response;
+
+  // Everyone else → login.
+  const loginUrl = new URL("/login", request.url);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {

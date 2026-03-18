@@ -68,7 +68,7 @@ export default function LoadingScreen({
         left: 0,
         right: 0,
         bottom: 0,
-        background: "linear-gradient(180deg, #0B1220 0%, #000091 50%, #000000 100%)",
+        background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--fr-blue) 50%, #000000 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -88,7 +88,7 @@ export default function LoadingScreen({
               top: `${Math.random() * 100}%`,
               width: `${2 + Math.random() * 4}px`,
               height: `${2 + Math.random() * 4}px`,
-              background: i % 3 === 0 ? "#e3b505" : i % 3 === 1 ? "#ffffff" : "#000091",
+              background: i % 3 === 0 ? "var(--fr-gold)" : i % 3 === 1 ? "#ffffff" : "var(--fr-blue)",
               borderRadius: "50%",
               animation: `pulse ${1 + Math.random() * 2}s ease-in-out infinite`,
               animationDelay: `${Math.random() * 2}s`,
@@ -106,7 +106,7 @@ export default function LoadingScreen({
           left: 0,
           right: 0,
           height: "4px",
-          background: "linear-gradient(90deg, #000091 0%, #000091 33%, #ffffff 33%, #ffffff 66%, #e1000f 66%, #e1000f 100%)",
+          background: "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-blue) 33%, #ffffff 33%, #ffffff 66%, var(--fr-red) 66%, var(--fr-red) 100%)",
         }}
       />
 
@@ -116,7 +116,7 @@ export default function LoadingScreen({
         <p
           style={{
             fontSize: "14px",
-            color: "#e3b505",
+            color: "var(--fr-gold)",
             textTransform: "uppercase",
             letterSpacing: "0.2em",
             marginBottom: "24px",
@@ -151,19 +151,19 @@ export default function LoadingScreen({
             {/* Define gradient for tower */}
             <defs>
               <linearGradient id="towerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#e3b505" stopOpacity={phase === "complete" ? 1 : 0.8} />
-                <stop offset="50%" stopColor="#000091" stopOpacity={0.9} />
+                <stop offset="0%" stopColor="var(--fr-gold)" stopOpacity={phase === "complete" ? 1 : 0.8} />
+                <stop offset="50%" stopColor="var(--fr-blue)" stopOpacity={0.9} />
                 <stop offset="100%" stopColor="#00006B" stopOpacity={1} />
               </linearGradient>
               <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                <stop offset="50%" stopColor="#e3b505" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#000091" stopOpacity="0.6" />
+                <stop offset="50%" stopColor="var(--fr-gold)" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="var(--fr-blue)" stopOpacity="0.6" />
               </linearGradient>
               <linearGradient id="frenchGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#000091" />
+                <stop offset="0%" stopColor="var(--fr-blue)" />
                 <stop offset="50%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#e1000f" />
+                <stop offset="100%" stopColor="var(--fr-red)" />
               </linearGradient>
             </defs>
 
@@ -182,7 +182,7 @@ export default function LoadingScreen({
                 strokeLinecap="round"
               />
               {phase === "complete" && (
-                <circle cx="100" cy="5" r="6" fill="#e3b505">
+                <circle cx="100" cy="5" r="6" fill="var(--fr-gold)">
                   <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite" />
                   <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1.5s" repeatCount="indefinite" />
                 </circle>
@@ -359,8 +359,8 @@ export default function LoadingScreen({
                 height: "100%",
                 width: `${progress}%`,
                 background: phase === "complete" 
-                  ? "linear-gradient(90deg, #e3b505, #ffffff, #e1000f)" 
-                  : "linear-gradient(90deg, #000091, #4169E1, #ffffff)",
+                  ? "linear-gradient(90deg, var(--fr-gold), #ffffff, var(--fr-red))"
+                  : "linear-gradient(90deg, var(--fr-blue), var(--fr-blue-light), #ffffff)",
                 borderRadius: "3px",
                 transition: "width 0.1s ease-out",
                 boxShadow: phase === "complete" ? "0 0 20px rgba(227, 181, 5, 0.8)" : "0 0 10px rgba(0, 0, 145, 0.5)",
@@ -384,7 +384,7 @@ export default function LoadingScreen({
                 width: "10px",
                 height: "10px",
                 borderRadius: "50%",
-                background: i === 0 ? "#000091" : i === 1 ? "#ffffff" : "#e1000f",
+                background: i === 0 ? "var(--fr-blue)" : i === 1 ? "#ffffff" : "var(--fr-red)",
                 border: "1px solid rgba(227, 181, 5, 0.5)",
                 animation: phase === "building" ? "bounce 1s ease-in-out infinite" : "none",
                 animationDelay: `${i * 0.15}s`,
@@ -403,7 +403,7 @@ export default function LoadingScreen({
           left: 0,
           right: 0,
           height: "4px",
-          background: "linear-gradient(90deg, #e1000f 0%, #e1000f 33%, #ffffff 33%, #ffffff 66%, #000091 66%, #000091 100%)",
+          background: "linear-gradient(90deg, var(--fr-red) 0%, var(--fr-red) 33%, #ffffff 33%, #ffffff 66%, var(--fr-blue) 66%, var(--fr-blue) 100%)",
         }}
       />
     </div>

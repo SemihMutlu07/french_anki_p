@@ -12,6 +12,7 @@ import Link from "next/link";
 import LessonCard from "@/components/LessonCard";
 import AnswerSheet from "@/components/AnswerSheet";
 import { saveProgress, getProgress } from "@/lib/progress";
+import { saveGuestProgress } from "@/lib/guestProgress";
 import { updateState, sortQueueByR } from "@/lib/fsrs";
 import type { FSRSState } from "@/lib/fsrs";
 import { createBrowserSupabase } from "@/lib/supabase";
@@ -148,7 +149,11 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     setIsFlipped(false);
     const newFsrs = updateState(fsrsStates[card.id] ?? null, true);
     setFsrsStates((prev) => ({ ...prev, [card.id]: newFsrs }));
-    void saveProgress(card, true, userId, newFsrs);
+    if (userId) {
+      void saveProgress(card, true, userId, newFsrs);
+    } else {
+      saveGuestProgress(card, true, newFsrs);
+    }
     if (newKnowCount >= MASTERY_THRESHOLD) {
       setQueue(queue.slice(1));
     } else {
@@ -170,7 +175,11 @@ export default function LessonClient({ unitId, items, userId }: Props) {
     setIsFlipped(false);
     const newFsrs = updateState(fsrsStates[card.id] ?? null, false);
     setFsrsStates((prev) => ({ ...prev, [card.id]: newFsrs }));
-    void saveProgress(card, false, userId, newFsrs);
+    if (userId) {
+      void saveProgress(card, false, userId, newFsrs);
+    } else {
+      saveGuestProgress(card, false, newFsrs);
+    }
     const rest = queue.slice(1);
     const insertAt = Math.max(
       Math.min(REINSERTION_OFFSET, rest.length),
@@ -255,22 +264,22 @@ export default function LessonClient({ unitId, items, userId }: Props) {
   const cardIndex = masteredCount + (queue.length > 0 ? 1 : 0);
 
   return (
-    <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex flex-col">
+    <main className="min-h-dvh bg-base text-t-primary flex flex-col">
       {/* Top bar */}
       <header className="flex flex-col px-4 sm:px-6 md:px-8">
         <div className="flex items-center py-3 sm:py-4">
           <Link
             href="/"
             aria-label="Ana sayfaya dön"
-            className="mr-3 text-xl leading-none no-underline text-[#71717A]"
+            className="mr-3 text-xl leading-none no-underline text-t-muted"
           >
             ←
           </Link>
-          <span className="text-sm font-medium text-[#F4F4F5]">
+          <span className="text-sm font-medium text-t-primary">
             {courseName} · Ünite {unitNumber}
           </span>
           <div className="ml-auto flex items-center gap-4">
-            <span className="text-[13px] text-[#71717A] tabular-nums">
+            <span className="text-[13px] text-t-muted tabular-nums">
               {cardIndex} / {totalCards}
             </span>
             <button
@@ -280,20 +289,20 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                 router.push("/login");
               }}
               aria-label="Çıkış yap"
-              className="bg-transparent border-none text-xs text-[#52525B] cursor-pointer p-0 leading-none"
+              className="bg-transparent border-none text-xs text-t-faint cursor-pointer p-0 leading-none"
             >
               Çıkış
             </button>
           </div>
         </div>
         {/* Full-width progress bar */}
-        <div style={{ height: 1, background: "#27272A", position: "relative" }}>
+        <div style={{ height: 1, background: "var(--bg-subtle)", position: "relative" }}>
           <div
             style={{
               position: "absolute",
               inset: 0,
               width: `${progressPct}%`,
-              background: "#71717A",
+              background: "var(--text-muted)",
             }}
           />
         </div>
@@ -310,18 +319,18 @@ export default function LessonClient({ unitId, items, userId }: Props) {
             <div className="flex flex-1 items-center justify-center py-3 sm:py-5">
               <div
                 aria-hidden="true"
-                className="w-full max-w-[40rem] rounded-2xl bg-[#18181B] h-[20rem] sm:h-[22rem]"
+                className="w-full max-w-[40rem] rounded-2xl bg-muted h-[20rem] sm:h-[22rem]"
               />
             </div>
-            <div className="sticky bottom-0 left-0 right-0 bg-[#09090B] pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 md:static md:pt-5 md:pb-0">
+            <div className="sticky bottom-0 left-0 right-0 bg-base pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 md:static md:pt-5 md:pb-0">
               <div className="mx-auto flex w-full max-w-[40rem] gap-3">
                 <div
                   aria-hidden="true"
-                  className="h-14 flex-1 rounded-xl bg-[#18181B]"
+                  className="h-14 flex-1 rounded-xl bg-muted"
                 />
                 <div
                   aria-hidden="true"
-                  className="h-14 flex-1 rounded-xl bg-[#18181B]"
+                  className="h-14 flex-1 rounded-xl bg-muted"
                 />
               </div>
             </div>
@@ -333,16 +342,16 @@ export default function LessonClient({ unitId, items, userId }: Props) {
               <p className="m-0 text-2xl font-semibold">
                 Ünite tamamlandı
               </p>
-              <p className="mt-3 text-[13px] text-[#71717A]">
+              <p className="mt-3 text-[13px] text-t-muted">
                 {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
               </p>
               <Link
                 href="/"
-                className="mx-auto mt-8 block w-full max-w-[15rem] rounded-xl border border-[#3F3F46] bg-[#27272A] py-4 text-center text-[15px] font-medium text-[#F4F4F5] no-underline"
+                className="mx-auto mt-8 block w-full max-w-[15rem] rounded-xl border border-t-ghost bg-subtle py-4 text-center text-[15px] font-medium text-t-primary no-underline"
               >
                 Ana sayfa
               </Link>
-              <p className="mt-3 text-xs text-[#3F3F46]">Space ile de dönebilirsin</p>
+              <p className="mt-3 text-xs text-t-ghost">Space ile de dönebilirsin</p>
             </div>
           </div>
         ) : (
@@ -365,7 +374,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                     isPlaying={isPlaying}
                   />
                 </div>
-                <p className="mt-4 text-center text-[13px] text-[#52525B]">
+                <p className="mt-4 text-center text-[13px] text-t-faint">
                   {sessionKnown} biliyorum &middot; {sessionUnknown} bilmiyorum
                 </p>
                 {!isFlipped && queue.length > 0 && (
@@ -383,29 +392,29 @@ export default function LessonClient({ unitId, items, userId }: Props) {
                       setShowAnswerSheet(true);
                     }}
                     className="mt-3 block w-full bg-transparent border-none p-0 text-center text-xs cursor-pointer"
-                    style={{ color: "#52525B" }}
+                    style={{ color: "var(--text-faint)" }}
                   >
                     Yanıtı göster
                   </button>
                 )}
               </div>
             </div>
-            <div className="sticky bottom-0 left-0 right-0 bg-[#09090B] pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 md:static md:bg-transparent md:pt-5 md:pb-0">
+            <div className="sticky bottom-0 left-0 right-0 bg-base pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 md:static md:bg-transparent md:pt-5 md:pb-0">
               <div className="mx-auto flex w-full max-w-[40rem] gap-3">
                 <button
                   onClick={handleDontKnow}
                   aria-label="Bilmiyorum — kartı tekrar kuyruğa ekle"
-                  className="relative h-14 flex-1 rounded-xl border border-[#3D2A2A] bg-transparent text-[15px] font-medium text-[#A1A1AA] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#6b3030]"
+                  className="relative h-14 flex-1 rounded-xl border border-[#3D2A2A] bg-transparent text-[15px] font-medium text-t-secondary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#6b3030]"
                 >
                   Bilmiyorum
-                  <span className="absolute bottom-1.5 right-2.5 text-[11px] text-[#52525B]">
+                  <span className="absolute bottom-1.5 right-2.5 text-[11px] text-t-faint">
                     1
                   </span>
                 </button>
                 <button
                   onClick={handleKnow}
                   aria-label="Biliyorum — kartı öğrenildi olarak işaretle"
-                  className="relative h-14 flex-1 rounded-xl border border-[#1E3A28] bg-[#162419] text-[15px] font-medium text-[#E4E4E7] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2d6e45]"
+                  className="relative h-14 flex-1 rounded-xl border border-[#1E3A28] bg-[#162419] text-[15px] font-medium text-t-primary cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2d6e45]"
                 >
                   Biliyorum
                   <span className="absolute bottom-1.5 right-2.5 text-[11px] text-[#4d7a5e]">
@@ -432,7 +441,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
       {/* Volume hint toast */}
       {!audioHintShown && firstAudioAttempted && (
         <div
-          className="fixed left-4 right-4 flex items-center justify-between rounded-xl border border-[#3F3F46] bg-[#18181B] px-4 py-3 text-sm text-[#A1A1AA]"
+          className="fixed left-4 right-4 flex items-center justify-between rounded-xl border border-t-ghost bg-muted px-4 py-3 text-sm text-t-secondary"
           style={{
             bottom: "calc(env(safe-area-inset-bottom, 0px) + 96px)",
             zIndex: 60,
@@ -442,7 +451,7 @@ export default function LessonClient({ unitId, items, userId }: Props) {
           <span>Ses düşükse: sessiz modu kapatıp sesi aç.</span>
           <button
             onClick={dismissHint}
-            className="ml-4 shrink-0 rounded border border-[#3F3F46] bg-transparent px-3 py-1 text-xs text-[#71717A] cursor-pointer"
+            className="ml-4 shrink-0 rounded border border-t-ghost bg-transparent px-3 py-1 text-xs text-t-muted cursor-pointer"
           >
             Tamam
           </button>

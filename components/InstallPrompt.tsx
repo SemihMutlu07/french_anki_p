@@ -88,7 +88,7 @@ export default function InstallPrompt() {
     <div
       className="fixed bottom-20 left-4 right-4 z-[60] md:bottom-6 md:left-auto md:right-6 md:max-w-sm rounded-2xl p-4"
       style={{
-        background: "linear-gradient(135deg, #0B1220 0%, rgba(0, 0, 145, 0.9) 100%)",
+        background: "linear-gradient(135deg, var(--bg-elevated) 0%, rgba(0, 0, 145, 0.9) 100%)",
         border: "1px solid rgba(227, 181, 5, 0.3)",
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.6)",
         backdropFilter: "blur(12px)",
@@ -103,9 +103,9 @@ export default function InstallPrompt() {
               <p className="text-sm font-semibold" style={{ color: "#ffffff" }}>
                 FR Tutor&apos;u ana ekranına ekle
               </p>
-              <p className="text-xs mt-1" style={{ color: "#93C5FD" }}>
+              <p className="text-xs mt-1" style={{ color: "var(--fr-blue-pale)" }}>
                 Paylaş{" "}
-                <span style={{ color: "#e3b505" }}>⬆️</span> → &quot;Ana
+                <span style={{ color: "var(--fr-gold)" }}>⬆️</span> → &quot;Ana
                 Ekrana Ekle&quot;
               </p>
             </>
@@ -114,7 +114,7 @@ export default function InstallPrompt() {
               <p className="text-sm font-semibold" style={{ color: "#ffffff" }}>
                 FR Tutor&apos;u ana ekranına ekle
               </p>
-              <p className="text-xs mt-1" style={{ color: "#71717A" }}>
+              <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
                 Daha hızlı erişim
               </p>
             </>
@@ -128,8 +128,8 @@ export default function InstallPrompt() {
             onClick={handleInstall}
             className="flex-1 rounded-xl py-2 text-sm font-semibold min-h-[44px]"
             style={{
-              background: "linear-gradient(135deg, #e3b505, #FFD700)",
-              color: "#0B1220",
+              background: "linear-gradient(135deg, var(--fr-gold), var(--fr-gold-light))",
+              color: "var(--bg-elevated)",
               border: "none",
             }}
           >
@@ -141,7 +141,7 @@ export default function InstallPrompt() {
           className="rounded-xl py-2 px-4 text-sm font-medium min-h-[44px]"
           style={{
             background: "rgba(255, 255, 255, 0.08)",
-            color: "#71717A",
+            color: "var(--text-muted)",
             border: "1px solid rgba(255, 255, 255, 0.1)",
           }}
         >

@@ -22,8 +22,8 @@ export default function WelcomePage() {
     <div
       style={{
         minHeight: "100dvh",
-        background: "#09090B",
-        color: "#F4F4F5",
+        background: "var(--bg-base)",
+        color: "var(--text-primary)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -40,7 +40,7 @@ export default function WelcomePage() {
         className="anim-1"
         style={{
           fontSize: 11,
-          color: "#52525B",
+          color: "var(--text-faint)",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           margin: "0 0 10px",
@@ -65,7 +65,7 @@ export default function WelcomePage() {
         className="anim-3"
         style={{
           fontSize: 15,
-          color: "#71717A",
+          color: "var(--text-muted)",
           maxWidth: 272,
           lineHeight: 1.65,
           margin: "0 0 52px",
@@ -81,10 +81,10 @@ export default function WelcomePage() {
           style={{
             minHeight: 58,
             padding: "0 32px",
-            background: "#F4F4F5",
+            background: "var(--text-primary)",
             border: "none",
             borderRadius: 14,
-            color: "#09090B",
+            color: "var(--bg-base)",
             fontSize: 16,
             fontWeight: 600,
             cursor: "pointer",
@@ -102,9 +102,9 @@ export default function WelcomePage() {
             minHeight: 52,
             padding: "0 32px",
             background: "transparent",
-            border: "1px solid #27272A",
+            border: "1px solid var(--bg-subtle)",
             borderRadius: 14,
-            color: "#52525B",
+            color: "var(--text-faint)",
             fontSize: 14,
             fontWeight: 500,
             cursor: "pointer",

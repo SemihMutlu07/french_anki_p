@@ -125,12 +125,12 @@ export default function ProgressDashboardClient({
 
   return (
     <AppLayout>
-      <div className="min-h-dvh bg-[#09090B]">
+      <div className="min-h-dvh" style={{ background: "var(--bg-base)" }}>
         {/* Header */}
         <header
           className="px-4 sm:px-6 md:px-8 py-6 md:py-8"
           style={{
-            background: "linear-gradient(180deg, #0B1220 0%, #09090B 100%)",
+            background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%)",
             borderBottom: "1px solid rgba(227, 181, 5, 0.2)",
           }}
         >
@@ -140,7 +140,7 @@ export default function ProgressDashboardClient({
               <h1
                 className="text-2xl md:text-3xl font-bold"
                 style={{
-                  background: "linear-gradient(90deg, #ffffff, #e3b505)",
+                  background: "linear-gradient(90deg, var(--text-primary), var(--fr-gold))",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -149,7 +149,7 @@ export default function ProgressDashboardClient({
                 İlerleme
               </h1>
             </div>
-            <p className="text-sm" style={{ color: "#71717A" }}>
+            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               Fransızca öğrenme yolculuğunu takip et
             </p>
           </div>
@@ -168,7 +168,7 @@ export default function ProgressDashboardClient({
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xl">✨</span>
-                <h2 className="text-base font-bold" style={{ color: "#ffffff" }}>
+                <h2 className="text-base font-bold" style={{ color: "var(--text-primary)" }}>
                   Bu Hafta
                 </h2>
               </div>
@@ -215,7 +215,7 @@ export default function ProgressDashboardClient({
               >
                 <p
                   className="text-sm font-semibold mb-4 tracking-wide uppercase"
-                  style={{ color: "#93C5FD" }}
+                  style={{ color: "var(--fr-blue-pale)" }}
                 >
                   Kelime Olgunluğu
                 </p>
@@ -231,16 +231,16 @@ export default function ProgressDashboardClient({
                   <p
                     className="text-3xl font-bold"
                     style={{
-                      color: "#e3b505",
+                      color: "var(--fr-gold)",
                       textShadow: "0 0 15px rgba(227, 181, 5, 0.4)",
                     }}
                   >
                     {matureCount}
-                    <span className="text-base font-normal" style={{ color: "#71717A" }}>
+                    <span className="text-base font-normal" style={{ color: "var(--text-muted)" }}>
                       /{totalCards}
                     </span>
                   </p>
-                  <p className="text-xs mt-1" style={{ color: "#71717A" }}>
+                  <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
                     olgun kart (21+ gün stabil)
                   </p>
                 </div>
@@ -254,19 +254,19 @@ export default function ProgressDashboardClient({
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(0, 0, 145, 0.3) 0%, rgba(11, 18, 32, 0.5) 100%)",
-                    border: "2px solid rgba(227, 181, 5, 0.3)",
+                    border: `2px solid var(--border-gold)`,
                     boxShadow: "0 8px 32px rgba(0, 0, 145, 0.3)",
                   }}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <p className="text-sm font-medium" style={{ color: "#93C5FD" }}>
+                      <p className="text-sm font-medium" style={{ color: "var(--fr-blue-pale)" }}>
                         Toplam İlerleme
                       </p>
                       <p
                         className="text-4xl font-bold mt-1"
                         style={{
-                          color: "#e3b505",
+                          color: "var(--fr-gold)",
                           textShadow: "0 0 20px rgba(227, 181, 5, 0.5)",
                         }}
                       >
@@ -274,13 +274,13 @@ export default function ProgressDashboardClient({
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-bold" style={{ color: "#ffffff" }}>
+                      <p className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
                         {totalMastered}
-                        <span className="text-sm" style={{ color: "#71717A" }}>
+                        <span className="text-sm" style={{ color: "var(--text-muted)" }}>
                           /{totalCards}
                         </span>
                       </p>
-                      <p className="text-xs mt-1" style={{ color: "#71717A" }}>
+                      <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
                         kart tamamlandı
                       </p>
                     </div>
@@ -296,7 +296,7 @@ export default function ProgressDashboardClient({
                       style={{
                         width: `${overallProgress}%`,
                         background:
-                          "linear-gradient(90deg, #000091 0%, #4169E1 50%, #e3b505 100%)",
+                          "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-blue-light) 50%, var(--fr-gold) 100%)",
                         boxShadow: "0 0 15px rgba(227, 181, 5, 0.4)",
                       }}
                     />
@@ -313,7 +313,7 @@ export default function ProgressDashboardClient({
                 >
                   <p
                     className="text-sm font-semibold mb-3 tracking-wide uppercase"
-                    style={{ color: "#93C5FD" }}
+                    style={{ color: "var(--fr-blue-pale)" }}
                   >
                     Kilometre Taşları
                   </p>
@@ -341,7 +341,7 @@ export default function ProgressDashboardClient({
                           </span>
                           <span
                             className="text-xs font-medium"
-                            style={{ color: reached ? "#e3b505" : "#52525B" }}
+                            style={{ color: reached ? "var(--fr-gold)" : "var(--text-faint)" }}
                           >
                             {m}
                           </span>
@@ -350,7 +350,7 @@ export default function ProgressDashboardClient({
                     })}
                   </div>
                   {nextMilestone && (
-                    <p className="text-xs mt-3" style={{ color: "#71717A" }}>
+                    <p className="text-xs mt-3" style={{ color: "var(--text-muted)" }}>
                       Sonraki hedef: {nextMilestone} kart ({nextMilestone - totalMastered} kaldı)
                     </p>
                   )}
@@ -369,11 +369,11 @@ export default function ProgressDashboardClient({
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-2xl">🗺️</span>
-                <h2 className="text-lg font-bold" style={{ color: "#ffffff" }}>
+                <h2 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   Fransa Haritası
                 </h2>
               </div>
-              <p className="text-xs mb-4" style={{ color: "#71717A" }}>
+              <p className="text-xs mb-4" style={{ color: "var(--text-muted)" }}>
                 Her şehir bir üniteyi temsil eder
               </p>
 
@@ -388,16 +388,16 @@ export default function ProgressDashboardClient({
               <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
                 {[
                   { color: "#2a2a4a", label: "Başlanmadı" },
-                  { color: "#000091", label: "Başlandı" },
-                  { color: "#4169E1", label: "%50+" },
-                  { color: "#e3b505", label: "Tamamlandı" },
+                  { color: "var(--fr-blue)", label: "Başlandı" },
+                  { color: "var(--fr-blue-light)", label: "%50+" },
+                  { color: "var(--fr-gold)", label: "Tamamlandı" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-1.5">
                     <div
                       className="w-3 h-3 rounded-full"
                       style={{ background: item.color }}
                     />
-                    <span className="text-[10px]" style={{ color: "#71717A" }}>
+                    <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
                       {item.label}
                     </span>
                   </div>
@@ -416,7 +416,7 @@ export default function ProgressDashboardClient({
             >
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-2xl">📅</span>
-                <h2 className="text-lg font-bold" style={{ color: "#ffffff" }}>
+                <h2 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   Haftalık Aktivite
                 </h2>
               </div>
@@ -435,7 +435,7 @@ export default function ProgressDashboardClient({
                         <p
                           className="text-[10px] font-medium"
                           style={{
-                            color: activity.cardsReviewed > 0 ? "#93C5FD" : "#52525B",
+                            color: activity.cardsReviewed > 0 ? "var(--fr-blue-pale)" : "var(--text-faint)",
                           }}
                         >
                           {activity.cardsReviewed > 0 ? activity.cardsReviewed : ""}
@@ -446,9 +446,9 @@ export default function ProgressDashboardClient({
                             style={{
                               height: `${Math.max(heightPercent, 6)}px`,
                               background: isToday
-                                ? "linear-gradient(180deg, #e3b505 0%, #FFD700 100%)"
+                                ? "linear-gradient(180deg, var(--fr-gold) 0%, var(--fr-gold-light) 100%)"
                                 : activity.cardsReviewed > 0
-                                  ? "linear-gradient(180deg, #000091 0%, #4169E1 100%)"
+                                  ? "linear-gradient(180deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)"
                                   : "rgba(255, 255, 255, 0.06)",
                               boxShadow: isToday
                                 ? "0 0 12px rgba(227, 181, 5, 0.5)"
@@ -459,11 +459,11 @@ export default function ProgressDashboardClient({
                         <div className="text-center">
                           <p
                             className="text-[10px] font-medium"
-                            style={{ color: isToday ? "#e3b505" : "#71717A" }}
+                            style={{ color: isToday ? "var(--fr-gold)" : "var(--text-muted)" }}
                           >
                             {getDayLabel(activity.date)}
                           </p>
-                          <p className="text-[9px]" style={{ color: "#52525B" }}>
+                          <p className="text-[9px]" style={{ color: "var(--text-faint)" }}>
                             {getShortDate(activity.date)}
                           </p>
                         </div>
@@ -473,7 +473,7 @@ export default function ProgressDashboardClient({
                 </div>
               ) : (
                 <div className="text-center py-6">
-                  <p className="text-sm" style={{ color: "#71717A" }}>
+                  <p className="text-sm" style={{ color: "var(--text-muted)" }}>
                     Henüz aktivite yok. İlk kartını tamamla!
                   </p>
                 </div>
@@ -491,7 +491,7 @@ export default function ProgressDashboardClient({
             >
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-2xl">🎯</span>
-                <h2 className="text-lg font-bold" style={{ color: "#ffffff" }}>
+                <h2 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                   Ünite Durumu
                 </h2>
               </div>
@@ -513,20 +513,20 @@ export default function ProgressDashboardClient({
                         border:
                           unit.percentage === 100
                             ? "1px solid rgba(227, 181, 5, 0.5)"
-                            : "1px solid rgba(65, 105, 225, 0.2)",
+                            : `1px solid var(--border-default)`,
                         boxShadow:
                           unit.percentage === 100
                             ? "0 4px 12px rgba(227, 181, 5, 0.15)"
                             : "none",
                       }}
                     >
-                      <p className="text-[10px] font-medium" style={{ color: "#93C5FD" }}>
+                      <p className="text-[10px] font-medium" style={{ color: "var(--fr-blue-pale)" }}>
                         Ü{unit.unit}
                       </p>
                       <p
                         className="text-xl font-bold mt-0.5"
                         style={{
-                          color: unit.percentage === 100 ? "#e3b505" : "#ffffff",
+                          color: unit.percentage === 100 ? "var(--fr-gold)" : "var(--text-primary)",
                           textShadow:
                             unit.percentage === 100
                               ? "0 0 8px rgba(227, 181, 5, 0.5)"
@@ -535,7 +535,7 @@ export default function ProgressDashboardClient({
                       >
                         {unit.percentage}%
                       </p>
-                      <p className="text-[9px] mt-0.5" style={{ color: "#71717A" }}>
+                      <p className="text-[9px] mt-0.5" style={{ color: "var(--text-muted)" }}>
                         {unit.mastered}/{unit.total}
                       </p>
                     </div>
@@ -558,7 +558,7 @@ export default function ProgressDashboardClient({
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">⚠️</span>
-                    <h2 className="text-lg font-bold" style={{ color: "#ffffff" }}>
+                    <h2 className="text-lg font-bold" style={{ color: "var(--text-primary)" }}>
                       Tekrar Gereken Kartlar
                     </h2>
                   </div>
@@ -566,8 +566,8 @@ export default function ProgressDashboardClient({
                     href="/review"
                     className="text-xs font-medium px-3 py-1.5 rounded-full no-underline min-h-[44px] min-w-[44px] flex items-center justify-center"
                     style={{
-                      background: "linear-gradient(135deg, #e1000f, #e3b505)",
-                      color: "#ffffff",
+                      background: "linear-gradient(135deg, var(--fr-red), var(--fr-gold))",
+                      color: "var(--text-primary)",
                       border: "1px solid rgba(255, 255, 255, 0.2)",
                     }}
                   >
@@ -589,20 +589,20 @@ export default function ProgressDashboardClient({
                         <div>
                           <p
                             className="text-sm font-bold"
-                            style={{ color: "#e3b505" }}
+                            style={{ color: "var(--fr-gold)" }}
                           >
                             {card.french}
                           </p>
                           <p
                             className="text-xs mt-0.5"
-                            style={{ color: "#A1A1AA" }}
+                            style={{ color: "var(--text-secondary)" }}
                           >
                             {card.turkish}
                           </p>
                         </div>
                         <p
                           className="text-xs font-medium"
-                          style={{ color: "#FF6B6B" }}
+                          style={{ color: "var(--fr-red-soft)" }}
                         >
                           {card.unknownCount}x
                         </p>
@@ -640,7 +640,7 @@ export default function ProgressDashboardClient({
             <p
               className="text-xl font-bold mb-2"
               style={{
-                background: "linear-gradient(90deg, #ffffff, #e3b505)",
+                background: "linear-gradient(90deg, var(--text-primary), var(--fr-gold))",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -648,10 +648,10 @@ export default function ProgressDashboardClient({
             >
               {MILESTONE_MESSAGES[celebrationMilestone].title}
             </p>
-            <p className="text-sm" style={{ color: "#93C5FD" }}>
+            <p className="text-sm" style={{ color: "var(--fr-blue-pale)" }}>
               {MILESTONE_MESSAGES[celebrationMilestone].sub}
             </p>
-            <p className="text-xs mt-4" style={{ color: "#71717A" }}>
+            <p className="text-xs mt-4" style={{ color: "var(--text-muted)" }}>
               devam etmek için dokun
             </p>
           </div>
@@ -694,14 +694,14 @@ function MiniStat({
         border: "1px solid rgba(255, 255, 255, 0.06)",
       }}
     >
-      <p className="text-lg font-bold" style={{ color: "#e3b505" }}>
+      <p className="text-lg font-bold" style={{ color: "var(--fr-gold)" }}>
         {value}
       </p>
-      <p className="text-[10px] mt-0.5" style={{ color: "#71717A" }}>
+      <p className="text-[10px] mt-0.5" style={{ color: "var(--text-muted)" }}>
         {label}
       </p>
       {sub && (
-        <p className="text-[9px]" style={{ color: "#93C5FD" }}>
+        <p className="text-[9px]" style={{ color: "var(--fr-blue-pale)" }}>
           {sub}
         </p>
       )}

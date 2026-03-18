@@ -9,26 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        // French flag color palette from Coolors.co - STRICT IMPLEMENTATION
-        // Based on FRENCH_COLORS_IMPLEMENTATION.md
+        background: "var(--bg-base)",
+        foreground: "var(--text-primary)",
+
+        /* ── Semantic backgrounds ── */
+        base:     "var(--bg-base)",
+        elevated: "var(--bg-elevated)",
+        surface:  "var(--bg-surface)",
+        muted:    "var(--bg-muted)",
+        subtle:   "var(--bg-subtle)",
+
+        /* ── Semantic text ── */
+        "t-primary":   "var(--text-primary)",
+        "t-secondary": "var(--text-secondary)",
+        "t-muted":     "var(--text-muted)",
+        "t-faint":     "var(--text-faint)",
+        "t-ghost":     "var(--text-ghost)",
+
+        /* ── French palette ── */
         french: {
-          // Core French flag colors
-          blue: "#000091",    // French Blue - Primary backgrounds, tower structure, gradients
-          white: "#ffffff",   // French White - Text, sparkles, highlights, progress indicators
-          red: "#e1000f",     // French Red - Accent borders, loading dots, gradient stops
-          black: "#000000",   // French Black - Deep backgrounds, shadows
-          gold: "#e3b505",    // French Gold - Achievement highlights, max level glow, success states
-          
-          // Extended palette for UI components
-          darkBlue: "#0B1220",  // Dark background for headers, cards
-          lightBlue: "#4169E1", // Secondary blue for gradients, accents
-          brightBlue: "#60A5FA", // Tertiary blue for highlights
-          coral: "#FF6B6B",     // Soft red alternative for accents
-          purple: "#A855F7",    // Purple accent for variety
-          lime: "#84CC16",      // Success/completion indicator
+          blue:       "#000091",
+          white:      "#ffffff",
+          red:        "#e1000f",
+          black:      "#000000",
+          gold:       "#e3b505",
+          darkBlue:   "#0B1220",
+          lightBlue:  "#4169E1",
+          brightBlue: "#60A5FA",
+          paleBlue:   "#93C5FD",
+          coral:      "#FF6B6B",
+          goldLight:  "#FFD700",
+          purple:     "#A855F7",
+          lime:       "#84CC16",
         },
+      },
+      borderColor: {
+        DEFAULT: "var(--border-default)",
+        strong:  "var(--border-strong)",
+        subtle:  "var(--border-subtle)",
+        gold:    "var(--border-gold)",
       },
       animation: {
         "pulse-slow": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
@@ -65,7 +84,6 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        // French color gradients - STRICT from FRENCH_COLORS_IMPLEMENTATION.md
         "french-gradient": "linear-gradient(135deg, #000091 0%, #4169E1 50%, #e1000f 100%)",
         "french-flag": "linear-gradient(90deg, #000091 33%, #ffffff 33%, #ffffff 66%, #e1000f 66%)",
         "ocean-gradient": "linear-gradient(135deg, #000091 0%, #60A5FA 100%)",
@@ -80,6 +98,7 @@ const config: Config = {
         "french-gold": "0 0 20px rgba(227, 181, 5, 0.5)",
         "french-red": "0 4px 15px rgba(225, 0, 15, 0.3)",
         "french-glow": "0 0 15px rgba(227, 181, 5, 0.6)",
+        "card": "0 4px 20px rgba(0, 0, 0, 0.3)",
       },
     },
   },

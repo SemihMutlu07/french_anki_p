@@ -164,7 +164,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
   const progressPct = totalCards > 0 ? (reviewed / totalCards) * 100 : 0;
 
   return (
-    <div className="min-h-screen bg-[#09090B]">
+    <div className="min-h-screen" style={{ background: "var(--bg-base)" }}>
       <Sidebar />
 
       <div className="md:ml-64 pb-20 md:pb-8">
@@ -172,7 +172,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
         <header
           className="px-4 sm:px-6 md:px-8 py-6 md:py-8"
           style={{
-            background: "linear-gradient(180deg, #0B1220 0%, #09090B 100%)",
+            background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%)",
             borderBottom: "1px solid rgba(225, 0, 15, 0.3)",
           }}
         >
@@ -181,7 +181,8 @@ export default function ReviewClient({ initialCards, userId }: Props) {
               <div className="flex items-center gap-3">
                 <Link
                   href="/progress"
-                  className="text-xl text-[#71717A] hover:text-[#A1A1AA] no-underline"
+                  className="text-xl no-underline"
+                  style={{ color: "var(--text-muted)" }}
                 >
                   ←
                 </Link>
@@ -191,7 +192,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                     <h1
                       className="text-xl md:text-2xl font-bold"
                       style={{
-                        background: "linear-gradient(90deg, #e1000f 0%, #e3b505 100%)",
+                        background: "linear-gradient(90deg, var(--fr-red) 0%, var(--fr-gold) 100%)",
                         backgroundClip: "text",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
@@ -200,13 +201,13 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                       Tekrar Oturumu
                     </h1>
                   </div>
-                  <p className="text-xs" style={{ color: "#71717A" }}>
+                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                     Zorlandığın kartlara odaklan
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium" style={{ color: "#e3b505" }}>
+                <p className="text-sm font-medium" style={{ color: "var(--fr-gold)" }}>
                   {reviewed} / {totalCards}
                 </p>
               </div>
@@ -218,7 +219,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                 className="h-full rounded-full transition-all duration-300"
                 style={{
                   width: `${progressPct}%`,
-                  background: "linear-gradient(90deg, #e1000f 0%, #e3b505 100%)",
+                  background: "linear-gradient(90deg, var(--fr-red) 0%, var(--fr-gold) 100%)",
                   boxShadow: "0 0 10px rgba(225, 0, 15, 0.4)",
                 }}
               />
@@ -240,10 +241,10 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                 }}
               >
                 <span className="text-5xl mb-4 block">🎉</span>
-                <h2 className="text-2xl font-bold mb-2" style={{ color: "#e3b505" }}>
+                <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--fr-gold)" }}>
                   Tekrar Tamamlandı!
                 </h2>
-                <p className="text-sm mb-6" style={{ color: "#A1A1AA" }}>
+                <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
                   {reviewed} kart gözden geçirildi &middot; {mastered} kart pekiştirildi
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -251,9 +252,9 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                     href="/progress"
                     className="px-6 py-3 rounded-xl font-medium no-underline"
                     style={{
-                      background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
-                      color: "#ffffff",
-                      border: "2px solid rgba(65, 105, 225, 0.4)",
+                      background: "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
+                      color: "var(--text-primary)",
+                      border: `2px solid var(--border-strong)`,
                     }}
                   >
                     📊 İlerlemeye Dön
@@ -262,7 +263,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                     href="/"
                     className="px-6 py-3 rounded-xl font-medium no-underline"
                     style={{
-                      background: "linear-gradient(135deg, #e3b505 0%, #FFD700 100%)",
+                      background: "linear-gradient(135deg, var(--fr-gold) 0%, var(--fr-gold-light) 100%)",
                       color: "#000000",
                       border: "2px solid rgba(227, 181, 5, 0.4)",
                     }}
@@ -270,7 +271,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                     🏠 Ana Sayfa
                   </Link>
                 </div>
-                <p className="mt-4 text-xs" style={{ color: "#52525B" }}>
+                <p className="mt-4 text-xs" style={{ color: "var(--text-faint)" }}>
                   Space ile ana sayfaya dönebilirsin
                 </p>
               </div>
@@ -299,27 +300,28 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                           isPlaying={isPlaying}
                         />
                       </div>
-                      <p className="mt-4 text-center text-[13px] text-[#52525B]">
+                      <p className="mt-4 text-center text-[13px]" style={{ color: "var(--text-faint)" }}>
                         {mastered} pekiştirildi &middot; {reviewed - mastered} tekrar gerekli
                       </p>
                     </div>
                   </div>
-                  <div className="sticky bottom-0 left-0 right-0 bg-[#09090B] pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3">
+                  <div className="sticky bottom-0 left-0 right-0 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3" style={{ background: "var(--bg-base)" }}>
                     <div className="mx-auto flex w-full max-w-[40rem] gap-3">
                       <button
                         onClick={handleDontKnow}
                         aria-label="Tekrar necessary — kartı kuyruğa ekle"
-                        className="relative h-14 flex-1 rounded-xl border border-[#3D2A2A] bg-transparent text-[15px] font-medium text-[#A1A1AA] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#6b3030]"
+                        className="relative h-14 flex-1 rounded-xl border border-[#3D2A2A] bg-transparent text-[15px] font-medium cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#6b3030]"
+                        style={{ color: "var(--text-secondary)" }}
                       >
                         Tekrar Necessary
-                        <span className="absolute bottom-1.5 right-2.5 text-[11px] text-[#52525B]">
+                        <span className="absolute bottom-1.5 right-2.5 text-[11px]" style={{ color: "var(--text-faint)" }}>
                           1
                         </span>
                       </button>
                       <button
                         onClick={handleKnow}
                         aria-label="Pekiştirildi — kartı tamamla"
-                        className="relative h-14 flex-1 rounded-xl border border-[#1E3A28] bg-[#162419] text-[15px] font-medium text-[#E4E4E7] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2d6e45]"
+                        className="relative h-14 flex-1 rounded-xl border border-[#1E3A28] bg-[#162419] text-[15px] font-medium text-[var(--text-primary)] cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#2d6e45]"
                       >
                         Pekiştirildi
                         <span className="absolute bottom-1.5 right-2.5 text-[11px] text-[#4d7a5e]">
@@ -338,7 +340,7 @@ export default function ReviewClient({ initialCards, userId }: Props) {
                     border: "1px solid rgba(225, 0, 15, 0.2)",
                   }}
                 >
-                  <p className="text-xs" style={{ color: "#FF6B6B" }}>
+                  <p className="text-xs" style={{ color: "var(--fr-red-soft)" }}>
                     ⚠️ Bu kartlar en çok zorlandığın kelimeler. Tekrar ederek pekiştir!
                   </p>
                 </div>

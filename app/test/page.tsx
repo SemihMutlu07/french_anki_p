@@ -4,7 +4,7 @@ export default function TestStartPage() {
   return (
     <main
       className="flex min-h-dvh flex-col items-center justify-center px-6"
-      style={{ background: "#0B1220", color: "#F0F4FF" }}
+      style={{ background: "var(--bg-elevated)", color: "var(--text-primary)" }}
     >
       <div className="w-full max-w-sm text-center">
         {/* French motif badge */}
@@ -23,26 +23,26 @@ export default function TestStartPage() {
         {/* Blue accent label */}
         <p
           className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em]"
-          style={{ color: "#60A5FA" }}
+          style={{ color: "var(--fr-blue-bright)" }}
         >
           Fransızca 101
         </p>
 
         {/* Title */}
-        <h1 className="text-3xl font-bold leading-tight" style={{ color: "#F0F4FF" }}>
+        <h1 className="text-3xl font-bold leading-tight" style={{ color: "var(--text-primary)" }}>
           Seviye belirleme
         </h1>
 
         {/* Subtitle */}
         <p
           className="mx-auto mt-4 max-w-[280px] text-base leading-relaxed"
-          style={{ color: "#7A9BBF" }}
+          style={{ color: "var(--text-muted)" }}
         >
           2 dakikalık kısa bir test. Sonunda nereden başlaman gerektiğini önereceğiz.
         </p>
 
         {/* Small note */}
-        <p className="mt-2 text-xs" style={{ color: "#3D5570" }}>
+        <p className="mt-2 text-xs" style={{ color: "var(--text-faint)" }}>
           En fazla 12 soru.
         </p>
 

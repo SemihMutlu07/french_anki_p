@@ -25,8 +25,8 @@ export default function Sidebar() {
     <aside
       className="hidden md:flex flex-col w-64 fixed left-0 top-0 bottom-0 z-40"
       style={{
-        background: "linear-gradient(180deg, #0B1220 0%, #000091 100%)",
-        borderRight: "2px solid rgba(227, 181, 5, 0.2)",
+        background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--fr-blue) 100%)",
+        borderRight: "2px solid var(--border-gold)",
         boxShadow: "4px 0 30px rgba(0, 0, 145, 0.3)",
       }}
     >
@@ -38,7 +38,7 @@ export default function Sidebar() {
             <p
               className="text-sm font-bold uppercase tracking-widest"
               style={{
-                background: "linear-gradient(90deg, #ffffff, #e3b505)",
+                background: "linear-gradient(90deg, var(--text-primary), var(--fr-gold))",
                 backgroundClip: "text",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -46,7 +46,7 @@ export default function Sidebar() {
             >
               FR Tutor
             </p>
-            <p className="text-xs" style={{ color: "#93C5FD" }}>
+            <p className="text-xs" style={{ color: "var(--fr-blue-pale)" }}>
               Fransızca Öğren
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function Sidebar() {
               <span
                 className="text-sm font-medium"
                 style={{
-                  color: isActive ? "#e3b505" : "#A1A1AA",
+                  color: isActive ? "var(--fr-gold)" : "var(--text-secondary)",
                   textShadow: isActive ? "0 0 10px rgba(227, 181, 5, 0.5)" : "none",
                 }}
               >
@@ -112,7 +112,7 @@ export default function Sidebar() {
             border: "1px solid rgba(255, 255, 255, 0.1)",
           }}
         >
-          <p className="text-xs" style={{ color: "#71717A" }}>
+          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
             Her gün biraz öğren!
           </p>
         </div>

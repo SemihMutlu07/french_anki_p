@@ -20,8 +20,8 @@ export default async function LessonPage({ params }: Props) {
       <main
         style={{
           minHeight: "100vh",
-          background: "#09090B",
-          color: "#E4E4E7",
+          background: "var(--bg-base)",
+          color: "var(--text-primary)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -35,7 +35,7 @@ export default async function LessonPage({ params }: Props) {
           </p>
           <Link
             href="/"
-            style={{ color: "#A1A1AA", textDecoration: "none", fontSize: 14 }}
+            style={{ color: "var(--text-secondary)", textDecoration: "none", fontSize: 14 }}
           >
             ← Ana sayfa
           </Link>

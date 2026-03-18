@@ -43,21 +43,21 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
   if (done) {
     const pct = Math.round((score / queue.length) * 100);
     return (
-      <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex items-center justify-center p-6">
+      <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex items-center justify-center p-6">
         <div className="w-full max-w-sm text-center">
           <span className="text-5xl block mb-4">
             {pct >= 80 ? "🎉" : pct >= 50 ? "👍" : "💪"}
           </span>
-          <h2 className="text-2xl font-bold mb-2" style={{ color: "#e3b505" }}>
+          <h2 className="text-2xl font-bold mb-2" style={{ color: "var(--fr-gold)" }}>
             Cümle Pratiği Tamamlandı!
           </h2>
-          <p className="text-sm mb-1" style={{ color: "#A1A1AA" }}>
+          <p className="text-sm mb-1" style={{ color: "var(--text-secondary)" }}>
             {score} / {queue.length} doğru
           </p>
           <p
             className="text-3xl font-bold mb-6"
             style={{
-              color: pct >= 80 ? "#84CC16" : pct >= 50 ? "#e3b505" : "#FF6B6B",
+              color: pct >= 80 ? "#84CC16" : pct >= 50 ? "var(--fr-gold)" : "var(--fr-red-soft)",
             }}
           >
             %{pct}
@@ -67,9 +67,9 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
               href="/practice/sentences"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
               style={{
-                background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+                background: "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
                 color: "#ffffff",
-                border: "2px solid rgba(65, 105, 225, 0.4)",
+                border: "2px solid var(--border-strong)",
               }}
             >
               Tekrar Dene
@@ -77,7 +77,7 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
             <Link
               href="/practice"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
-              style={{ background: "#27272A", color: "#E4E4E7" }}
+              style={{ background: "var(--bg-subtle)", color: "var(--text-primary)" }}
             >
               ← Pratik
             </Link>
@@ -90,13 +90,13 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
   if (!q) return null;
 
   return (
-    <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex flex-col">
+    <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex flex-col">
       {/* Header */}
       <header className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between max-w-2xl mx-auto">
           <Link
             href="/practice"
-            className="text-xl text-[#71717A] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-xl text-[var(--text-muted)] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             ←
           </Link>
@@ -104,7 +104,7 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
             <span className="text-lg">✍️</span>
             <span className="text-sm font-medium">Cümle Pratiği</span>
           </div>
-          <span className="text-sm tabular-nums" style={{ color: "#71717A" }}>
+          <span className="text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
             {current + 1}/{queue.length}
           </span>
         </div>
@@ -116,7 +116,7 @@ export default function SentencePracticeClient({ cards, userId }: Props) {
             className="h-full rounded-full transition-all duration-300"
             style={{
               width: `${((current + 1) / queue.length) * 100}%`,
-              background: "linear-gradient(90deg, #000091 0%, #e3b505 100%)",
+              background: "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-gold) 100%)",
             }}
           />
         </div>
@@ -158,10 +158,10 @@ function QACard({
           border: "2px solid rgba(65, 105, 225, 0.3)",
         }}
       >
-        <p className="text-xl sm:text-2xl font-bold text-[#F4F4F5] mb-2">
+        <p className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-2">
           {card.question_fr}
         </p>
-        <p className="text-sm" style={{ color: "#71717A" }}>
+        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
           {card.question_tr}
         </p>
         {card.audio && (
@@ -170,9 +170,9 @@ function QACard({
             disabled={isPlaying}
             className="mt-3 inline-flex items-center gap-2 rounded-lg px-4 min-h-[44px] text-sm font-medium transition-all"
             style={{
-              background: isPlaying ? "rgba(59,130,246,0.15)" : "rgba(255,255,255,0.08)",
+              background: isPlaying ? "rgba(59,130,246,0.15)" : "var(--border-subtle)",
               border: "1px solid rgba(255,255,255,0.15)",
-              color: isPlaying ? "#60A5FA" : "#A1A1AA",
+              color: isPlaying ? "var(--fr-blue-bright)" : "var(--text-secondary)",
               cursor: isPlaying ? "default" : "pointer",
             }}
           >
@@ -190,9 +190,9 @@ function QACard({
           onClick={() => setRevealed(true)}
           className="w-full rounded-xl py-4 text-base font-medium transition-all min-h-[56px]"
           style={{
-            background: "rgba(255,255,255,0.08)",
+            background: "var(--border-subtle)",
             border: "2px solid rgba(255,255,255,0.15)",
-            color: "#E4E4E7",
+            color: "var(--text-primary)",
             cursor: "pointer",
           }}
         >
@@ -210,11 +210,11 @@ function QACard({
             <p className="text-lg font-bold" style={{ color: "#84CC16" }}>
               {card.answer_fr}
             </p>
-            <p className="text-sm mt-1" style={{ color: "#71717A" }}>
+            <p className="text-sm mt-1" style={{ color: "var(--text-muted)" }}>
               {card.answer_tr}
             </p>
             {card.hint && (
-              <p className="text-xs mt-2 italic" style={{ color: "#e3b505" }}>
+              <p className="text-xs mt-2 italic" style={{ color: "var(--fr-gold)" }}>
                 💡 {card.hint}
               </p>
             )}
@@ -226,7 +226,7 @@ function QACard({
               style={{
                 background: "transparent",
                 border: "2px solid rgba(239, 68, 68, 0.4)",
-                color: "#FF6B6B",
+                color: "var(--fr-red-soft)",
                 cursor: "pointer",
               }}
             >
@@ -287,10 +287,10 @@ function TranslateCard({
           border: "2px solid rgba(225, 0, 15, 0.3)",
         }}
       >
-        <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "#FF6B6B" }}>
+        <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "var(--fr-red-soft)" }}>
           Türkçe → Fransızca
         </p>
-        <p className="text-xl sm:text-2xl font-bold text-[#F4F4F5]">
+        <p className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
           {card.question_tr}
         </p>
       </div>
@@ -314,13 +314,13 @@ function TranslateCard({
               ? correct
                 ? "rgba(132, 204, 22, 0.08)"
                 : "rgba(239, 68, 68, 0.08)"
-              : "#18181B",
+              : "var(--bg-muted)",
             border: submitted
               ? correct
                 ? "2px solid rgba(132, 204, 22, 0.4)"
                 : "2px solid rgba(239, 68, 68, 0.4)"
-              : "2px solid #3F3F46",
-            color: "#F4F4F5",
+              : "2px solid var(--text-ghost)",
+            color: "var(--text-primary)",
             fontSize: 16,
           }}
         />
@@ -331,9 +331,9 @@ function TranslateCard({
             className="mt-3 w-full rounded-xl py-4 text-base font-medium min-h-[56px] transition-all"
             style={{
               background: input.trim()
-                ? "linear-gradient(135deg, #000091 0%, #4169E1 100%)"
-                : "#27272A",
-              color: input.trim() ? "#ffffff" : "#52525B",
+                ? "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)"
+                : "var(--bg-subtle)",
+              color: input.trim() ? "#ffffff" : "var(--text-faint)",
               cursor: input.trim() ? "pointer" : "default",
               border: "none",
             }}
@@ -357,17 +357,17 @@ function TranslateCard({
           >
             <p
               className="text-sm font-medium"
-              style={{ color: correct ? "#84CC16" : "#FF6B6B" }}
+              style={{ color: correct ? "#84CC16" : "var(--fr-red-soft)" }}
             >
               {correct ? "Doğru! ✓" : "Yanlış"}
             </p>
             {!correct && (
-              <p className="text-base font-bold mt-1 text-[#F4F4F5]">
+              <p className="text-base font-bold mt-1 text-[var(--text-primary)]">
                 {card.answer_fr}
               </p>
             )}
             {card.hint && !correct && (
-              <p className="text-xs mt-1 italic" style={{ color: "#e3b505" }}>
+              <p className="text-xs mt-1 italic" style={{ color: "var(--fr-gold)" }}>
                 💡 {card.hint}
               </p>
             )}
@@ -376,9 +376,9 @@ function TranslateCard({
             onClick={() => onDone(correct)}
             className="w-full rounded-xl py-4 text-base font-medium min-h-[56px]"
             style={{
-              background: "rgba(255,255,255,0.08)",
+              background: "var(--border-subtle)",
               border: "2px solid rgba(255,255,255,0.15)",
-              color: "#E4E4E7",
+              color: "var(--text-primary)",
               cursor: "pointer",
             }}
           >
@@ -425,13 +425,13 @@ function FillBlankCard({
         style={{
           background:
             "linear-gradient(135deg, rgba(227, 181, 5, 0.1) 0%, rgba(11, 18, 32, 0.5) 100%)",
-          border: "2px solid rgba(227, 181, 5, 0.3)",
+          border: "2px solid var(--border-gold)",
         }}
       >
-        <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "#e3b505" }}>
+        <p className="text-xs uppercase tracking-wider mb-2" style={{ color: "var(--fr-gold)" }}>
           Boşluğu Doldur
         </p>
-        <p className="text-xl sm:text-2xl font-bold text-[#F4F4F5]">
+        <p className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
           {parts[0]}
           <span
             className="inline-block min-w-[60px] border-b-2 mx-1"
@@ -440,23 +440,23 @@ function FillBlankCard({
                 ? correct
                   ? "#84CC16"
                   : "#EF4444"
-                : "#e3b505",
+                : "var(--fr-gold)",
               color: submitted
                 ? correct
                   ? "#84CC16"
                   : "#EF4444"
-                : "#e3b505",
+                : "var(--fr-gold)",
             }}
           >
             {submitted ? card.answer_fr : input || "___"}
           </span>
           {parts[1]}
         </p>
-        <p className="text-sm mt-2" style={{ color: "#71717A" }}>
+        <p className="text-sm mt-2" style={{ color: "var(--text-muted)" }}>
           {card.question_tr}
         </p>
         {card.hint && !submitted && (
-          <p className="text-xs mt-2 italic" style={{ color: "#A1A1AA" }}>
+          <p className="text-xs mt-2 italic" style={{ color: "var(--text-secondary)" }}>
             💡 {card.hint}
           </p>
         )}
@@ -476,9 +476,9 @@ function FillBlankCard({
             lang="fr"
             className="w-full rounded-xl px-5 py-4 text-base outline-none"
             style={{
-              background: "#18181B",
-              border: "2px solid #3F3F46",
-              color: "#F4F4F5",
+              background: "var(--bg-muted)",
+              border: "2px solid var(--text-ghost)",
+              color: "var(--text-primary)",
               fontSize: 16,
             }}
           />
@@ -488,9 +488,9 @@ function FillBlankCard({
             className="mt-3 w-full rounded-xl py-4 text-base font-medium min-h-[56px] transition-all"
             style={{
               background: input.trim()
-                ? "linear-gradient(135deg, #000091 0%, #4169E1 100%)"
-                : "#27272A",
-              color: input.trim() ? "#ffffff" : "#52525B",
+                ? "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)"
+                : "var(--bg-subtle)",
+              color: input.trim() ? "#ffffff" : "var(--text-faint)",
               cursor: input.trim() ? "pointer" : "default",
               border: "none",
             }}
@@ -514,7 +514,7 @@ function FillBlankCard({
           >
             <p
               className="text-sm font-medium"
-              style={{ color: correct ? "#84CC16" : "#FF6B6B" }}
+              style={{ color: correct ? "#84CC16" : "var(--fr-red-soft)" }}
             >
               {correct ? "Doğru! ✓" : `Yanlış — doğrusu: ${card.answer_fr}`}
             </p>
@@ -523,9 +523,9 @@ function FillBlankCard({
             onClick={() => onDone(correct)}
             className="w-full rounded-xl py-4 text-base font-medium min-h-[56px]"
             style={{
-              background: "rgba(255,255,255,0.08)",
+              background: "var(--border-subtle)",
               border: "2px solid rgba(255,255,255,0.15)",
-              color: "#E4E4E7",
+              color: "var(--text-primary)",
               cursor: "pointer",
             }}
           >

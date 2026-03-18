@@ -33,19 +33,19 @@ export default function PhrasesClient({ phrases }: Props) {
     : phrases;
 
   return (
-    <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7]">
+    <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)]">
       {/* Header */}
       <header
         className="sticky top-0 z-30 px-4 pt-4 pb-3 sm:px-6"
         style={{
-          background: "linear-gradient(180deg, #09090B 80%, transparent 100%)",
+          background: "linear-gradient(180deg, var(--bg-base) 80%, transparent 100%)",
         }}
       >
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <Link
               href="/"
-              className="text-xl text-[#71717A] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="text-xl text-[var(--text-muted)] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               ←
             </Link>
@@ -56,7 +56,7 @@ export default function PhrasesClient({ phrases }: Props) {
                   className="text-xl font-bold"
                   style={{
                     background:
-                      "linear-gradient(90deg, #e1000f 0%, #e3b505 100%)",
+                      "linear-gradient(90deg, var(--fr-red) 0%, var(--fr-gold) 100%)",
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -65,7 +65,7 @@ export default function PhrasesClient({ phrases }: Props) {
                   Derste Kurtaran Cümleler
                 </h1>
               </div>
-              <p className="text-xs" style={{ color: "#71717A" }}>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
                 Dokunarak dinle — derste anında kullan
               </p>
             </div>
@@ -81,9 +81,9 @@ export default function PhrasesClient({ phrases }: Props) {
             autoCorrect="off"
             className="w-full rounded-xl px-4 py-3 text-sm outline-none"
             style={{
-              background: "#18181B",
-              border: "1px solid #3F3F46",
-              color: "#F4F4F5",
+              background: "var(--bg-muted)",
+              border: "1px solid var(--text-ghost)",
+              color: "var(--text-primary)",
               fontSize: 16,
             }}
           />
@@ -111,23 +111,23 @@ export default function PhrasesClient({ phrases }: Props) {
                   border: isActive
                     ? "1px solid rgba(59, 130, 246, 0.3)"
                     : isLast
-                    ? "1px solid rgba(227, 181, 5, 0.3)"
-                    : "1px solid rgba(255,255,255,0.08)",
+                    ? "1px solid var(--border-gold)"
+                    : "1px solid var(--border-subtle)",
                   cursor: "pointer",
                 }}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
-                    <p className="text-base font-medium text-[#F4F4F5]">
+                    <p className="text-base font-medium text-[var(--text-primary)]">
                       {phrase.fr}
                     </p>
-                    <p className="text-sm mt-0.5" style={{ color: "#71717A" }}>
+                    <p className="text-sm mt-0.5" style={{ color: "var(--text-muted)" }}>
                       {phrase.tr}
                     </p>
                   </div>
                   <span
                     className={`text-lg shrink-0 mt-0.5 ${isActive ? "animate-pulse" : ""}`}
-                    style={{ color: isActive ? "#60A5FA" : "#52525B" }}
+                    style={{ color: isActive ? "var(--fr-blue-bright)" : "var(--text-faint)" }}
                   >
                     {isActive ? "🔊" : "▶️"}
                   </span>
@@ -138,7 +138,7 @@ export default function PhrasesClient({ phrases }: Props) {
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-center text-sm mt-8" style={{ color: "#52525B" }}>
+          <p className="text-center text-sm mt-8" style={{ color: "var(--text-faint)" }}>
             Sonuç bulunamadı
           </p>
         )}

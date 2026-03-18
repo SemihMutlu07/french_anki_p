@@ -36,10 +36,10 @@ export default function ProgressiveEiffelTower({
   const ratio = Math.min(Math.max(level / 10, 0), 1);
   
   // French color palette
-  const FRENCH_BLUE = "#000091";
+  const FRENCH_BLUE = "var(--fr-blue)";
   const FRENCH_WHITE = "#ffffff";
-  const FRENCH_RED = "#e1000f";
-  const FRENCH_GOLD = "#e3b505";
+  const FRENCH_RED = "var(--fr-red)";
+  const FRENCH_GOLD = "var(--fr-gold)";
   
   // Calculate colors based on level
   const getPrimaryColor = () => {
@@ -52,7 +52,7 @@ export default function ProgressiveEiffelTower({
 
   const getAccentColor = () => {
     if (ratio >= 0.8) return FRENCH_GOLD;
-    if (ratio >= 0.5) return "#4169E1";
+    if (ratio >= 0.5) return "var(--fr-blue-light)";
     return "#2a2a6a";
   };
 
@@ -107,7 +107,7 @@ export default function ProgressiveEiffelTower({
           {/* Gold gradient for max level */}
           <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor={FRENCH_GOLD} stopOpacity="1" />
-            <stop offset="50%" stopColor="#FFD700" stopOpacity="0.9" />
+            <stop offset="50%" stopColor="var(--fr-gold-light)" stopOpacity="0.9" />
             <stop offset="100%" stopColor={FRENCH_GOLD} stopOpacity="0.7" />
           </linearGradient>
           

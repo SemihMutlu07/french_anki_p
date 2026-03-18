@@ -13,12 +13,12 @@ export default async function ListeningPage() {
 
   if (cards.length < 4) {
     return (
-      <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex items-center justify-center p-6">
+      <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex items-center justify-center p-6">
         <div className="text-center">
           <p className="text-lg font-semibold mb-4">
             Yeterli kart bulunamadı
           </p>
-          <Link href="/practice" className="text-sm text-[#A1A1AA] no-underline">
+          <Link href="/practice" className="text-sm text-[var(--text-secondary)] no-underline">
             ← Pratik sayfasına dön
           </Link>
         </div>

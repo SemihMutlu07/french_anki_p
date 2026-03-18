@@ -14,15 +14,15 @@ function MailButton({ label, href }: { label: string; href: string }) {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "12px 14px",
-        background: "#27272A",
+        background: "var(--bg-subtle)",
         borderRadius: 8,
-        color: "#E4E4E7",
+        color: "var(--text-primary)",
         fontSize: 14,
         textDecoration: "none",
       }}
     >
       {label}
-      <span style={{ color: "#71717A" }}>→</span>
+      <span style={{ color: "var(--text-muted)" }}>→</span>
     </a>
   );
 }
@@ -43,10 +43,10 @@ function CopyButton({ email }: { email: string }) {
         justifyContent: "space-between",
         width: "100%",
         padding: "12px 14px",
-        background: "#27272A",
+        background: "var(--bg-subtle)",
         border: "none",
         borderRadius: 8,
-        color: "#E4E4E7",
+        color: "var(--text-primary)",
         fontSize: 14,
         cursor: "pointer",
         textAlign: "left",
@@ -55,7 +55,7 @@ function CopyButton({ email }: { email: string }) {
     >
       {copied ? "Kopyalandı ✓" : email}
       {!copied && (
-        <span style={{ color: "#71717A", fontSize: 12 }}>Kopyala</span>
+        <span style={{ color: "var(--text-muted)", fontSize: 12 }}>Kopyala</span>
       )}
     </button>
   );
@@ -83,7 +83,8 @@ export default function LoginPage() {
 
     setLoading(false);
     if (authError) {
-      setError("Bir hata oluştu. Lütfen tekrar dene.");
+      console.error("[auth] signInWithOtp failed:", authError.message, authError);
+      setError(`Hata: ${authError.message}`);
     } else {
       setSent(true);
     }
@@ -100,16 +101,16 @@ export default function LoginPage() {
     }
     if (loading) {
       return {
-        background: "#18181B",
+        background: "var(--bg-muted)",
         border: "none",
-        color: "#71717A",
+        color: "var(--text-muted)",
         cursor: "default",
       };
     }
     return {
-      background: "#27272A",
+      background: "var(--bg-subtle)",
       border: "none",
-      color: "#F4F4F5",
+      color: "var(--text-primary)",
       cursor: "pointer",
     };
   };
@@ -124,8 +125,8 @@ export default function LoginPage() {
     <main
       style={{
         minHeight: "100vh",
-        background: "#09090B",
-        color: "#F4F4F5",
+        background: "var(--bg-base)",
+        color: "var(--text-primary)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -146,7 +147,7 @@ export default function LoginPage() {
         <p
           style={{
             fontSize: 13,
-            color: "#71717A",
+            color: "var(--text-muted)",
             textAlign: "center",
             margin: "0 0 32px",
           }}
@@ -168,20 +169,20 @@ export default function LoginPage() {
               display: "block",
               width: "100%",
               padding: "14px 16px",
-              background: "#18181B",
-              border: "1px solid #3F3F46",
+              background: "var(--bg-muted)",
+              border: "1px solid var(--text-ghost)",
               borderRadius: 10,
-              color: sent ? "#52525B" : "#F4F4F5",
+              color: sent ? "var(--text-faint)" : "var(--text-primary)",
               fontSize: 16,
               outline: "none",
               boxSizing: "border-box",
               opacity: sent ? 0.5 : 1,
             }}
             onFocus={(e) => {
-              if (!sent) e.currentTarget.style.borderColor = "#71717A";
+              if (!sent) e.currentTarget.style.borderColor = "var(--text-muted)";
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = "#3F3F46";
+              e.currentTarget.style.borderColor = "var(--text-ghost)";
             }}
           />
 
@@ -221,7 +222,7 @@ export default function LoginPage() {
           <p
             style={{
               fontSize: 12,
-              color: "#71717A",
+              color: "var(--text-muted)",
               textAlign: "center",
               marginTop: 12,
             }}
@@ -235,15 +236,15 @@ export default function LoginPage() {
             style={{
               marginTop: 24,
               borderRadius: 12,
-              border: "1px solid #27272A",
-              background: "#18181B",
+              border: "1px solid var(--bg-subtle)",
+              background: "var(--bg-muted)",
               padding: 16,
             }}
           >
             <p
               style={{
                 fontSize: 12,
-                color: "#71717A",
+                color: "var(--text-muted)",
                 margin: "0 0 12px",
               }}
             >
@@ -262,7 +263,7 @@ export default function LoginPage() {
             <p
               style={{
                 fontSize: 12,
-                color: "#52525B",
+                color: "var(--text-faint)",
                 textAlign: "center",
                 margin: "12px 0 0",
               }}

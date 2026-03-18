@@ -34,7 +34,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
           maxHeight: "80dvh",
           overflowY: "auto",
           borderRadius: "20px 20px 0 0",
-          background: "#18181B",
+          background: "var(--bg-muted)",
           paddingBottom:
             "calc(env(safe-area-inset-bottom, 0px) + 1.5rem)",
           paddingTop: "1.25rem",
@@ -49,7 +49,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
             width: 40,
             height: 4,
             borderRadius: 2,
-            background: "#3F3F46",
+            background: "var(--text-ghost)",
             margin: "0 auto 1.5rem",
           }}
         />
@@ -62,7 +62,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
             fontSize: 42,
             fontWeight: 700,
             lineHeight: 1.2,
-            color: "#F4F4F5",
+            color: "var(--text-primary)",
           }}
         >
           {item.french}
@@ -75,13 +75,13 @@ export default function AnswerSheet({ item, onContinue }: Props) {
             textAlign: "center",
             fontFamily: "monospace",
             fontSize: 14,
-            color: "#A1A1AA",
+            color: "var(--text-secondary)",
           }}
         >
           {item.ipa}
         </p>
 
-        <div style={{ margin: "20px 0", borderTop: "1px solid #3F3F46" }} />
+        <div style={{ margin: "20px 0", borderTop: "1px solid var(--text-ghost)" }} />
 
         {/* Turkish translation */}
         <p
@@ -89,7 +89,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
             margin: 0,
             textAlign: "center",
             fontSize: 22,
-            color: "#E4E4E7",
+            color: "var(--text-primary)",
           }}
         >
           {item.turkish}
@@ -103,7 +103,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
               textAlign: "center",
               fontSize: 14,
               fontStyle: "italic",
-              color: "#A1A1AA",
+              color: "var(--text-secondary)",
             }}
           >
             {item.example_sentence}
@@ -117,7 +117,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
               margin: "4px 0 0",
               textAlign: "center",
               fontSize: 14,
-              color: "#71717A",
+              color: "var(--text-muted)",
             }}
           >
             {item.example_translation}
@@ -125,7 +125,7 @@ export default function AnswerSheet({ item, onContinue }: Props) {
         )}
 
         <div
-          style={{ margin: "24px 0 0", borderTop: "1px solid #27272A" }}
+          style={{ margin: "24px 0 0", borderTop: "1px solid var(--bg-subtle)" }}
         />
 
         {/* Continue button */}
@@ -137,9 +137,9 @@ export default function AnswerSheet({ item, onContinue }: Props) {
             marginTop: 16,
             height: 52,
             borderRadius: 12,
-            background: "#27272A",
+            background: "var(--bg-subtle)",
             border: "none",
-            color: "#F4F4F5",
+            color: "var(--text-primary)",
             fontSize: 15,
             fontWeight: 500,
             cursor: "pointer",

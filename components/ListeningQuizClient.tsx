@@ -89,21 +89,21 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
   if (done) {
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex items-center justify-center p-6">
+      <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex items-center justify-center p-6">
         <div className="w-full max-w-sm text-center">
           <span className="text-5xl block mb-4">
             {pct >= 80 ? "🎉" : pct >= 50 ? "👍" : "💪"}
           </span>
           <h2
             className="text-2xl font-bold mb-2"
-            style={{ color: "#e3b505" }}
+            style={{ color: "var(--fr-gold)" }}
           >
             Dinleme Tamamlandı!
           </h2>
-          <p className="text-sm mb-1" style={{ color: "#A1A1AA" }}>
+          <p className="text-sm mb-1" style={{ color: "var(--text-secondary)" }}>
             {score} / {questions.length} doğru
           </p>
-          <p className="text-3xl font-bold mb-6" style={{ color: pct >= 80 ? "#84CC16" : pct >= 50 ? "#e3b505" : "#FF6B6B" }}>
+          <p className="text-3xl font-bold mb-6" style={{ color: pct >= 80 ? "#84CC16" : pct >= 50 ? "var(--fr-gold)" : "var(--fr-red-soft)" }}>
             %{pct}
           </p>
           <div className="flex flex-col gap-3">
@@ -111,9 +111,9 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
               href="/practice/listening"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
               style={{
-                background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+                background: "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
                 color: "#ffffff",
-                border: "2px solid rgba(65, 105, 225, 0.4)",
+                border: "2px solid var(--border-strong)",
               }}
             >
               Tekrar Dene
@@ -122,8 +122,8 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
               href="/practice"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
               style={{
-                background: "#27272A",
-                color: "#E4E4E7",
+                background: "var(--bg-subtle)",
+                color: "var(--text-primary)",
               }}
             >
               ← Pratik
@@ -137,13 +137,13 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
   if (!q) return null;
 
   return (
-    <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex flex-col">
+    <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex flex-col">
       {/* Header */}
       <header className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between max-w-2xl mx-auto">
           <Link
             href="/practice"
-            className="text-xl text-[#71717A] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-xl text-[var(--text-muted)] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             ←
           </Link>
@@ -151,7 +151,7 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
             <span className="text-lg">🎧</span>
             <span className="text-sm font-medium">Dinleme</span>
           </div>
-          <span className="text-sm tabular-nums" style={{ color: "#71717A" }}>
+          <span className="text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
             {current + 1}/{questions.length}
           </span>
         </div>
@@ -161,7 +161,7 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
             className="h-full rounded-full transition-all duration-300"
             style={{
               width: `${((current + 1) / questions.length) * 100}%`,
-              background: "linear-gradient(90deg, #000091 0%, #e3b505 100%)",
+              background: "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-gold) 100%)",
             }}
           />
         </div>
@@ -180,8 +180,8 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
                 width: 96,
                 height: 96,
                 background: isPlaying
-                  ? "linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)"
-                  : "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+                  ? "linear-gradient(135deg, #3B82F6 0%, var(--fr-blue-bright) 100%)"
+                  : "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
                 border: "3px solid rgba(255,255,255,0.2)",
                 boxShadow: isPlaying
                   ? "0 0 30px rgba(59, 130, 246, 0.5)"
@@ -193,7 +193,7 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
                 {isPlaying ? "🔊" : "▶️"}
               </span>
             </button>
-            <p className="mt-3 text-xs" style={{ color: "#71717A" }}>
+            <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
               {!audioUnlocked
                 ? "Sesi dinlemek için dokunun"
                 : isPlaying
@@ -201,7 +201,7 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
                 : "Tekrar dinlemek için dokunun"}
             </p>
             {audioError && (
-              <p className="mt-2 text-xs" style={{ color: "#FF6B6B" }}>
+              <p className="mt-2 text-xs" style={{ color: "var(--fr-red-soft)" }}>
                 {audioError}
               </p>
             )}
@@ -238,7 +238,7 @@ export default function ListeningQuizClient({ cards, userId }: Props) {
                     opacity: showResult && !isCorrect && !isSelected ? 0.5 : 1,
                   }}
                 >
-                  <p className="text-base font-medium text-[#F4F4F5]">
+                  <p className="text-base font-medium text-[var(--text-primary)]">
                     {opt.turkish}
                   </p>
                   {showResult && isCorrect && (

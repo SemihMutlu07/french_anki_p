@@ -32,11 +32,11 @@ export default function BottomNav() {
           width: 52,
           height: 52,
           background: isPhrasesActive
-            ? "linear-gradient(135deg, #e3b505, #FFD700)"
-            : "linear-gradient(135deg, #000091, #4169E1)",
+            ? "linear-gradient(135deg, var(--fr-gold), var(--fr-gold-light))"
+            : "linear-gradient(135deg, var(--fr-blue), var(--fr-blue-light))",
           border: isPhrasesActive
             ? "2px solid rgba(227, 181, 5, 0.6)"
-            : "2px solid rgba(65, 105, 225, 0.5)",
+            : "2px solid var(--border-strong)",
           boxShadow: isPhrasesActive
             ? "0 4px 20px rgba(227, 181, 5, 0.4)"
             : "0 4px 20px rgba(0, 0, 145, 0.5)",
@@ -50,8 +50,8 @@ export default function BottomNav() {
       <nav
         className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
         style={{
-          background: "linear-gradient(180deg, #000091 0%, #0B1220 100%)",
-          borderTop: "1px solid rgba(227, 181, 5, 0.3)",
+          background: "linear-gradient(180deg, var(--fr-blue) 0%, var(--bg-elevated) 100%)",
+          borderTop: "1px solid var(--border-gold)",
           boxShadow: "0 -4px 20px rgba(0, 0, 145, 0.4)",
           paddingBottom: "env(safe-area-inset-bottom)",
         }}
@@ -87,7 +87,7 @@ export default function BottomNav() {
                 <span
                   className="text-[10px] font-medium tracking-wide"
                   style={{
-                    color: isActive ? "#e3b505" : "#71717A",
+                    color: isActive ? "var(--fr-gold)" : "var(--text-muted)",
                     textShadow: isActive ? "0 0 10px rgba(227, 181, 5, 0.5)" : "none",
                   }}
                 >
@@ -97,7 +97,7 @@ export default function BottomNav() {
                   <div
                     className="mt-1 h-0.5 w-6 rounded-full"
                     style={{
-                      background: "linear-gradient(90deg, #e3b505 0%, #FFD700 100%)",
+                      background: "linear-gradient(90deg, var(--fr-gold) 0%, var(--fr-gold-light) 100%)",
                       boxShadow: "0 0 8px rgba(227, 181, 5, 0.6)",
                     }}
                   />

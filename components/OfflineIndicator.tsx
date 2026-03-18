@@ -34,9 +34,9 @@ export default function OfflineIndicator() {
       className="fixed top-0 left-0 right-0 z-[70] flex items-center justify-center gap-2 py-1.5 px-4 text-xs font-medium"
       style={{
         background: isOffline
-          ? "linear-gradient(90deg, #e1000f, #b8000c)"
-          : "linear-gradient(90deg, #e3b505, #d4a804)",
-        color: isOffline ? "#ffffff" : "#0B1220",
+          ? "linear-gradient(90deg, var(--fr-red), #b8000c)"
+          : "linear-gradient(90deg, var(--fr-gold), #d4a804)",
+        color: isOffline ? "#ffffff" : "var(--bg-elevated)",
       }}
     >
       <span>{isOffline ? "📡" : "🔄"}</span>

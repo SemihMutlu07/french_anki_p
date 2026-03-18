@@ -53,24 +53,24 @@ export default function GenderQuizClient({ cards, userId }: Props) {
   if (done) {
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex items-center justify-center p-6">
+      <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex items-center justify-center p-6">
         <div className="w-full max-w-sm text-center">
           <span className="text-5xl block mb-4">
             {pct >= 80 ? "🎉" : pct >= 50 ? "👍" : "💪"}
           </span>
           <h2
             className="text-2xl font-bold mb-2"
-            style={{ color: "#e3b505" }}
+            style={{ color: "var(--fr-gold)" }}
           >
             Cinsiyet Quiz Tamamlandı!
           </h2>
-          <p className="text-sm mb-1" style={{ color: "#A1A1AA" }}>
+          <p className="text-sm mb-1" style={{ color: "var(--text-secondary)" }}>
             {score} / {questions.length} doğru
           </p>
           <p
             className="text-3xl font-bold mb-6"
             style={{
-              color: pct >= 80 ? "#84CC16" : pct >= 50 ? "#e3b505" : "#FF6B6B",
+              color: pct >= 80 ? "#84CC16" : pct >= 50 ? "var(--fr-gold)" : "var(--fr-red-soft)",
             }}
           >
             %{pct}
@@ -80,9 +80,9 @@ export default function GenderQuizClient({ cards, userId }: Props) {
               href="/practice/gender"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
               style={{
-                background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+                background: "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
                 color: "#ffffff",
-                border: "2px solid rgba(65, 105, 225, 0.4)",
+                border: "2px solid var(--border-strong)",
               }}
             >
               Tekrar Dene
@@ -90,7 +90,7 @@ export default function GenderQuizClient({ cards, userId }: Props) {
             <Link
               href="/practice"
               className="block rounded-xl py-3 px-6 font-medium no-underline text-center"
-              style={{ background: "#27272A", color: "#E4E4E7" }}
+              style={{ background: "var(--bg-subtle)", color: "var(--text-primary)" }}
             >
               ← Pratik
             </Link>
@@ -106,13 +106,13 @@ export default function GenderQuizClient({ cards, userId }: Props) {
   const hint = getGenderHint(q.bareWord);
 
   return (
-    <main className="min-h-dvh bg-[#09090B] text-[#E4E4E7] flex flex-col">
+    <main className="min-h-dvh bg-[var(--bg-base)] text-[var(--text-primary)] flex flex-col">
       {/* Header */}
       <header className="px-4 py-4 sm:px-6">
         <div className="flex items-center justify-between max-w-2xl mx-auto">
           <Link
             href="/practice"
-            className="text-xl text-[#71717A] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="text-xl text-[var(--text-muted)] no-underline min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             ←
           </Link>
@@ -120,7 +120,7 @@ export default function GenderQuizClient({ cards, userId }: Props) {
             <span className="text-lg">🏷️</span>
             <span className="text-sm font-medium">le / la ?</span>
           </div>
-          <span className="text-sm tabular-nums" style={{ color: "#71717A" }}>
+          <span className="text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
             {current + 1}/{questions.length}
           </span>
         </div>
@@ -133,7 +133,7 @@ export default function GenderQuizClient({ cards, userId }: Props) {
             className="h-full rounded-full transition-all duration-300"
             style={{
               width: `${((current + 1) / questions.length) * 100}%`,
-              background: "linear-gradient(90deg, #000091 0%, #e3b505 100%)",
+              background: "linear-gradient(90deg, var(--fr-blue) 0%, var(--fr-gold) 100%)",
             }}
           />
         </div>
@@ -149,14 +149,14 @@ export default function GenderQuizClient({ cards, userId }: Props) {
               style={{
                 color: answered
                   ? q.gender === "m"
-                    ? "#60A5FA"
-                    : "#FF6B6B"
-                  : "#F4F4F5",
+                    ? "var(--fr-blue-bright)"
+                    : "var(--fr-red-soft)"
+                  : "var(--text-primary)",
               }}
             >
               {answered ? q.french : q.bareWord}
             </p>
-            <p className="mt-2 text-sm" style={{ color: "#71717A" }}>
+            <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>
               {q.turkish}
             </p>
           </div>
@@ -178,11 +178,11 @@ export default function GenderQuizClient({ cards, userId }: Props) {
             >
               <p
                 className="text-sm font-medium"
-                style={{ color: isCorrect ? "#84CC16" : "#FF6B6B" }}
+                style={{ color: isCorrect ? "#84CC16" : "var(--fr-red-soft)" }}
               >
                 {isCorrect ? "Doğru! ✓" : `Yanlış — doğrusu: ${q.french}`}
               </p>
-              <p className="text-xs mt-1" style={{ color: "#A1A1AA" }}>
+              <p className="text-xs mt-1" style={{ color: "var(--text-secondary)" }}>
                 {hint}
               </p>
             </div>
@@ -213,8 +213,8 @@ export default function GenderQuizClient({ cards, userId }: Props) {
                     : "3px solid rgba(96, 165, 250, 0.4)",
                 color:
                   answered && answered !== "m"
-                    ? "#52525B"
-                    : "#60A5FA",
+                    ? "var(--text-faint)"
+                    : "var(--fr-blue-bright)",
                 cursor: answered ? "default" : "pointer",
                 boxShadow: !answered
                   ? "0 4px 20px rgba(0, 0, 145, 0.3)"
@@ -222,7 +222,7 @@ export default function GenderQuizClient({ cards, userId }: Props) {
               }}
             >
               le
-              <span className="block text-xs font-normal mt-1" style={{ color: "#71717A" }}>
+              <span className="block text-xs font-normal mt-1" style={{ color: "var(--text-muted)" }}>
                 maskülen
               </span>
             </button>
@@ -249,8 +249,8 @@ export default function GenderQuizClient({ cards, userId }: Props) {
                     : "3px solid rgba(255, 107, 107, 0.4)",
                 color:
                   answered && answered !== "f"
-                    ? "#52525B"
-                    : "#FF6B6B",
+                    ? "var(--text-faint)"
+                    : "var(--fr-red-soft)",
                 cursor: answered ? "default" : "pointer",
                 boxShadow: !answered
                   ? "0 4px 20px rgba(225, 0, 15, 0.2)"
@@ -258,7 +258,7 @@ export default function GenderQuizClient({ cards, userId }: Props) {
               }}
             >
               la
-              <span className="block text-xs font-normal mt-1" style={{ color: "#71717A" }}>
+              <span className="block text-xs font-normal mt-1" style={{ color: "var(--text-muted)" }}>
                 feminen
               </span>
             </button>

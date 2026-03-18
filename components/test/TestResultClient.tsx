@@ -58,10 +58,10 @@ function StatRow({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <span className="text-sm" style={{ color: "#7A9BBF" }}>
+        <span className="text-sm" style={{ color: "var(--text-muted)" }}>
           {label}
         </span>
-        <span className="text-sm font-medium tabular-nums" style={{ color: "#F0F4FF" }}>
+        <span className="text-sm font-medium tabular-nums" style={{ color: "var(--text-primary)" }}>
           {correct}/{total}
         </span>
       </div>
@@ -112,8 +112,8 @@ export default function TestResultClient() {
 
   if (!result) {
     return (
-      <main className="flex min-h-dvh items-center justify-center" style={{ background: "#0B1220" }}>
-        <p className="text-sm" style={{ color: "#7A9BBF" }}>
+      <main className="flex min-h-dvh items-center justify-center" style={{ background: "var(--bg-elevated)" }}>
+        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
           Yükleniyor…
         </p>
       </main>
@@ -126,15 +126,15 @@ export default function TestResultClient() {
     <main
       className="min-h-dvh px-5 py-10 sm:py-14"
       style={{ 
-        background: "linear-gradient(180deg, #0B1220 0%, #000091 100%)",
-        color: "#F0F4FF" 
+        background: "linear-gradient(180deg, var(--bg-elevated) 0%, var(--fr-blue) 100%)",
+        color: "var(--text-primary)"
       }}
     >
       <div className="mx-auto max-w-sm">
         {/* Header */}
         <p
           className="text-[11px] font-medium uppercase tracking-[0.2em]"
-          style={{ color: "#e3b505" }}
+          style={{ color: "var(--fr-gold)" }}
         >
           Seviye sonucu
         </p>
@@ -153,12 +153,12 @@ export default function TestResultClient() {
         >
           <EiffelTower ratio={ratio} />
           <div className="flex-1 min-w-0">
-            <p className="text-[11px] uppercase tracking-wide" style={{ color: "#3D5570" }}>
+            <p className="text-[11px] uppercase tracking-wide" style={{ color: "var(--text-faint)" }}>
               Doğruluk
             </p>
             <p className="mt-1 text-3xl font-bold tabular-nums leading-none">
               {result.correct}
-              <span className="text-xl" style={{ color: "#3D5570" }}>/{result.total}</span>
+              <span className="text-xl" style={{ color: "var(--text-faint)" }}>/{result.total}</span>
             </p>
             <p className="mt-1 text-sm" style={{ color: accentColor(ratio) }}>
               %{pct(result.correct, result.total)} doğru
@@ -185,10 +185,10 @@ export default function TestResultClient() {
               strokeDashoffset={String(2 * Math.PI * 28 * (1 - ratio))}
               transform="rotate(-90 36 36)"
             />
-            <text x="36" y="33" textAnchor="middle" fill="#F0F4FF" fontSize="13" fontWeight="700">
+            <text x="36" y="33" textAnchor="middle" fill="var(--text-primary)" fontSize="13" fontWeight="700">
               {Math.round(ratio * 100)}%
             </text>
-            <text x="36" y="46" textAnchor="middle" fill="#7A9BBF" fontSize="9">
+            <text x="36" y="46" textAnchor="middle" fill="var(--text-muted)" fontSize="9">
               doğru
             </text>
           </svg>
@@ -202,10 +202,10 @@ export default function TestResultClient() {
             border: "1px solid rgba(227, 181, 5, 0.4)",
           }}
         >
-          <span className="text-sm" style={{ color: "#93C5FD" }}>
+          <span className="text-sm" style={{ color: "var(--fr-blue-pale)" }}>
             Önerilen başlangıç
           </span>
-          <span className="text-sm font-semibold" style={{ color: "#e3b505" }}>
+          <span className="text-sm font-semibold" style={{ color: "var(--fr-gold)" }}>
             Ünite {result.suggestedUnit}
           </span>
         </div>
@@ -233,7 +233,7 @@ export default function TestResultClient() {
               ))}
             </div>
           ) : (
-            <p className="text-sm" style={{ color: "#3D5570" }}>
+            <p className="text-sm" style={{ color: "var(--text-faint)" }}>
               Şimdilik net bir güçlü alan çıkmadı.
             </p>
           )}
@@ -262,7 +262,7 @@ export default function TestResultClient() {
               ))}
             </div>
           ) : (
-            <p className="text-sm" style={{ color: "#3D5570" }}>
+            <p className="text-sm" style={{ color: "var(--text-faint)" }}>
               Ciddi bir zayıf alan görünmüyor.
             </p>
           )}
@@ -278,14 +278,14 @@ export default function TestResultClient() {
           }}
           className="mt-8 flex min-h-[56px] w-full items-center justify-center rounded-2xl text-base font-semibold transition-all hover:shadow-lg"
           style={{ 
-            background: "linear-gradient(135deg, #000091 0%, #4169E1 100%)",
+            background: "linear-gradient(135deg, var(--fr-blue) 0%, var(--fr-blue-light) 100%)",
             color: "#fff",
             border: "1px solid rgba(227, 181, 5, 0.3)",
           }}
         >
           Ana sayfaya dön
         </button>
-        <p className="mt-3 text-center text-xs" style={{ color: "#93C5FD" }}>
+        <p className="mt-3 text-center text-xs" style={{ color: "var(--fr-blue-pale)" }}>
           İstersen sonra tekrar seviye testi yapabilirsin.
         </p>
       </div>

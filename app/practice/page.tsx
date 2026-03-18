@@ -28,7 +28,7 @@ const PRACTICE_ITEMS = [
 export default function PracticePage() {
   return (
     <AppLayout>
-      <div className="min-h-dvh bg-[#09090B]">
+      <div className="min-h-dvh bg-[var(--bg-base)]">
         <div className="mx-auto max-w-2xl px-4 pb-24 pt-10 sm:px-6 md:px-8">
           {/* Header */}
           <div className="mb-8">
@@ -37,7 +37,7 @@ export default function PracticePage() {
               <h1
                 className="text-2xl font-bold"
                 style={{
-                  background: "linear-gradient(90deg, #e1000f 0%, #e3b505 100%)",
+                  background: "linear-gradient(90deg, var(--fr-red) 0%, var(--fr-gold) 100%)",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -46,7 +46,7 @@ export default function PracticePage() {
                 Pratik
               </h1>
             </div>
-            <p className="text-sm" style={{ color: "#71717A" }}>
+            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
               Farklı egzersizlerle Fransızcanı pekiştir
             </p>
           </div>
@@ -67,10 +67,10 @@ export default function PracticePage() {
                   }}
                 >
                   <span className="text-4xl mb-3">{item.icon}</span>
-                  <p className="text-base font-bold text-[#F4F4F5] text-center">
+                  <p className="text-base font-bold text-[var(--text-primary)] text-center">
                     {item.label}
                   </p>
-                  <p className="mt-1 text-xs text-center" style={{ color: "#71717A" }}>
+                  <p className="mt-1 text-xs text-center" style={{ color: "var(--text-muted)" }}>
                     {item.description}
                   </p>
                 </Link>
@@ -84,10 +84,10 @@ export default function PracticePage() {
                   }}
                 >
                   <span className="text-4xl mb-3 grayscale">{item.icon}</span>
-                  <p className="text-base font-medium text-[#71717A] text-center">
+                  <p className="text-base font-medium text-[var(--text-muted)] text-center">
                     {item.label}
                   </p>
-                  <p className="mt-1 text-xs text-center" style={{ color: "#52525B" }}>
+                  <p className="mt-1 text-xs text-center" style={{ color: "var(--text-faint)" }}>
                     Yakında
                   </p>
                 </div>

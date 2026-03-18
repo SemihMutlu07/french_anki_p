@@ -92,14 +92,14 @@ export default function TestRunClient({ cards }: Props) {
     return (
       <main
         className="flex min-h-dvh items-center justify-center px-5"
-        style={{ background: "#0B1220", color: "#F0F4FF" }}
+        style={{ background: "var(--bg-elevated)", color: "var(--text-primary)" }}
       >
         <div
           className="w-full max-w-xl rounded-2xl p-6"
-          style={{ background: "#111C2E", border: "1px solid rgba(255,255,255,0.08)" }}
+          style={{ background: "var(--bg-surface)", border: "1px solid rgba(255,255,255,0.08)" }}
         >
           <p className="text-lg font-semibold">Test şu an hazır değil</p>
-          <p className="mt-2 text-sm" style={{ color: "#7A9BBF" }}>
+          <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>
             Soru havuzu bulunamadı. Lütfen daha sonra tekrar dene.
           </p>
         </div>
@@ -111,11 +111,11 @@ export default function TestRunClient({ cards }: Props) {
     return (
       <main
         className="flex min-h-dvh items-center justify-center px-5"
-        style={{ background: "#0B1220", color: "#F0F4FF" }}
+        style={{ background: "var(--bg-elevated)", color: "var(--text-primary)" }}
       >
         <div
           className="w-full max-w-xl rounded-2xl p-6"
-          style={{ background: "#111C2E", border: "1px solid rgba(255,255,255,0.08)" }}
+          style={{ background: "var(--bg-surface)", border: "1px solid rgba(255,255,255,0.08)" }}
         >
           <p className="text-lg font-semibold">Sonuçlar hazırlanıyor…</p>
         </div>
@@ -126,17 +126,17 @@ export default function TestRunClient({ cards }: Props) {
   return (
     <main
       className="min-h-dvh"
-      style={{ background: "#0B1220", color: "#F0F4FF" }}
+      style={{ background: "var(--bg-elevated)", color: "var(--text-primary)" }}
     >
       <div className="mx-auto flex min-h-dvh w-full max-w-xl flex-col px-5 py-6">
         {/* Progress bar */}
         <div className="mb-6">
           <div
             className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.2em]"
-            style={{ color: "#3D5570" }}
+            style={{ color: "var(--text-faint)" }}
           >
             <span>Seviye testi</span>
-            <span style={{ color: "#7A9BBF" }}>
+            <span style={{ color: "var(--text-muted)" }}>
               {index + 1} / {questions.length}
             </span>
           </div>
@@ -158,21 +158,21 @@ export default function TestRunClient({ cards }: Props) {
         <div
           className="rounded-2xl p-5"
           style={{
-            background: "#111C2E",
+            background: "var(--bg-surface)",
             border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
           <p
             className="text-[11px] font-medium uppercase tracking-[0.18em]"
-            style={{ color: "#60A5FA" }}
+            style={{ color: "var(--fr-blue-bright)" }}
           >
             {TYPE_LABEL[current.type] ?? current.type}
           </p>
-          <p className="mt-3 text-xl font-semibold leading-snug" style={{ color: "#F0F4FF" }}>
+          <p className="mt-3 text-xl font-semibold leading-snug" style={{ color: "var(--text-primary)" }}>
             {current.prompt}
           </p>
           {current.helper ? (
-            <p className="mt-2 text-sm" style={{ color: "#7A9BBF" }}>
+            <p className="mt-2 text-sm" style={{ color: "var(--text-muted)" }}>
               {current.helper}
             </p>
           ) : null}
@@ -185,7 +185,7 @@ export default function TestRunClient({ cards }: Props) {
               style={{
                 background: "rgba(59,130,246,0.12)",
                 border: "1px solid rgba(59,130,246,0.25)",
-                color: "#93C5FD",
+                color: "var(--fr-blue-pale)",
               }}
             >
               {isPlaying ? "Çalıyor…" : "🔊 Sesi oynat"}
@@ -202,16 +202,16 @@ export default function TestRunClient({ cards }: Props) {
               onClick={() => selectChoice(choiceIndex)}
               className="relative flex min-h-[54px] w-full items-center justify-start rounded-xl px-4 text-left text-base font-medium transition-all hover:opacity-90 active:scale-[0.99]"
               style={{
-                background: "#111C2E",
+                background: "var(--bg-surface)",
                 border: "1px solid rgba(255,255,255,0.1)",
-                color: "#E0EAFF",
+                color: "var(--text-primary)",
               }}
             >
               <span
                 className="mr-3 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded text-[11px]"
                 style={{
                   border: "1px solid rgba(255,255,255,0.15)",
-                  color: "#3D5570",
+                  color: "var(--text-faint)",
                 }}
               >
                 {choiceIndex + 1}

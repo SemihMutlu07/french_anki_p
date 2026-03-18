@@ -55,9 +55,9 @@ export default function FranceMap({ unitData }: FranceMapProps) {
   };
 
   const getCityColor = (pct: number): string => {
-    if (pct === 100) return "#e3b505";
-    if (pct >= 50) return "#4169E1";
-    if (pct > 0) return "#000091";
+    if (pct === 100) return "var(--fr-gold)";
+    if (pct >= 50) return "var(--fr-blue-light)";
+    if (pct > 0) return "var(--fr-blue)";
     return "#2a2a4a";
   };
 
@@ -68,9 +68,9 @@ export default function FranceMap({ unitData }: FranceMapProps) {
   };
 
   const getLabelColor = (pct: number): string => {
-    if (pct === 100) return "#e3b505";
-    if (pct > 0) return "#93C5FD";
-    return "#52525B";
+    if (pct === 100) return "var(--fr-gold)";
+    if (pct > 0) return "var(--fr-blue-pale)";
+    return "var(--text-faint)";
   };
 
   return (
@@ -83,12 +83,12 @@ export default function FranceMap({ unitData }: FranceMapProps) {
     >
       <defs>
         <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#000091" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#000091" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--fr-blue)" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="var(--fr-blue)" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="goldPulse" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#e3b505" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#e3b505" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--fr-gold)" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="var(--fr-gold)" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -158,7 +158,7 @@ export default function FranceMap({ unitData }: FranceMapProps) {
               cy={city.y}
               r={r}
               fill={color}
-              stroke={isComplete ? "#FFD700" : "rgba(255,255,255,0.15)"}
+              stroke={isComplete ? "var(--fr-gold-light)" : "rgba(255,255,255,0.15)"}
               strokeWidth={isComplete ? 2 : 1}
             />
 
@@ -170,7 +170,7 @@ export default function FranceMap({ unitData }: FranceMapProps) {
               dominantBaseline="central"
               fontSize={isParis ? 10 : 8}
               fontWeight="700"
-              fill={pct > 0 ? "#ffffff" : "#71717A"}
+              fill={pct > 0 ? "#ffffff" : "var(--text-muted)"}
             >
               {city.unit}
             </text>
@@ -194,7 +194,7 @@ export default function FranceMap({ unitData }: FranceMapProps) {
                 y={city.y + r + 25}
                 textAnchor="middle"
                 fontSize="8"
-                fill={isComplete ? "#e3b505" : "#71717A"}
+                fill={isComplete ? "var(--fr-gold)" : "var(--text-muted)"}
               >
                 {pct}%
               </text>
