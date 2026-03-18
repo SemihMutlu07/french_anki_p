@@ -82,9 +82,28 @@ export default function OnboardingFlow({ cards }: Props) {
     setScreen("email");
   }
 
+  const supabaseConfigured =
+    typeof process.env.NEXT_PUBLIC_SUPABASE_URL === "string" &&
+    process.env.NEXT_PUBLIC_SUPABASE_URL.length > 0 &&
+    typeof process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY === "string" &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.length > 0;
+
   async function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (sent || loading) return;
+
+    // Test bypass: "admin" → skip auth, enter as guest
+    if (email.trim().toLowerCase() === "admin") {
+      enableGuestMode();
+      router.refresh();
+      return;
+    }
+
+    if (!supabaseConfigured) {
+      setError("Supabase yapılandırılmamış. Env değişkenlerini kontrol et.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
@@ -337,7 +356,7 @@ export default function OnboardingFlow({ cards }: Props) {
         {!sent ? (
           <form onSubmit={handleEmailSubmit}>
             <input
-              type="email"
+              type="text"
               required
               disabled={loading}
               placeholder="email@ornek.com"

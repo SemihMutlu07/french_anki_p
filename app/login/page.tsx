@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createBrowserSupabase } from "@/lib/supabase";
+import { enableGuestMode } from "@/lib/guestProgress";
 
 function MailButton({ label, href }: { label: string; href: string }) {
   return (
@@ -62,14 +64,34 @@ function CopyButton({ email }: { email: string }) {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
+  const supabaseConfigured =
+    typeof process.env.NEXT_PUBLIC_SUPABASE_URL === "string" &&
+    process.env.NEXT_PUBLIC_SUPABASE_URL.length > 0 &&
+    typeof process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY === "string" &&
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.length > 0;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (sent) return;
+
+    // Test bypass: "admin" → skip auth, enter as guest
+    if (email.trim().toLowerCase() === "admin") {
+      enableGuestMode();
+      router.push("/");
+      return;
+    }
+
+    if (!supabaseConfigured) {
+      setError("Supabase yapılandırılmamış. Env değişkenlerini kontrol et.");
+      return;
+    }
+
     setLoading(true);
     setError("");
 
@@ -159,7 +181,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
+            type="text"
             required
             disabled={sent || loading}
             placeholder="email@örnek.com"
